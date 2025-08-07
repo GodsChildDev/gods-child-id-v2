@@ -4,9 +4,9 @@ import "./globals.css";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../public/Logo-GodsChildID-w-tag.png";
-import { ClerkProvider, SignedIn, SignedOut, SignInButton} from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
-import UserDropdown from "./user-dropdown";
+// import UserDropdown from "./user-dropdown";
 import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
@@ -39,20 +39,9 @@ export default function RootLayout({
             <Image src={logo} alt="site logo" width={250} />
           </Link>
           <div>
-            <SignedOut>
               <div className="flex items-center">
                 <Link href="/law-enforcement" className="text-black font-semibold text-lg">Law Enforcement</Link>
-                <Button asChild variant="link" className="text-lg">
-                  <SignInButton />
-                </Button>
-                {/* <Button asChild variant="link">
-                  <SignUpButton />
-                </Button> */}
               </div>
-            </SignedOut>
-            <SignedIn>
-              <UserDropdown />
-            </SignedIn>
           </div>
         </nav>
         {children}
