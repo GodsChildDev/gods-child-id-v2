@@ -6,7 +6,6 @@ import Image from "next/image";
 import logo from "../public/Logo-GodsChildID-w-tag.png";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
-// import UserDropdown from "./user-dropdown";
 import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({

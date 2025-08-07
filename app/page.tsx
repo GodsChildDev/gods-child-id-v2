@@ -19,10 +19,10 @@ export default function Home() {
         <SignedOut>
           <div className="flex gap-2 items-center justify-center">
             <Button asChild className="w-3xs">
-              { <SignInButton /> }
+               <SignInButton /> 
             </Button>
             <Button asChild className="w-3xs">
-              { <SignUpButton /> }
+               <SignUpButton /> 
             </Button>
           </div>
         </SignedOut>
