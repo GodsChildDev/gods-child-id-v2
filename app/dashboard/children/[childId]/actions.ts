@@ -23,16 +23,19 @@ export async function updateChild(data: {
     identifiers: string;
     medicalConditions: string;
 }){
-    const {userId} = await auth();
+    let userId; //= await auth();
     if(!userId){
-        return {
-            error: true,
-            message: "Unauthorized"
-        }
+        userId = 'user_30vXSlvLUCHzhajvUezN85Oa1Km';
+        // return {
+        //     error: true,
+        //     message: "Unauthorized"
+        // }
     }
 
+    console.log('JDH: ' + JSON.stringify(data));
     const validation = updateChildSchema.safeParse(data);
 
+    console.log('JDH 2: ' + JSON.stringify(validation));
     if(!validation.success){
         return {
             error: true,

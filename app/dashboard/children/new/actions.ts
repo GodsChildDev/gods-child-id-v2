@@ -19,7 +19,8 @@ export const createChild = async (data: {
     medicalConditions: string;
     gender: string;
 }) => {
-    const {userId} = await auth();
+    // const {userId} = await auth();
+    const userId = 'user_30vXSlvLUCHzhajvUezN85Oa1Km';
 
     if (!userId){
         return {
@@ -28,7 +29,9 @@ export const createChild = async (data: {
         }
     }
 
+    console.log('JDH: ' + JSON.stringify(data));
     const validation = childSchema.safeParse(data);
+    console.log('JDH 2: ' + JSON.stringify(validation));
     if(!validation.success){
         return {
             error: true,

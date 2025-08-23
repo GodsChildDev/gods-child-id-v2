@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import placeholder from "@/public/placeholder-image.jpg";
 import plusImage from "@/public/plus-icon.jpg";
+import ChildBox from "./child-box";
 
 export default async function ChildrenPage() {
 
@@ -38,37 +39,11 @@ const children = await getChildrenData()
                     {!!children?.length && (
                         <div className="grid grid-cols-3 gap-5 max-w-full">
             {children?.map((child) => (
-                <Card key={child.id}>
-                    <CardHeader>
-                        <Image src={placeholder} alt="placeholder" className="border border-solid border-black mb-5" />
-                        <CardTitle className="text-center text-2xl">Age: {child.age} | {format(child.dateOfBirth, "MMM do yyyy")}</CardTitle>
-                        <CardDescription className="text-center text-lg text-black font-medium">
-                            <p>Gender: {child.gender}</p>
-                            <p>Eye Color: {child.eyeColor} | Hair Color: {child.hairColor}</p>
-                            <p>Height: {child.height} | Weight: {child.weight}</p>
-                        </CardDescription>
-                    </CardHeader>
-                    <CardContent className="text-center text-md text-black font-medium">
-                        <p>Identifying Characteristics: {child.identifiers}</p>
-                        <p>Medical Conditions: {child.medicalConditions}</p>
-                    </CardContent>
-                    <CardFooter className="items-center justify-center gap-2.5">
-                        <Button variant="outline" size="icon" aria-label="Edit Child" asChild>
-                            <Link href={`/dashboard/children/${child.id}`}>
-                                <PencilIcon />
-                            </Link>
-                        </Button>
-                        <Button variant="outline" size="icon" aria-label="Create Flyer" asChild>
-                            <Link href={`/dashboard/children/flyers/${child.id}`}>
-                                <BookHeartIcon />
-                            </Link>
-                        </Button>
-                    </CardFooter>
-                </Card>
+                <ChildBox child={child} key={child.id}/>
             ))}
             <Card>
                 <CardHeader className="text-center mt-5">
-                    <CardTitle className="text-3xl">Create New Child</CardTitle>
+                    <CardTitle className="text-3xl">Add Child</CardTitle>
                 </CardHeader>
                 <CardFooter className="mt-25 flex items-center justify-center">
                     <Link href="/dashboard/children/new">

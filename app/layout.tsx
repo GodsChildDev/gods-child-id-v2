@@ -5,8 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "../public/Logo-GodsChildID-w-tag.png";
 import { ClerkProvider } from "@clerk/nextjs";
-import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
+import UserLinks from "./user-links";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,11 +37,7 @@ export default function RootLayout({
           <Link href="/">
             <Image src={logo} alt="site logo" width={250} />
           </Link>
-          <div>
-              <div className="flex items-center">
-                <Link href="/law-enforcement" className="text-black font-semibold text-lg">Law Enforcement</Link>
-              </div>
-          </div>
+          <UserLinks />
         </nav>
         {children}
         <Toaster />

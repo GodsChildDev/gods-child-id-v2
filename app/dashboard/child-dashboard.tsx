@@ -17,7 +17,7 @@ export default async function ChildDashboard(){
                             <Link href="/dashboard/children">View All</Link>
                         </Button>
                         <Button asChild>
-                            <Link href="/dashboard/children/new">Create New Child</Link>
+                            <Link href="/dashboard/children/new">Add Child</Link>
                         </Button>
                     </div>
                 </CardTitle>
