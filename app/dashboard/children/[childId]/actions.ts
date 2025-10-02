@@ -57,7 +57,7 @@ export async function updateChild(data: {
         eq(childrenTable.id, data.id),
         eq(childrenTable.userId, userId)
     ));
-    console.log('JDH after: ' + JSON.stringify(x?.error));
+    // console.log('JDH after: ' + JSON.stringify(x?.error));
     return x;
 };
 

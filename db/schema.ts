@@ -13,7 +13,7 @@ export const childrenTable = pgTable("children",{
     hairColor: text("hair_color").notNull(),
     identifiers: text("identifying_characteristics").notNull(),
     medicalConditions: text("medical_conditions").notNull(),
-    race: text("race").notNull(),
+    race: text("race"),
     imageUrl: text("image_url")
 })
 
@@ -25,7 +25,11 @@ export const flyerTable = pgTable("flyers", {
     lastSeenAt: text("last_seen_at").notNull(),
     lastSeenWearing: text("last_seen_wearing").notNull(),
     createdTimestamp: text("created_timestamp")
-})
+});
+
+export const groupCode = pgTable("group_code", {
+    codeValue: text("code_value")
+});
 
 // child_id
 // law_enforcement_id
