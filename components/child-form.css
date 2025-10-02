@@ -1,0 +1,12 @@
+
+.uploadImgBtn {
+    width: 100px;
+    background: #add8e6cc;
+    color: #2976b6;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-bottom: 14px;
+    border: thin dashed cadetblue;
+    padding: 4px;
+}

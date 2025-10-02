@@ -1,0 +1,21 @@
+.textBox {
+    background: white;
+    border: solid dodgerblue thin;
+    border-radius: 7px;
+    margin: 20px;
+    margin-top: 0px;
+}
+
+.dove {
+    border-radius: 15px;
+    border: thin solid dodgerblue;
+    transform: rotateY(180deg);
+    width: 65px;
+}
+
+.mainTitle {
+    color: #d1c9c9;;
+    text-shadow: 1px 1px 0px blue, -1px -1px 0px lightblue, white 0px 3px 6px;
+    display: inline-flex;
+    font-size: xx-large;
+}

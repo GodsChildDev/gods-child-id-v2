@@ -15,7 +15,7 @@ export default function Home() {
       <Image src={background} fill alt="background-image" className="pt-5 object-contain opacity-50" />
       <div className="relative z-10 text-center items-center flex flex-col gap-4">
         <Image src={logo} alt="logo-wo-tag" width={425} />
-        <Button onClick={enforce2FAForAllUsers}>Update Users</Button>
+        {/* <Button onClick={enforce2FAForAllUsers}>Update Users</Button> */}
         <SignedIn>
           <Button asChild className="w-sm">
             <Link href="/dashboard">Go To Your Dashboard</Link>

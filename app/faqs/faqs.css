@@ -1,0 +1,13 @@
+.textBox {
+    background: white;
+    border: solid dodgerblue thin;
+    border-radius: 7px;
+    margin: 20px;
+    margin-top: 0px;
+}
+
+.questionBubble {
+    color: mediumseagreen;
+    background: white;
+    border-radius: 15px;
+}

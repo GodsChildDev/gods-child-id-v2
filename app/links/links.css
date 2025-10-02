@@ -1,0 +1,16 @@
+.textBox {
+    background: white;
+    border: solid dodgerblue thin;
+    border-radius: 7px;
+    margin: 20px;
+    margin-top: 0px;
+}
+
+a {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+a:hover  {
+    color: blue;
+}

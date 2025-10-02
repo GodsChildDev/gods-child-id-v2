@@ -6,7 +6,6 @@ export const childrenTable = pgTable("children",{
     gender: text({
         enum: ["male", "female"],
     }).notNull(),
-    age: numeric("child_age").notNull(),
     dateOfBirth: date("date_of_birth").notNull(),
     height: text("child_height").notNull(),
     weight: numeric("child_weight").notNull(),
@@ -14,16 +13,27 @@ export const childrenTable = pgTable("children",{
     hairColor: text("hair_color").notNull(),
     identifiers: text("identifying_characteristics").notNull(),
     medicalConditions: text("medical_conditions").notNull(),
+    race: text("race").notNull(),
+    imageUrl: text("image_url")
 })
 
 export const flyerTable = pgTable("flyers", {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
     childId: integer("child_id").references(() => childrenTable.id).notNull(),
     lawEnforcementId: text("law_enforcement_id").notNull(),
-    flyerName: text("encrypted_name").notNull(),
+    childName: text("child_name").notNull(),
     lastSeenAt: text("last_seen_at").notNull(),
     lastSeenWearing: text("last_seen_wearing").notNull(),
-    parentPhone: text("parent_phone").notNull(),
-    emergencyPhone: text("emergency_phone").notNull(),
-    imageUrl: text("image_url").notNull(),
+    createdTimestamp: text("created_timestamp")
 })
+
+// child_id
+// law_enforcement_id
+// last_seen_at
+// last_seen_wearing
+// parent_phone
+// emergency_phone
+// parent_name
+// emergency_name
+// emergency_type
+// child_name

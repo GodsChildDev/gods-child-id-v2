@@ -8,11 +8,12 @@ import "server-only";
 import { clerkClient } from '@clerk/nextjs/server';
 
 export async function getChild(childId: number){
-    // const { userId } = auth();
-    // if(!userId){
-    //     return null;
-    // }
-    const userId = 'user_30vXSlvLUCHzhajvUezN85Oa1Km';
+    const { userId } = await auth();
+    console.log('userId: ' + userId);
+    if (!userId) {
+        return null;
+    }
+    // const userId = 'user_30vXSlvLUCHzhajvUezN85Oa1Km';
 
     const [child] = await db.select().from(childrenTable).where(and(
         eq(childrenTable.id, childId),

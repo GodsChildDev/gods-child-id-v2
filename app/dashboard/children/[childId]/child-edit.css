@@ -1,0 +1,18 @@
+
+.treeBox {
+    color: transparent;
+    padding: 60px 100px;
+    background: rgb(226, 219, 203);
+    margin-top: 15px;
+    border: 2px dotted #b26127;
+    border-radius: 7px;
+}
+
+/* .treeImage {
+    color: transparent;
+    padding: 60px 100px;
+    background: rgb(226, 219, 203);
+    margin-top: 15px;
+    border: 2px dotted #b26127;
+    border-radius: 7px;
+} */

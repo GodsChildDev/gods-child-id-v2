@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "../public/Logo-GodsChildID-w-tag.png";
+import logo from "../public/Logo-no tag.png";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/sonner";
 import UserLinks from "./user-links";
@@ -32,11 +32,13 @@ export default function RootLayout({
   return (
     <ClerkProvider>
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <nav className="bg-zinc-300 text-white p-4 h-30 flex items-center justify-between">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} style={{background: '#155e9496'}}>
+        <nav className="bg-zinc-300 text-white p-4 h-30 flex items-center justify-between"
+          style={{background: 'white', border: 'thick dashed ghostwhite', borderRadius: '7px'}}>
           <Link href="/">
             <Image src={logo} alt="site logo" width={250} />
           </Link>
+          <div style={{color: 'lightgray', fontFamily: 'cursive', fontStyle: 'italic', textShadow: '1px 1px dodgerblue, -1px 0px lightyellow', fontSize: 'x-large'}}>"Protecting Life's Most Precious Assets... Our Children"</div>
           <UserLinks />
         </nav>
         {children}

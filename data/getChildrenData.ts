@@ -7,14 +7,14 @@ import { asc, eq } from "drizzle-orm";
 import "server-only";
 
 export async function getChildrenData() {
-    // const { userId } = auth;
+    const { userId } = await auth();
 
-    // if(!userId){
-    //     return null;
-    // }
-    const userId = 'user_30vXSlvLUCHzhajvUezN85Oa1Km';
+    if (!userId) {
+        return null;
+    }
+    // const userId = 'user_30vXSlvLUCHzhajvUezN85Oa1Km';
 
-    const children = await db.select().from(childrenTable).where(eq(childrenTable.userId, userId)).orderBy(asc(childrenTable.age));
+    const children = await db.select().from(childrenTable).where(eq(childrenTable.userId, userId)).orderBy(asc(childrenTable.id));
 
     return children;
 }

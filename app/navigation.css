@@ -1,0 +1,93 @@
+/* General styling */
+
+.triggerBtn {
+  cursor: pointer;
+  color: dodgerblue;
+  font-size: x-large;
+}
+
+.message {
+  float:right;
+  color: white;
+  font-style: italic;
+  margin:0;
+  margin-left: 12px;
+}
+
+.outerMessage {
+  flex: 1; text-align: right;
+}
+
+.powerOff {
+  color: goldenrod; 
+  padding-left: 10px;
+  text-shadow: 2px 2px 4px #000000;
+  font-size: x-large;
+}
+
+
+/* Navigation styling */
+
+ul {
+  list-style-type: none;
+  margin: 14px;
+  padding: 0;
+}
+
+.mainNavLi {
+  display: inline;
+  border: black thin dotted;
+  padding: 10px;
+}
+
+:host {
+  display: inline-block;
+  position: relative;
+  margin-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+  font-size: 24px;
+  line-height:24px;
+  color:black;
+  cursor:pointer;
+  box-sizing: border-box;
+  width: 100%
+}
+
+.mainNavA {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 10px;
+  border-right: thin ridge black;
+  border-radius: 7px;
+}
+
+.mainNavAPress {
+  background: #304094;
+  color: #fedb0c;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 10px;
+  border-right: thin ridge black;
+  border-radius: 7px;
+}
+
+.mainNavA:hover {
+  color: gold;
+}
+
+i {
+  text-shadow: 2px 2px 4px #000000;
+}
+
+.mainNav {
+  /* top: -44px; */
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-grow: 1;
+  background-color: midnightblue;
+  border: rgb(6, 6, 31) 4px double;
+}

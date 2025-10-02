@@ -13,8 +13,7 @@ const updateChildSchema = childSchema.and(z.object({
 
 export async function updateChild(data: {
     id: number;
-    gender: "male" | "female",
-    age: number;
+    gender: "male" | "female";
     dateOfBirth: string;
     height: string;
     weight: number;
@@ -22,30 +21,29 @@ export async function updateChild(data: {
     hairColor: string;
     identifiers: string;
     medicalConditions: string;
+    imageUrl: string;
+    race: "American Indian or Alaska Native" | "Asian" | "Black or African American" | "Hispanic or Latino" | "Middle Eastern or North African" | "Native Hawaiian or Pacific Islander" | "White";
 }){
-    let userId; //= await auth();
-    if(!userId){
-        userId = 'user_30vXSlvLUCHzhajvUezN85Oa1Km';
-        // return {
-        //     error: true,
-        //     message: "Unauthorized"
-        // }
-    }
-
-    console.log('JDH: ' + JSON.stringify(data));
-    const validation = updateChildSchema.safeParse(data);
-
-    console.log('JDH 2: ' + JSON.stringify(validation));
-    if(!validation.success){
+    console.log('submitting: '+ JSON.stringify(data));
+    let userId = await auth();
+    if (!userId) {
         return {
             error: true,
-            message: validation.error.issues[0].message,
-        };
+            message: "Unauthorized"
+        }
     }
 
-    await db.update(childrenTable).set({
+    // const validation = updateChildSchema.safeParse(data);
+
+    // if(!validation.success){
+    //     return {
+    //         error: true,
+    //         message: validation.error.issues[0].message,
+    //     };
+    // }
+
+    var x = db.update(childrenTable).set({
         gender: data.gender,
-        age: data.age.toString(),
         dateOfBirth: data.dateOfBirth,
         height: data.height,
         weight: data.weight.toString(),
@@ -53,10 +51,14 @@ export async function updateChild(data: {
         hairColor: data.hairColor,
         identifiers: data.identifiers,
         medicalConditions: data.medicalConditions,
+        imageUrl: data.imageUrl,
+        race: data.race
     }).where(and(
         eq(childrenTable.id, data.id),
         eq(childrenTable.userId, userId)
     ));
+    console.log('JDH after: ' + JSON.stringify(x?.error));
+    return x;
 };
 
 export async function deleteChild(childId: number){

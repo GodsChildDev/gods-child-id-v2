@@ -13,7 +13,6 @@ export default function NewChildForm(){
 
     const handleSubmit = async (data: z.infer<typeof childFormSchema>) => {
         const result = await createChild({
-            age: data.childAge,
             dateOfBirth: format(data.dateOfBirth, "yyyy-MM-dd"),
             height: data.height,
             weight: data.weight,
@@ -21,7 +20,9 @@ export default function NewChildForm(){
             hairColor: data.hairColor,
             identifiers: data.identifiers,
             medicalConditions: data.medicalConditions,
-            gender: data.childGender
+            gender: data.childGender,
+            imageUrl: data.imageUrl,
+            race: data.race
         });
 
         if(result.error){

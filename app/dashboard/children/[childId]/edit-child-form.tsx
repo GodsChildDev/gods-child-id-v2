@@ -11,9 +11,8 @@ export default function EditChildForm({
     child
 }: {
     child: {
-        gender: "male" | "female";
         id: number;
-        age: string;
+        gender: "male" | "female";
         dateOfBirth: string;
         height: string;
         weight: string;
@@ -21,6 +20,8 @@ export default function EditChildForm({
         hairColor: string;
         identifiers: string;
         medicalConditions: string;
+        imageUrl: string;
+        race: "American Indian or Alaska Native" | "Asian" | "Black or African American" | "Hispanic or Latino" | "Middle Eastern or North African" | "Native Hawaiian or Pacific Islander" | "White";
     }
 }){
     const router = useRouter();
@@ -28,8 +29,7 @@ export default function EditChildForm({
     const handleSubmit = async (data: z.infer<typeof childFormSchema>) => {
         const result = await updateChild({
             id: child.id,
-            age: data.childAge,
-            dateOfBirth: format(data.dateOfBirth, "yyyy-MM-dd"),
+            dateOfBirth: data.dateOfBirth.toISOString().substring(0,10),
             height: data.height,
             weight: data.weight,
             eyeColor: data.eyeColor,
@@ -37,9 +37,11 @@ export default function EditChildForm({
             identifiers: data.identifiers,
             medicalConditions: data.medicalConditions,
             gender: data.childGender,
+            imageUrl: data.imageUrl,
+            race: data.race
         })
 
-        if(result?.error){
+        if (result?.error) {
             toast.error("Error Editing Child.", {
                 style: {backgroundColor: "red"}
             })
@@ -52,11 +54,9 @@ export default function EditChildForm({
         router.push("/dashboard/children");
     };
 
-
     return (
         <ChildForm defaultValues={{
             childGender: child.gender,
-            childAge: Number(child.age),
             dateOfBirth: new Date(child.dateOfBirth),
             height: child.height,
             weight: Number(child.weight),
@@ -64,6 +64,8 @@ export default function EditChildForm({
             hairColor: child.hairColor,
             identifiers: child.identifiers,
             medicalConditions: child.medicalConditions,
+            imageUrl: child.imageUrl,
+            race: child.race
         }} onSubmit={handleSubmit} />
     )
 }
