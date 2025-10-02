@@ -24,7 +24,8 @@ export async function updateChild(data: {
     imageUrl: string;
     race: "American Indian or Alaska Native" | "Asian" | "Black or African American" | "Hispanic or Latino" | "Middle Eastern or North African" | "Native Hawaiian or Pacific Islander" | "White";
 }){
-    console.log('submitting: '+ JSON.stringify(data));
+    // console.log('submitting: '+ JSON.stringify(data));
+    debugger;
     let userId = await auth();
     if (!userId) {
         return {
@@ -42,7 +43,7 @@ export async function updateChild(data: {
     //     };
     // }
 
-    var x = db.update(childrenTable).set({
+    return await db.update(childrenTable).set({
         gender: data.gender,
         dateOfBirth: data.dateOfBirth,
         height: data.height,
@@ -58,7 +59,6 @@ export async function updateChild(data: {
         eq(childrenTable.userId, userId)
     ));
     // console.log('JDH after: ' + JSON.stringify(x?.error));
-    return x;
 };
 
 export async function deleteChild(childId: number){

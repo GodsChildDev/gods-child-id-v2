@@ -27,6 +27,7 @@ export default function EditChildForm({
     const router = useRouter();
 
     const handleSubmit = async (data: z.infer<typeof childFormSchema>) => {
+        debugger;
         const result = await updateChild({
             id: child.id,
             dateOfBirth: data.dateOfBirth.toISOString().substring(0,10),

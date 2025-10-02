@@ -25,11 +25,11 @@ export async function getChild(childId: number){
 export async function enforce2FAForAllUsers() {
     console.log(`FIND User List`);
     const cl = await clerkClient();
-    console.log('cl:' + JSON.stringify(cl));
+    // console.log('cl:' + JSON.stringify(cl));
     const usersResponse = cl.users;
-    console.log('usersResponse: ' + JSON.stringify(usersResponse));
+    // console.log('usersResponse: ' + JSON.stringify(usersResponse));
     const users = usersResponse.data;
-    console.log('users: ' + JSON.stringify(users));
+    // console.log('users: ' + JSON.stringify(users));
   console.log(`User List ACQUIRED`);
     for (const user of users) {
         console.log(`ATTEMPTING 2FA enforced for user: ${user.id}`); 
