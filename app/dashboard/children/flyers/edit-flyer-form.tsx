@@ -74,12 +74,7 @@ export default function EditFlyerForm({flyer, isNew}: {
             childName: flyer.childName,
             lastSeenAt: flyer.lastSeenAt,
             lastSeenWearing: flyer.lastSeenWearing,
-            lawEnforcementId: flyer.lawEnforcementId,
-            parentName: flyer.parentName,
-            parentPhone: flyer.parentPhone,
-            emergencyName: flyer.emergencyName,
-            emergencyType: flyer.emergencyType,
-            emergencyPhone: flyer.emergencyPhone
+            lawEnforcementId: flyer.lawEnforcementId
         }} onSubmit={handleSubmit} />
     )
 }

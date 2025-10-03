@@ -43,7 +43,7 @@ export async function updateChild(data: {
     //     };
     // }
 
-    return await db.update(childrenTable).set({
+    await db.update(childrenTable).set({
         gender: data.gender,
         dateOfBirth: data.dateOfBirth,
         height: data.height,
@@ -58,6 +58,7 @@ export async function updateChild(data: {
         eq(childrenTable.id, data.id),
         eq(childrenTable.userId, userId)
     ));
+    console.log('After update');
     // console.log('JDH after: ' + JSON.stringify(x?.error));
 };
 

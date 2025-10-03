@@ -39,7 +39,7 @@ export const createChild = async (data: {
         userId,
         dateOfBirth: data.dateOfBirth,
         height: data.height,
-        weight: data.weight,
+        weight: Number(data.weight),
         eyeColor: data.eyeColor,
         hairColor: data.hairColor,
         identifiers: data.identifiers,

@@ -15,7 +15,7 @@ export default function EditChildForm({
         gender: "male" | "female";
         dateOfBirth: string;
         height: string;
-        weight: string;
+        weight: number;
         eyeColor: string;
         hairColor: string;
         identifiers: string;
@@ -27,12 +27,11 @@ export default function EditChildForm({
     const router = useRouter();
 
     const handleSubmit = async (data: z.infer<typeof childFormSchema>) => {
-        debugger;
         const result = await updateChild({
             id: child.id,
             dateOfBirth: data.dateOfBirth.toISOString().substring(0,10),
             height: data.height,
-            weight: data.weight,
+            weight: Number(data.weight),
             eyeColor: data.eyeColor,
             hairColor: data.hairColor,
             identifiers: data.identifiers,
@@ -43,6 +42,7 @@ export default function EditChildForm({
         })
 
         if (result?.error) {
+            console.log('JDH:' + JSON.stringify(result));
             toast.error("Error Editing Child.", {
                 style: {backgroundColor: "red"}
             })

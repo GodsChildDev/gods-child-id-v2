@@ -15,7 +15,7 @@ export default function NewChildForm(){
         const result = await createChild({
             dateOfBirth: format(data.dateOfBirth, "yyyy-MM-dd"),
             height: data.height,
-            weight: data.weight,
+            weight: Number(data.weight),
             eyeColor: data.eyeColor,
             hairColor: data.hairColor,
             identifiers: data.identifiers,
@@ -26,6 +26,7 @@ export default function NewChildForm(){
         });
 
         if(result.error){
+            console.log('JDH:' + JSON.stringify(result));
             toast.error("Error Creating Child.", {
                 style: {backgroundColor: "red"}
             })
