@@ -6,6 +6,7 @@ import { flyerSchema } from "@/validation/flyerSchema";
 import { auth } from "@clerk/nextjs/server";
 import { and, eq } from "drizzle-orm";
 import { z } from "zod";
+import { format } from "date-fns";
 
 const updateFlyerSchema = flyerSchema.and(z.object({
     id: z.number(),
@@ -13,15 +14,11 @@ const updateFlyerSchema = flyerSchema.and(z.object({
 
 export async function updateFlyer(data: {
         id: number;
+        childId: number;
         childName: string;
         lastSeenAt: string;
         lastSeenWearing: string;
         lawEnforcementId: string;
-        parentName: string;
-        parentPhone: string;
-        emergencyName: string;
-        emergencyType: string;
-        emergencyPhone: string;
 }){
     let userId = await auth();
     if (!userId) {
@@ -41,15 +38,11 @@ export async function updateFlyer(data: {
     }
 
     await db.update(flyerTable).set({
+            childId: data.childId,
             childName: data.childName,
             lastSeenAt: data.lastSeenAt,
             lastSeenWearing: data.lastSeenWearing,
-            lawEnforcementId: data.lawEnforcementId,
-            parentName: data.parentName,
-            parentPhone: data.parentPhone,
-            emergencyName: data.emergencyName,
-            emergencyType: data.emergencyType,
-            emergencyPhone: data.emergencyPhone
+            lawEnforcementId: data.lawEnforcementId
     }).where(and(
         eq(flyerTable.id, data.id),
         eq(flyerTable.userId, userId)
@@ -73,17 +66,14 @@ export async function deleteFlyer (flyerId: number) {
 };
 
 export const createFlyer = async (data: {
-    childId: number;
+        childId: number;
         childName: string;
         lastSeenAt: string;
         lastSeenWearing: string;
         lawEnforcementId: string;
-        parentName: string;
-        parentPhone: string;
-        emergencyName: string;
-        emergencyType: string;
-        emergencyPhone: string;
 }) => {
+    debugger;
+    console.log('data: ' + JSON.stringify(data));
     const {userId} = await auth();
 
     if (!userId){
@@ -101,17 +91,13 @@ export const createFlyer = async (data: {
         }
     }
 
-    const [flyer] = await db.insert(flyerSchema).values({
+    const [flyer] = await db.insert(flyerTable).values({
         childId: data.childId,
         childName: data.childName,
         lastSeenAt: data.lastSeenAt,
         lastSeenWearing: data.lastSeenWearing,
         lawEnforcementId: data.lawEnforcementId,
-        parentName: data.parentName,
-        parentPhone: data.parentPhone,
-        emergencyName: data.emergencyName,
-        emergencyType: data.emergencyType,
-        emergencyPhone: data.emergencyPhone
+        createdTimestamp: format(new Date(), "M/dd/yy")
     }).returning();
 
     return {

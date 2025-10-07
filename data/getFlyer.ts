@@ -16,7 +16,15 @@ export async function getFlyer(flyerId: number) {
 export async function getFlyerByChild(childId : number) {
   const [flyer] = await db.select().from(flyerTable)
     .where(eq(flyerTable.childId, childId))
-    .orderBy(desc(flyerTable.createdTimestamp))
+    .orderBy(desc(flyerTable.id))
+    .limit(1);
+  return flyer;
+}
+
+export async function getFlyerByCode(code : string) {
+  const [flyer] = await db.select().from(flyerTable)
+    .where(eq(flyerTable.lawEnforcementId, code))
+    .orderBy(desc(flyerTable.id))
     .limit(1);
   return flyer;
 }

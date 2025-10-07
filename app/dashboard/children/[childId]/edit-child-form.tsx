@@ -41,8 +41,9 @@ export default function EditChildForm({
             race: data.race
         })
 
+        console.log('JDH:' + JSON.stringify(result));
+
         if (result?.error) {
-            console.log('JDH:' + JSON.stringify(result));
             toast.error("Error Editing Child.", {
                 style: {backgroundColor: "red"}
             })

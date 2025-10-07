@@ -22,6 +22,11 @@ export async function getChild(childId: number){
     return child;
 }
 
+export async function getPureChild(childId: number){
+  const [child] = await db.select().from(childrenTable).where(eq(childrenTable.id, childId));
+  return child;
+}
+
 export async function enforce2FAForAllUsers() {
     console.log(`FIND User List`);
     const cl = await clerkClient();

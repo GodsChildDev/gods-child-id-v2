@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import { z } from "zod";
 import { createFlyer, updateFlyer } from "./actions";
 
-export default function EditFlyerForm({flyer, isNew}: {
+export default function EditFlyerForm({flyer, isNew, childId}: {
     flyer : {
         childName: string;
         id: number;
@@ -15,66 +15,49 @@ export default function EditFlyerForm({flyer, isNew}: {
         lastSeenAt: string;
         lastSeenWearing: string;
         lawEnforcementId: string;
-        parentName: string;
-        parentPhone: string;
-        emergencyName: string;
-        emergencyType: string;
-        emergencyPhone: string;
     }, isNew : boolean
 }){
     const router = useRouter();
 
-    const handleSubmit = async (data: z.infer<typeof flyerFormSchema>) => {
-        // const actionPresent = isNew ? 'Creating' : 'Editing',
-        //     actionPast = isNew ? 'Created' : 'Edited';
-        // const result = isNew ? 
-        // await createFlyer({
-        //     childId: flyer.childId,
-        //     childName: data.childName,
-        //     lastSeenAt: data.lastSeenAt,
-        //     lastSeenWearing: data.lastSeenWearing,
-        //     lawEnforcementId: data.lawEnforcementId,
-        //     parentName: data.parentName,
-        //     parentPhone: data.parentPhone,
-        //     emergencyName: data.emergencyName,
-        //     emergencyType: data.emergencyType,
-        //     emergencyPhone: data.emergencyPhone
-        // }) :
-        // await updateFlyer({
-        //     id: flyer.id,
-        //     childName: data.childName,
-        //     lastSeenAt: data.lastSeenAt,
-        //     lastSeenWearing: data.lastSeenWearing,
-        //     lawEnforcementId: data.lawEnforcementId,
-        //     parentName: data.parentName,
-        //     parentPhone: data.parentPhone,
-        //     emergencyName: data.emergencyName,
-        //     emergencyType: data.emergencyType,
-        //     emergencyPhone: data.emergencyPhone
-        // });
+    const handleSubmit = async (data: z.infer<typeof flyerFormSchema>, childId) => {
+        debugger;
+        const isNew = true,
+            actionPresent = isNew ? 'Creating' : 'Editing',
+            actionPast = isNew ? 'Created' : 'Edited';
+            console.log('childId: ' + childId);
+        const result = await createFlyer({
+            childId: Number.parseInt(childId),
+            childName: data.childName,
+            lastSeenAt: data.lastSeenAt,
+            lastSeenWearing: data.lastSeenWearing,
+            lawEnforcementId: data.lawEnforcementId
+        });
 
-        // if (result?.error) {
-        //     toast.error(`Error ${actionPresent} Flyer.`, {
-        //         style: {backgroundColor: "red"}
-        //     })
-        //     return;
-        // }
+        console.log('JDH: ' + result);
+        if (result?.error) {
+            toast.error(`Error ${actionPresent} Flyer.`, {
+                style: {backgroundColor: "red"}
+            })
+            return;
+        }
 
-        const actionPast = 'Created'
+        // const actionPast = 'Created'
 
         toast.success(`Flyer Successfully ${actionPast}!`, {
             style: {backgroundColor: "green"}
         });
-        router.push(`/dashboard/children/flyers/${flyer.childId}`);
+        router.push(`/dashboard/children/flyers/${childId}`);
     };
 
 
     return (
         <FlyerForm defaultValues={{
+            childId: childId,
             childName: flyer.childName,
             lastSeenAt: flyer.lastSeenAt,
             lastSeenWearing: flyer.lastSeenWearing,
             lawEnforcementId: flyer.lawEnforcementId
-        }} onSubmit={handleSubmit} />
+        // }} onSubmit={handleSubmit} />
+        }} onSubmit={(data) => handleSubmit(data, childId)} />
     )
 }

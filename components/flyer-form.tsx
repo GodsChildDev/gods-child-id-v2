@@ -14,34 +14,26 @@ import { Calendar } from "./ui/calendar";
 // import { format } from "date-fns";
 // import { cn } from "@/lib/utils";
 import * as React from "react";
+import { TextArea } from "./ui/textarea";
 
 export const flyerFormSchema = z.object({
+    childId: z.number(),
     childName: z.string(),
     lastSeenAt: z.string(),
     lastSeenWearing: z.string(),
-    lawEnforcementId: z.string(),
-    parentName: z.string(),
-    parentPhone: z.string(),
-    emergencyName: z.string(),
-    emergencyType: z.string(),
-    emergencyPhone: z.string()
+    lawEnforcementId: z.string()
 })
 
 // child_id
 // law_enforcement_id
-// encrypted_name
 // last_seen_at
 // last_seen_wearing
-// parent_phone
-// emergency_phone
-// parent_name
-// emergency_name
-// emergency_type
 // child_name
 
 type Props = {
     onSubmit: (data: z.infer<typeof flyerFormSchema>) => Promise<void>;
     defaultValues?: {
+        childId: number,
         childName: string,
         lastSeenAt: string,
         lastSeenWearing: string,
@@ -50,7 +42,7 @@ type Props = {
 }
 
 function generateRandomAlphanumeric() {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+=?<>,:;{}[]|~';
     const minLength = 4;
     const maxLength = 6;
     const length = Math.floor(Math.random() * (maxLength - minLength + 1)) + minLength;
@@ -58,7 +50,6 @@ function generateRandomAlphanumeric() {
     for (let i = 0; i < length; i++) {
       result += characters.charAt(Math.floor(Math.random() * characters.length));
     }
-    console.log('JDH code: ' + result);
     return result;
   };
 
@@ -105,6 +96,7 @@ export default function FlyerForm({
                     </FormItem>
                     )
                 }} />
+                </fieldset><fieldset className="mt-5 flex flex-col gap-5">
                 <FormField control={form.control} name="lastSeenWearing" render={({field}) => {
                     return (
                     <FormItem>
@@ -116,101 +108,24 @@ export default function FlyerForm({
                     </FormItem>
                     )
                 }} />
+                </fieldset><fieldset className="mt-5 mb-5 flex flex-col gap-5">
                 <FormField control={form.control} name="lastSeenAt" render={({field}) => {
                     return (
                     <FormItem>
                         <FormLabel>Last Seen At</FormLabel>
                         <FormControl>
-                            <Input {...field} />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                    )
-                }} />
-                <FormField control={form.control} name="isMissing" render={({field}) => {
-                    return (
-                    <FormItem style={{display: 'flex', height: 'fit-content', alignItems: 'center'}}>
-                        <FormLabel>Missing</FormLabel>
-                        <FormControl style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
-                            <Input type={"checkbox"} {...field} 
-                             style={{marginTop: '15px', transform: 'scale(0.65)'}}/>
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                    )
-                }} />
-                <FormField control={form.control} name="isAbducted" render={({field}) => {
-                    return (
-                    <FormItem style={{display: 'flex', height: 'fit-content', alignItems: 'center'}}>
-                        <FormLabel>Abducted</FormLabel>
-                        <FormControl style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
-                            <Input type={"checkbox"} {...field} 
-                            style={{marginTop: '15px', transform: 'scale(0.65)'}} />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                    )
-                }} />
-                <span>Emergency Info</span><br/>
-                <FormField control={form.control} name="parentName" render={({field}) => {
-                    return (
-                    <FormItem>
-                        <FormLabel>Parent Name</FormLabel>
-                        <FormControl>
-                            <Input {...field} />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                    )
-                }} />
-                <FormField control={form.control} name="emergencyName" render={({field}) => {
-                    return (
-                    <FormItem>
-                        <FormLabel>2nd Contact Name</FormLabel>
-                        <FormControl>
-                            <Input {...field} />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                    )
-                }} />
-                 <FormField control={form.control} name="parentPhone" render={({field}) => {
-                    return (
-                    <FormItem>
-                        <FormLabel>Phone</FormLabel>
-                        <FormControl>
-                            <Input {...field} />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                    )
-                }} />
-                <FormField control={form.control} name="emergencyType" render={({field}) => {
-                    return (
-                    <FormItem>
-                        <FormLabel>Relationship</FormLabel>
-                        <FormControl>
-                            <Input {...field} />
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                    )
-                }} />
-                <h1>_</h1>
-                <FormField control={form.control} name="emergencyPhone" render={({field}) => {
-                    return (
-                    <FormItem>
-                        <FormLabel>Phone</FormLabel>
-                        <FormControl>
-                            <Input {...field} />
+                            <TextArea {...field} style={{height: '100px'}}/>
                         </FormControl>
                         <FormMessage />
                     </FormItem>
                     )
                 }} />
                 </fieldset>
-                <fieldset disabled={form.formState.isSubmitting} className="mt-5 mb-5 flex flex-col gap-5">
-                <Button type="submit">Submit</Button>
+                <fieldset disabled={form.formState.isSubmitting} className="mt-5 flex flex-col gap-5" style={{alignItems: 'flex-end'}}>
+                {/* <Button type="submit">Submit</Button> */}
+                <Button variant="outline" type="submit" style={{ width: '100px', background: 'midnightblue', color: 'lightgoldenrodyellow' }}>
+                    Submit
+                </Button>
                 </fieldset>
             </form>
         </Form>

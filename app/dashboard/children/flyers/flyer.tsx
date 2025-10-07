@@ -11,9 +11,9 @@ import { Button } from "@/components/ui/button";
 import { useRef, useState } from 'react';
 import { useReactToPrint } from "react-to-print";
 import { Mail, Twitch, Printer } from "lucide-react";
-import BottomBanner from "../../bottom-banner";
+import './flyer.css';
 
-export default function Flyer({ child }) {
+export default function Flyer({ child, flyer }) {
 
     const flyerRef = useRef<HTMLDivElement>(null),
         flyerDocName = 'Nate Missing Flyer',
@@ -40,31 +40,40 @@ export default function Flyer({ child }) {
                     {/* <CardTitle className="text-center text-2xl">Age: {calculate_age(child.dateOfBirth)}</CardTitle> */}
                     {/* <CardTitle className="text-center text-2xl">Birthday: {format(child.dateOfBirth, "MMM do yyyy")}</CardTitle> */}
                     <CardContent className="text-left text-lg text-black font-medium" style={{ paddingLeft: '20px' }}>
-                        <p>NAME: Nathaniel Heston</p>
-                        <p>DATE OF BIRTH: {format(child.dateOfBirth, "MMM dd, yyyy")}</p>
-                        <p>AGE: {calculate_age(child.dateOfBirth)}</p>
-                        <p>RACE: Caucasian</p>
-                        <p>SEX: {child.gender}</p>
-                        <p>HEIGHT: {child.height}</p>
-                        <p>WEIGHT: {child.weight} lbs</p>
-                        <p>EYES COLOR: {child.eyeColor}</p>
-                        <p>HAIR COLOR: {child.hairColor}</p>
-                        <p>WEARING: </p>
+                        <p style={{display: 'inline-flex'}}>NAME: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{flyer.childName}</p></p>
                         <br/>
-                        <p>IDENTIFYING MARKS: {child.identifiers}</p>
+                        <p style={{display: 'inline-flex'}}>DATE OF BIRTH: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{format(child.dateOfBirth, "MMM dd, yyyy")}</p></p>
                         <br/>
-                        <p>LAST SEEN: </p>
+                        <p style={{display: 'inline-flex'}}>AGE: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{calculate_age(child.dateOfBirth)}</p></p>
                         <br/>
-                        <p>OTHER INFORMATION: </p>
+                        <p style={{display: 'inline-flex'}}>RACE: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{child.race}</p></p>
+                        <br/>
+                        <p style={{display: 'inline-flex'}}>SEX: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{child.gender}</p></p>
+                        <br/>
+                        <p style={{display: 'inline-flex'}}>HEIGHT: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{child.height}</p></p>
+                        <br/>
+                        <p style={{display: 'inline-flex'}}>WEIGHT: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{child.weight} lbs</p></p>
+                        <br/>
+                        <p style={{display: 'inline-flex'}}>EYES COLOR: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{child.eyeColor}</p></p>
+                        <br/>
+                        <p style={{display: 'inline-flex'}}>HAIR COLOR: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{child.hairColor}</p></p>
+                        <br/>
+                        <p style={{display: 'inline-flex'}}>WEARING: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{flyer.lastSeenWearing}</p></p>
+                        <br/>
+                        <p style={{display: 'inline-flex'}}>IDENTIFYING MARKS: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{child.identifiers}</p></p>
+                        <br/>
+                        <p style={{display: 'inline-flex'}}><p style={{minWidth: '95px'}}>LAST SEEN:</p>&nbsp;&nbsp;<p style={{fontWeight: 100}}>{flyer.lastSeenAt}</p></p>
                     </CardContent>
                 </div>
             </div>
             <br/><br/>
             <div style={{ display: 'inline-flex'}}>
-                <div style={{flex: 3, background: 'yellow', padding: '20px'}} 
-                    className="text-left text-lg text-black font-medium">IF YOU HAVE ANY INFORMATION, PLEASE CONTACT YOUR LOCAL LAW ENFORCEMENT.</div>
+                <div style={{flex: 3, background: 'yellow', padding: '20px', display: 'inline-flex'}} 
+                    className="text-left text-lg text-black font-medium">IF YOU HAVE ANY INFORMATION, PLEASE CONTACT YOUR LOCAL LAW ENFORCEMENT WITH THIS CODE:
+                    <p className="lawCode">{flyer.lawEnforcementId}</p>
+                </div>
                 <div style={{flex: 1, background: '#486377', color: 'white', padding: '20px'}} 
-                    className="text-center text-lg text-black font-medium">Flyer Issued: <br/>{format(new Date(), "M/dd/yy")}</div>
+                    className="text-center text-lg text-black font-medium">Flyer Issued: <br/>{flyer.createdTimestamp}</div>
             </div>
             <br/><br/>
             <div style={{textAlign: 'center'}}>
@@ -82,7 +91,6 @@ export default function Flyer({ child }) {
                     <Printer />Print</Button>
             </CardFooter>
         </Card>
-        <BottomBanner />
         </>
     );
 }

@@ -91,3 +91,10 @@ i {
   background-color: midnightblue;
   border: rgb(6, 6, 31) 4px double;
 }
+
+.lawEnforcementTab {
+   display: inline-flex;
+   gap: 5px;
+   padding: 0px;
+   vertical-align: bottom;
+}

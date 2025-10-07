@@ -63,15 +63,15 @@ export default function ChildBox({ child, i }) {
                     Edit
                 </Link>
             </Button>
-            {/* <Button variant="outline" onClick={handleOpen} style={{ width: '100px' }}>
+            <Button variant="outline" onClick={handleOpen} style={{ width: '100px', background: 'midnightblue', color: 'lightgoldenrodyellow', cursor: 'pointer' }}>
                 Flyer
-            </Button> */}
-            <Button variant="outline" size="icon" aria-label="Create Flyer"  onClick={handleOpen}
+            </Button>
+            {/* <Button variant="outline" size="icon" aria-label="Create Flyer"  onClick={handleOpen}
             style={{ width: '100px', background: 'midnightblue', color: 'lightgoldenrodyellow' }} asChild>
                 <Link href={`/dashboard/children/flyers/${child.id}`}>
                     Flyer
                 </Link>
-            </Button>
+            </Button> */}
         </CardFooter>
         <FlyerInfoPopup show={isModalOpen} handleClose={handleClose} childId={child.id} />
     </Card>);

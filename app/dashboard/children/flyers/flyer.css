@@ -1,0 +1,11 @@
+
+.lawCode {
+    background: goldenrod;
+    border-radius: 7px;
+    border: 2px outset darkgoldenrod;
+    height: fit-content;
+    padding: 4px;
+    color: #6f5003;
+    font-weight: 900;
+    font-size: x-large;
+}
