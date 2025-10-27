@@ -6,7 +6,8 @@
     cursor: pointer;
     border-radius: 5px;
     font-weight: bold;
-    margin-bottom: 14px;
+    margin-top: 14px;
     border: thin dashed cadetblue;
     padding: 4px;
+    float: right;
 }

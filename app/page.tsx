@@ -35,7 +35,7 @@ export default async function Home() {
                     Facilitate your Child's Rescue</CardTitle></CardHeader>
 
                 <Carousel showArrows={true} onChange={onChange} onClickItem={onClickItem}
-                    onClickThumb={onClickThumb} className="main-scroller"
+                    onClickThumb={onClickThumb} className="main-scroller" showThumbs={false}
                     autoPlay={true} infiniteLoop={true} interval={9000}
                 >
                     <div>

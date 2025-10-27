@@ -72,7 +72,6 @@ export const createFlyer = async (data: {
         lastSeenWearing: string;
         lawEnforcementId: string;
 }) => {
-    debugger;
     console.log('data: ' + JSON.stringify(data));
     const {userId} = await auth();
 

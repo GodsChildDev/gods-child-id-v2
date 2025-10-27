@@ -1,39 +1,39 @@
+import MainNavBar from "@/app/main-navbar";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
+import BottomBanner from "../../bottom-banner";
 import NewChildForm from "./new-child-form";
+import tree from "@/public/tree-drawing.png";
+import Image from "next/image";
+import '../[childId]/child-edit.css';
+import { Button } from "@/components/ui/button";
+import { X } from "lucide-react";
 
 export default function NewChildPage(){
     return(
         <div className="max-w-screen-xl mx-auto py-10">
-            <Breadcrumb>
-                <BreadcrumbList>
-                    <BreadcrumbItem>
-                        <BreadcrumbLink asChild>
-                            <Link href="/dashboard">Dashboard</Link>
-                        </BreadcrumbLink>
-                    </BreadcrumbItem>
-                    <BreadcrumbSeparator />
-                    <BreadcrumbItem>
-                        <BreadcrumbLink asChild>
-                            <Link href="/dashboard/children">Children</Link>
-                        </BreadcrumbLink>
-                    </BreadcrumbItem>
-                    <BreadcrumbSeparator />
-                    <BreadcrumbItem>
-                        <BreadcrumbPage>New Child</BreadcrumbPage>
-                    </BreadcrumbItem>
-                </BreadcrumbList>
-            </Breadcrumb>
-
-            <Card className="mt-4 max-w-screen-md">
+            <MainNavBar activeItem={'children'} />
+            <div style={{display: 'inline-flex'}}>
+            <Card className="mt-4 max-w-screen-md" style={{ background: 'lightyellow' }}>
                 <CardHeader>
-                    <CardTitle>New Child</CardTitle>
+                    <CardTitle  className="flex justify-between">
+                        <span>NEW CHILD</span>
+                        <Button size="icon" style={{background: 'transparent', color: 'black', cursor: 'pointer'}} asChild aria-label="Close">
+                            <Link href="/dashboard/children">
+                                <X />
+                            </Link>
+                        </Button>
+                    </CardTitle>
                 </CardHeader>
                 <CardContent>
                     <NewChildForm />
                 </CardContent>
             </Card>
+            <Image src={tree} alt="call" width={520} height={600} quality={100} 
+                className={'treeBox'} />
+            </div>
+            <BottomBanner />
         </div>
     )
 }

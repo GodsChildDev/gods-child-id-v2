@@ -31,6 +31,13 @@ export const groupCode = pgTable("group_code", {
     codeValue: text("code_value")
 });
 
+export const signupDetails = pgTable("signup_details", {
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    user: text("user").notNull(),
+    signupCode: text("signup_code"),
+    createdTimestamp: text("created_timestamp")
+})
+
 // child_id
 // law_enforcement_id
 // last_seen_at

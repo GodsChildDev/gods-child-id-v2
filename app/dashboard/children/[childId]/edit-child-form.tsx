@@ -68,6 +68,6 @@ export default function EditChildForm({
             medicalConditions: child.medicalConditions,
             imageUrl: child.imageUrl,
             race: child.race
-        }} onSubmit={handleSubmit} />
+        }} id={child.id} onSubmit={handleSubmit} />
     )
 }

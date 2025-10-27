@@ -9,3 +9,11 @@
     font-weight: 900;
     font-size: x-large;
 }
+
+.actionBtn {
+    flex: 1;
+    margin: 7;
+    cursor: 'pointer'; 
+    background: 'midnightblue'; 
+    color: 'lightgoldenrodyellow';
+}

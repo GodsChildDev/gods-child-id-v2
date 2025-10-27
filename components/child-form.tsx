@@ -16,7 +16,10 @@ import "./child-form.css";
 // import { format } from "date-fns";
 // import { cn } from "@/lib/utils";
 import * as React from "react";
-
+import DeleteChildDialog from "@/app/dashboard/children/[childId]/delete-child-dialog";
+import Image from "next/image";
+import placeholder from "@/public/placeholder-image.jpg";
+const cloudPresetName = process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME;
 
 export const childFormSchema = z.object({
     childGender: z.enum(["male", "female"]),
@@ -33,6 +36,7 @@ export const childFormSchema = z.object({
 
 type Props = {
     onSubmit: (data: z.infer<typeof childFormSchema>) => Promise<void>;
+    id?: any;
     defaultValues?: {
         childGender: "male" | "female",
         dateOfBirth: Date,
@@ -48,7 +52,7 @@ type Props = {
 }
 
 export default function ChildForm({
-    onSubmit, defaultValues
+    onSubmit, defaultValues, id
 }: Props) {
     const form = useForm<z.infer<typeof childFormSchema>>({
         resolver: zodResolver(childFormSchema),
@@ -71,7 +75,13 @@ export default function ChildForm({
         onSubmit(data.getValues());
     };
 
+   function	onclick(event: any) {
+        debugger;
+   }
+
     const [open, setOpen] = React.useState(false)
+    const [img, setImg] = React.useState(null);;
+
     return (
         <Form {...form}>
             <form onSubmit={() => handleSubmit(form)} style={{ display: 'inline-flex' }}>
@@ -79,17 +89,21 @@ export default function ChildForm({
                     <FormField control={form.control} name="imageUrl" render={({ field }) => {
                         return (
                             <div>
-                                <CldUploadButton 
-                                    //signatureEndpoint="<Endpoint (ex: /api/sign-cloudinary-params)>"
-                                uploadPreset="<Upload Preset>" className={'uploadImgBtn'}/>
+                                {!img ? 
+                                <Image src={placeholder} alt="placeholder" className="border border-solid border-black mb-5" /> :
                                 <CldImage
                                     src="https://res.cloudinary.com/dgxm6nzpd/image/upload/v1755136373/Nate_in_hoodie2_apmpjy.jpg"
-                                    width="320" height="500" alt="Nate" />
+                                    width="320" height="500" alt="Nate" />}
+                                <CldUploadButton onUpload={onclick} uploadPreset={cloudPresetName} className={'uploadImgBtn'}>
+                                    {({ open }) => {
+                                        return <button onClick={open}>Upload Image</button>;
+                                    }}
+                                </CldUploadButton>
                             </div>
                         )
                     }} />
                 </fieldset>
-                <div style={{paddingLeft: '20px'}}>
+                <div style={{ paddingLeft: '20px' }}>
                     <fieldset disabled={form.formState.isSubmitting} className="grid grid-cols-2 gap-y-5 gap-x-2">
                         <FormField control={form.control} name="race" render={({ field }) => {
                             return (
@@ -285,7 +299,7 @@ export default function ChildForm({
                         <FormField control={form.control} name="weight" render={({ field }) => {
                             return (
                                 <FormItem>
-                                    <FormLabel>Weight</FormLabel>
+                                    <FormLabel>Weight (lb)</FormLabel>
                                     <FormControl>
                                         <Input {...field} type="number" />
                                     </FormControl>
@@ -358,10 +372,13 @@ export default function ChildForm({
                                 </FormItem>
                             )
                         }} />
-                        <Button variant="outline" size="icon" aria-label="Submit"
-                            style={{ width: '100px', background: 'midnightblue', color: 'ghostwhite', cursor: 'pointer', marginLeft: '280px' }}>
-                            Submit
-                        </Button>
+                        <div style={{display: 'inline-flex', gap: '7px'}}>
+                            <Button variant="outline" size="icon" aria-label="Submit"
+                                style={{ width: '100px', background: 'midnightblue', color: 'ghostwhite', cursor: 'pointer', marginLeft: '280px' }}>
+                                Submit
+                            </Button>
+                            {id ? <DeleteChildDialog childId={id} type={'button'}/> : null}
+                        </div>
                     </fieldset>
                 </div>
             </form>

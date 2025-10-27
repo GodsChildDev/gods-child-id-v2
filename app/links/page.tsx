@@ -11,7 +11,7 @@ export default async function Links() {
         <div className="max-w-screen-xl mx-auto py-10">
             <MainNavBar activeItem={'links'} />
             <Card className="mt-4" style={{ background: 'gainsboro', padding: '15px' }}>
-            <CardTitle style={{ color: 'black' }}>Important Links</CardTitle>
+            <CardTitle style={{ color: 'black' }}>IMPORTANT LINKS</CardTitle>
             <p>Important Links is a work in progress, and we welcome your input. If you identify a website or article, you think would be helpful in keeping our children safe and healthy, please send it via our email address at <a href="mailto: support@GodsChildID.com">support@GodsChildID.com</a> and also share it on our Facebook page, God’s Child ID. Below are some important links I encourage you view.</p>
            
             <Card className="mt-4" style={{ background: 'lightyellow' }}>

@@ -2,7 +2,6 @@
 
 import { db } from "@/db";
 import { flyerTable } from "@/db/schema";
-import { auth } from "@clerk/nextjs/server";
 import { and, eq, desc } from "drizzle-orm";
 import "server-only";
 

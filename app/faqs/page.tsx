@@ -11,7 +11,7 @@ export default async function FAQs() {
         <div className="max-w-screen-xl mx-auto py-10">
             <MainNavBar activeItem={'faqs'} />
             <Card className="mt-4" style={{ background: 'gainsboro', padding: '15px' }}>
-            <CardTitle style={{ color: 'black' }}>Frequently Asked Questions</CardTitle>
+            <CardTitle style={{ color: 'black' }}>FREQUENTLY ASKED QUESTIONS</CardTitle>
             <Card className="mt-4" style={{ background: 'lightyellow' }}>
                 <CardHeader>
                     <CardTitle style={{ color: 'darkgoldenrod' }}>

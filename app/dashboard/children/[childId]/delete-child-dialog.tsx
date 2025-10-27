@@ -2,23 +2,24 @@
 
 import { AlertDialog, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { Trash2Icon } from "lucide-react";
+import { Trash2Icon, X } from "lucide-react";
 import { deleteChild } from "./actions";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
 export default function DeleteChildDialog({
-    childId
+    childId, type
 }: {
     childId: number;
-}){
+    type?: string;
+}) {
 
     const router = useRouter()
 
     const handleDeleteConfirm = async () => {
         const result = await deleteChild(childId);
 
-        if(result?.error){
+        if (result?.error) {
             toast.error(`Error deleting child: ${result.message}`)
             return;
         }
@@ -30,9 +31,19 @@ export default function DeleteChildDialog({
     return (
         <AlertDialog>
             <AlertDialogTrigger asChild>
-                <Button variant="destructive" size="icon">
-                    <Trash2Icon />
-                </Button>
+                {type === 'button' ?
+                    <Button variant="outline" size="icon" aria-label="Delete"
+                        style={{ width: '100px', background: 'transparent', color: 'red', border: 'thin solid red', cursor: 'pointer' }}>
+                        Delete
+                    </Button> :
+                    type === 'x' ?
+                    <Button variant="outline" size="icon" aria-label="Delete" style={{cursor: 'pointer'}}>
+                        <X />
+                    </Button> :
+                    <Button variant="destructive" size="icon">
+                        <Trash2Icon />
+                    </Button>
+                }
             </AlertDialogTrigger>
             <AlertDialogContent>
                 <AlertDialogHeader>

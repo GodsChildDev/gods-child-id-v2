@@ -12,15 +12,28 @@ import { useRef, useState } from 'react';
 import { useReactToPrint } from "react-to-print";
 import { Mail, Twitch, Printer } from "lucide-react";
 import './flyer.css';
+import { calculate_age, capitalize, format_height } from "@/lib/utils";
+import { sendtext } from "@/lib/notifications";
+import { useUser } from '@clerk/nextjs';
+import { toast } from "sonner";
 
 export default function Flyer({ child, flyer }) {
+
+    const { isLoaded, isSignedIn, user } = useUser();
 
     const flyerRef = useRef<HTMLDivElement>(null),
         flyerDocName = 'Nate Missing Flyer',
         reactToPrintFn = useReactToPrint({ contentRef: flyerRef, documentTitle: flyerDocName });
 
-    function calculate_age(dob) {
-        return Math.floor((new Date() - new Date(dob).getTime()) / 3.15576e+10)
+    const sendFlyerText = async () => {
+        const phone = user.primaryPhoneNumber.phoneNumber;
+        const message = 'http://localhost:3000/dashboard/children/flyers/9';
+        console.log('JDH phone: ' + phone);
+        const result = await sendtext(message, phone);
+        console.log('JDH text result: ' + result);
+        toast.success('Text sent to ' + phone, {
+            style: {backgroundColor: "green", color: "white"}
+        });
     }
 
     return (
@@ -46,21 +59,21 @@ export default function Flyer({ child, flyer }) {
                         <br/>
                         <p style={{display: 'inline-flex'}}>AGE: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{calculate_age(child.dateOfBirth)}</p></p>
                         <br/>
-                        <p style={{display: 'inline-flex'}}>RACE: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{child.race}</p></p>
+                        <p style={{display: 'inline-flex'}}>RACE: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{capitalize(child.race)}</p></p>
                         <br/>
-                        <p style={{display: 'inline-flex'}}>SEX: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{child.gender}</p></p>
+                        <p style={{display: 'inline-flex'}}>SEX: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{capitalize(child.gender)}</p></p>
                         <br/>
-                        <p style={{display: 'inline-flex'}}>HEIGHT: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{child.height}</p></p>
+                        <p style={{display: 'inline-flex'}}>HEIGHT: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{format_height(child.height)}</p></p>
                         <br/>
                         <p style={{display: 'inline-flex'}}>WEIGHT: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{child.weight} lbs</p></p>
                         <br/>
-                        <p style={{display: 'inline-flex'}}>EYES COLOR: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{child.eyeColor}</p></p>
+                        <p style={{display: 'inline-flex'}}>EYES COLOR: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{capitalize(child.eyeColor)}</p></p>
                         <br/>
-                        <p style={{display: 'inline-flex'}}>HAIR COLOR: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{child.hairColor}</p></p>
+                        <p style={{display: 'inline-flex'}}>HAIR COLOR: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{capitalize(child.hairColor)}</p></p>
                         <br/>
-                        <p style={{display: 'inline-flex'}}>WEARING: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{flyer.lastSeenWearing}</p></p>
+                        <p style={{display: 'inline-flex'}}>WEARING: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{capitalize(flyer.lastSeenWearing)}</p></p>
                         <br/>
-                        <p style={{display: 'inline-flex'}}>IDENTIFYING MARKS: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{child.identifiers}</p></p>
+                        <p style={{display: 'inline-flex'}}>IDENTIFYING MARKS: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{capitalize(child.identifiers)}</p></p>
                         <br/>
                         <p style={{display: 'inline-flex'}}><p style={{minWidth: '95px'}}>LAST SEEN:</p>&nbsp;&nbsp;<p style={{fontWeight: 100}}>{flyer.lastSeenAt}</p></p>
                     </CardContent>
@@ -82,13 +95,9 @@ export default function Flyer({ child, flyer }) {
             </div>
             </div>
             <CardFooter className="flex items-center justify center text-3xl">
-                <Button style={{ flex: 1, margin: 7, cursor: 'pointer', background: 'midnightblue', color: 'lightgoldenrodyellow' }}>
-                    <Twitch /> Text 911</Button>
-                <Button style={{ flex: 1, margin: 7, cursor: 'pointer', background: 'midnightblue', color: 'lightgoldenrodyellow' }}>
-                    <Mail /> Email 911</Button>
-                <Button style={{ flex: 1, margin: 7, cursor: 'pointer', background: 'midnightblue', color: 'lightgoldenrodyellow' }}
-                    onClick={reactToPrintFn}>
-                    <Printer />Print</Button>
+                <Button className="actionBtn" onClick={sendFlyerText}><Twitch /> Text 911</Button>
+                <Button className="actionBtn"><Mail /> Email 911</Button>
+                <Button className="actionBtn"onClick={reactToPrintFn}><Printer />Print</Button>
             </CardFooter>
         </Card>
         </>
