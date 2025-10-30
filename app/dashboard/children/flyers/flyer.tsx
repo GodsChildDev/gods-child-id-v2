@@ -13,7 +13,7 @@ import { useReactToPrint } from "react-to-print";
 import { Mail, Twitch, Printer } from "lucide-react";
 import './flyer.css';
 import { calculate_age, capitalize, format_height } from "@/lib/utils";
-import { sendtext } from "@/lib/notifications";
+import { sendEmail, sendtext } from "@/lib/notifications";
 import { useUser } from '@clerk/nextjs';
 import { toast } from "sonner";
 
@@ -27,11 +27,21 @@ export default function Flyer({ child, flyer }) {
 
     const sendFlyerText = async () => {
         const phone = user.primaryPhoneNumber.phoneNumber;
-        const message = 'http://localhost:3000/dashboard/children/flyers/9';
+        const message = 'http://localhost:3000/law-enforcement';
         console.log('JDH phone: ' + phone);
         const result = await sendtext(message, phone);
         console.log('JDH text result: ' + result);
         toast.success('Text sent to ' + phone, {
+            style: {backgroundColor: "green", color: "white"}
+        });
+    }
+
+    const sendFlyerEmail = async () => {
+        const email = user.primaryEmailAddress.emailAddress;
+        const url = 'http://localhost:3000/law-enforcement';
+        const result = await sendEmail(email, url);
+        console.log('JDH email result: ' + result);
+        toast.success('Email sent ', {
             style: {backgroundColor: "green", color: "white"}
         });
     }
@@ -96,7 +106,7 @@ export default function Flyer({ child, flyer }) {
             </div>
             <CardFooter className="flex items-center justify center text-3xl">
                 <Button className="actionBtn" onClick={sendFlyerText}><Twitch /> Text 911</Button>
-                <Button className="actionBtn"><Mail /> Email 911</Button>
+                <Button className="actionBtn" onClick={sendFlyerEmail}><Mail /> Email 911</Button>
                 <Button className="actionBtn"onClick={reactToPrintFn}><Printer />Print</Button>
             </CardFooter>
         </Card>

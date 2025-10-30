@@ -2,12 +2,41 @@
 
 import { promises as fs } from 'fs';
 import twilio from "twilio";
+import nodemailer from "nodemailer";
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = twilio(accountSid, authToken);
 
-export async function sendtext( message, phone ) {
+export async function sendEmail(email, url) {
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: process.env.SMTP_PORT,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS,
+    }
+  });
+
+    const sender = {
+      address: "support@godschildid.com",
+      name: "God's Child Id",
+    };
+    const recipients = [
+      email
+    ];
+
+    await transporter.sendMail({
+      from: sender,
+      to: recipients,
+      subject: "Flyer Submission",
+      text: `${email} has requested transmission of this God's Child Id flyer to you: ${url}`,
+      category: "Flyer Submission",
+    }).then(console.log, console.error);
+}
+
+
+export async function sendtext(message, phone) {
   if (phone?.length > 0) {
     try {
       let text = await client.messages.create({
