@@ -14,7 +14,7 @@ export default async function About() {
             <MainNavBar activeItem={'about'} />
             <Card className="mt-4" style={{ background: 'gainsboro', padding: '15px' }}>
             <CardTitle className="mainTitle">
-                <Image src={branch} alt="divider" width={100} height={20} class="dove"/>
+                <Image src={branch} alt="divider" width={100} height={20} className="dove"/>
                 <div style={{flex: 1, paddingLeft: '15px'}}>ABOUT US
                 <br/>
                 <Image src={divider} alt="divider" width={140} height={20}/>
