@@ -30,7 +30,6 @@ export default async function ChildDashboard(){
                     <Table className="mt-4">
                             <TableHeader>
                                 <TableRow>
-                                    <TableHead>Age</TableHead>
                                     <TableHead>Gender</TableHead>
                                     <TableHead>Height</TableHead>
                                     <TableHead>Weight</TableHead>
@@ -42,7 +41,6 @@ export default async function ChildDashboard(){
                             <TableBody>
                                 {children.map((child) => (
                                     <TableRow key={child.id}>
-                                        <TableCell>{child.age}</TableCell>
                                         <TableCell>{child.gender}</TableCell>
                                         <TableCell>{child.height}</TableCell>
                                         <TableCell>{child.weight}</TableCell>
