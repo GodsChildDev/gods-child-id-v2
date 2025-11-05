@@ -61,7 +61,7 @@ export default async function FAQs() {
                 </CardHeader>
                 <CardContent>
                     <div className="row">
-                        It's simple. Just navigate to your profile page and click the manage my subscription button. Here you can cancel your subscription. 
+                        It&apos;s simple. Just navigate to your profile page and click the manage my subscription button. Here you can cancel your subscription. 
                     </div>
                 </CardContent>
             </Card>

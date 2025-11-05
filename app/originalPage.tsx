@@ -6,7 +6,6 @@ import logo from "../public/Logo-GodsChildID-wo-tag.png";
 import { SignedIn, SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { enforce2FAForAllUsers } from "@/data/getChild";
 
 export default function Home() {
 

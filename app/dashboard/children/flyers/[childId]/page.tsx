@@ -1,10 +1,5 @@
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { getChild } from "@/data/getChild";
-import { format } from "date-fns";
-import Image from "next/image";
 import { notFound } from "next/navigation";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
-import Link from "next/link";
 import Flyer from "../flyer";
 import MainNavBar from "@/app/main-navbar";
 import BottomBanner from "@/app/dashboard/bottom-banner";

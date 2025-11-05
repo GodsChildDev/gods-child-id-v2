@@ -24,7 +24,7 @@ export async function updateChild(data: {
     imageUrl: string;
     race: "American Indian or Alaska Native" | "Asian" | "Black or African American" | "Hispanic or Latino" | "Middle Eastern or North African" | "Native Hawaiian or Pacific Islander" | "White";
 }){
-    let userId = await auth();
+    const userId = await auth();
     if (!userId) {
         return {
             error: true,

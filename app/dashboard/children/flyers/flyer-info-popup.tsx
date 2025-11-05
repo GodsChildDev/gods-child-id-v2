@@ -57,7 +57,7 @@ export default function FlyerInfoPopup ({ show, handleClose, childId }) {
                 onClick={toClose}><X /></Button>
               </div>
               <br/><br/>
-              {isNew ? <EditFlyerForm flyer={flyer} isNew={isNew} childId={childId}/> :
+              {isNew ? <EditFlyerForm flyer={flyer} childId={childId}/> :
                 <>
                   <div>A flyer already exists for this child. Do you wish to edit this information?</div>
                   <br/><br/>

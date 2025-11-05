@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "@/node_modules/next/link";
 import { UserButton } from "@clerk/nextjs";
 import { HomeIcon } from "lucide-react";
 import { useRouter } from "next/navigation";

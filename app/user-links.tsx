@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { getUser, saveUserSignupCode } from "@/data/getSignupCodes";
 import { SignedIn, SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import SignupCodePopup from "./signup-code-popup";
 import UserDropdown from "./user-dropdown";

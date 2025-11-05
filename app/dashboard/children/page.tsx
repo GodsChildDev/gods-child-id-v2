@@ -1,8 +1,5 @@
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { getChildrenData } from "@/data/getChildrenData";
-import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 import plusImage from "@/public/plus-icon.jpg";
@@ -19,7 +16,7 @@ export default async function ChildrenPage() {
             <Card className="mt-4" style={{ background: 'lightyellow' }}>
                 <CardHeader>
                     <CardTitle style={{color: 'darkgoldenrod'}}>ATTENTION Parent / Guardian: <br/>
-                        <span style={{fontWeight: 'lighter'}}>After adding your family members below, you may generate shareable flyers. This action will ask you to enter your loved one's name and some details about their disappearance. Note: while this site is primarily poised for protecting children, it may also be used to protect your elderly. Please add up to 8 family members.
+                        <span style={{fontWeight: 'lighter'}}>After adding your family members below, you may generate shareable flyers. This action will ask you to enter your loved one&apos;s name and some details about their disappearance. Note: while this site is primarily poised for protecting children, it may also be used to protect your elderly. Please add up to 8 family members.
                         </span>
                     </CardTitle>
                 </CardHeader>

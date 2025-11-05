@@ -1,13 +1,12 @@
 "use client";
 
 import FlyerForm, { flyerFormSchema } from "@/components/flyer-form";
-import { format } from "date-fns";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { z } from "zod";
-import { createFlyer, updateFlyer } from "./actions";
+import { createFlyer } from "./actions";
 
-export default function EditFlyerForm({flyer, isNew, childId}: {
+export default function EditFlyerForm({flyer, childId}: {
     flyer : {
         childName: string;
         id: number;
@@ -15,7 +14,7 @@ export default function EditFlyerForm({flyer, isNew, childId}: {
         lastSeenAt: string;
         lastSeenWearing: string;
         lawEnforcementId: string;
-    }, isNew : boolean
+    }, childId : any // eslint-disable-line @typescript-eslint/no-explicit-any
 }){
     const router = useRouter();
 

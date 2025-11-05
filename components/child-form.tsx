@@ -36,7 +36,7 @@ export const childFormSchema = z.object({
 
 type Props = {
     onSubmit: (data: z.infer<typeof childFormSchema>) => Promise<void>;
-    id?: any;
+    id?: any; // eslint-disable-line @typescript-eslint/no-explicit-any
     defaultValues?: {
         childGender: "male" | "female",
         dateOfBirth: Date,
@@ -75,18 +75,18 @@ export default function ChildForm({
         onSubmit(data.getValues());
     };
 
-   function	onclick(event: any) {
+   function	onclick() {
         debugger;
    }
 
     const [open, setOpen] = React.useState(false)
-    const [img, setImg] = React.useState(null);;
+    const [img] = React.useState(null);
 
     return (
         <Form {...form}>
             <form onSubmit={() => handleSubmit(form)} style={{ display: 'inline-flex' }}>
                 <fieldset disabled={form.formState.isSubmitting} className="mt-5 mb-5 flex flex-col gap-5">
-                    <FormField control={form.control} name="imageUrl" render={({ field }) => {
+                    <FormField control={form.control} name="imageUrl" render={() => {
                         return (
                             <div>
                                 {!img ? 

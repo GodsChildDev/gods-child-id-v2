@@ -20,7 +20,7 @@ export async function updateFlyer(data: {
         lastSeenWearing: string;
         lawEnforcementId: string;
 }){
-    let userId = await auth();
+    const userId = await auth();
     if (!userId) {
         return {
             error: true,

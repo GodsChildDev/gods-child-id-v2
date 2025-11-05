@@ -1,15 +1,14 @@
 'use client';
 
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import BottomBanner from "./dashboard/bottom-banner";
 import MainNavBar from "@/app/main-navbar";
 import "./home.css";
-import { Puzzle, Siren, Settings, ShieldAlert, LockKeyhole, Glasses } from 'lucide-react';
+import { Siren, Settings, ShieldAlert, LockKeyhole, Glasses } from 'lucide-react';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import dadPic from "../public/father-hugging.png";
 import callPic from "../public/call-emergency.png";
-import clouds from "../public/clouds vertical.png";
 import Image from "next/image";
 
 export default async function Home() {
@@ -32,7 +31,7 @@ export default async function Home() {
 
             <Card className="mt-4" style={{ background: 'lightyellow' }}>
                 <CardHeader><CardTitle className="slogan">Protect your Children and if the Unthinkable Happens...
-                    Facilitate your Child's Rescue</CardTitle></CardHeader>
+                    Facilitate your Child&apos;s Rescue</CardTitle></CardHeader>
 
                 <Carousel showArrows={true} onChange={onChange} onClickItem={onClickItem}
                     onClickThumb={onClickThumb} className="main-scroller" showThumbs={false}

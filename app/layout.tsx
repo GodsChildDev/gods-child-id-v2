@@ -38,7 +38,7 @@ export default function RootLayout({
           <Link href="/">
             <Image src={logo} alt="site logo" width={250} />
           </Link>
-          <div style={{color: 'lightgray', fontFamily: 'cursive', fontStyle: 'italic', textShadow: '1px 1px dodgerblue, -1px 0px lightyellow', fontSize: 'x-large'}}>"Protecting Life's Most Precious Assets... Our Children"</div>
+          <div style={{color: 'lightgray', fontFamily: 'cursive', fontStyle: 'italic', textShadow: '1px 1px dodgerblue, -1px 0px lightyellow', fontSize: 'x-large'}}>&quot;Protecting Life&apos;s Most Precious Assets... Our Children&quot;</div>
           <UserLinks />
         </nav>
         {children}

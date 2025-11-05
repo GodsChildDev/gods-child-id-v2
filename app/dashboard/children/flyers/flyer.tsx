@@ -5,7 +5,6 @@ import { CldImage } from 'next-cloudinary';
 import { format } from "date-fns";
 import Image from "next/image";
 import logo from "@/public/Logo-no tag.png";
-import placeholder from "@/public/placeholder-image.jpg";
 import { Button } from "@/components/ui/button";
 // import ReactToPrint from 'react-to-print';
 import { useRef, useState } from 'react';
@@ -20,7 +19,7 @@ import ContactPopup from "./contact-popup";
 
 export default function Flyer({ child, flyer }) {
 
-    const { isLoaded, isSignedIn, user } = useUser();
+    const { user } = useUser();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [contactType, setContactType] = useState("email");
     const [contactValue, setContactValue] = useState("");
@@ -128,7 +127,7 @@ export default function Flyer({ child, flyer }) {
             <br/><br/>
             <div style={{textAlign: 'center'}}>
                 <Image src={logo} alt="site logo" width={250} style={{marginLeft: '35%'}} /> 
-                <div style={{color: 'lightgray', fontFamily: 'cursive', fontStyle: 'italic', textShadow: '1px 1px dodgerblue, -1px 0px lightyellow', fontSize: 'x-large'}}>"Protecting Life's Most Precious Assets... Our Children"</div>
+                <div style={{color: 'lightgray', fontFamily: 'cursive', fontStyle: 'italic', textShadow: '1px 1px dodgerblue, -1px 0px lightyellow', fontSize: 'x-large'}}>&quot;Protecting Life&apos;s Most Precious Assets... Our Children&quot;</div>
             </div>
             </div>
             <CardFooter className="flex items-center justify center text-3xl">

@@ -1,7 +1,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import BottomBanner from "../dashboard/bottom-banner";
-import { Section } from 'lucide-react';
 import MainNavBar from "../main-navbar";
 import "./about.css";
 import Image from "next/image";

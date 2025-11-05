@@ -1,6 +1,7 @@
 'use client';
 
 import "@/app/navigation.css";
+import Link from "@/node_modules/next/link";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { Shield } from 'lucide-react';
 
@@ -10,13 +11,13 @@ export default function MainNavBar({ activeItem }) {
         <nav className="mainNav">
             <ul>
                 <li className="mainNavLi">
-                    <a className={activeItem === 'home' ? 'mainNavAPress' : 'mainNavA'} href="/">Home</a>
-                    <SignedIn><a className={activeItem === 'children' ? 'mainNavAPress' : 'mainNavA'} href="/dashboard/children">Children</a></SignedIn>
-                    <a className={activeItem === 'faqs' ? 'mainNavAPress' : 'mainNavA'} href="/faqs">FAQs</a>
-                    <a className={activeItem === 'links' ? 'mainNavAPress' : 'mainNavA'} href="/links">Important Links</a>
-                    <a className={activeItem === 'about' ? 'mainNavAPress' : 'mainNavA'} href="/about">About Us</a>
+                    <Link className={activeItem === 'home' ? 'mainNavAPress' : 'mainNavA'} href="/">Home</Link>
+                    <SignedIn><Link className={activeItem === 'children' ? 'mainNavAPress' : 'mainNavA'} href="/dashboard/children">Children</Link></SignedIn>
+                    <Link className={activeItem === 'faqs' ? 'mainNavAPress' : 'mainNavA'} href="/faqs">FAQs</Link>
+                    <Link className={activeItem === 'links' ? 'mainNavAPress' : 'mainNavA'} href="/links">Important Links</Link>
+                    <Link className={activeItem === 'about' ? 'mainNavAPress' : 'mainNavA'} href="/about">About Us</Link>
                     <a className={activeItem === 'contact' ? 'mainNavAPress' : 'mainNavA'}>Contact Us</a>
-                    <SignedOut><a className={activeItem === 'law' ? 'mainNavAPress lawEnforcementTab' : 'mainNavA lawEnforcementTab'} href="/law-enforcement"><Shield /> Law Enforcement</a></SignedOut>
+                    <SignedOut><Link className={activeItem === 'law' ? 'mainNavAPress lawEnforcementTab' : 'mainNavA lawEnforcementTab'} href="/law-enforcement"><Shield /> Law Enforcement</Link></SignedOut>
                 </li>
             </ul>
         </nav>

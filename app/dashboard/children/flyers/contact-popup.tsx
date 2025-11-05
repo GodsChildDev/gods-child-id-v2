@@ -1,7 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { getFlyerByChild } from '@/data/getFlyer';
 import React, { useEffect, useState } from 'react';
-import EditFlyerForm from './edit-flyer-form';
 import { X } from "lucide-react";
 import './contact-popup.css';
 import { Input } from '@/components/ui/input';

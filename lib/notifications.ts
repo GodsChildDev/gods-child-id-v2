@@ -1,6 +1,6 @@
 "use server";
 
-import { promises as fs } from 'fs';
+// import { promises as fs } from 'fs';
 import twilio from "twilio";
 import nodemailer from "nodemailer";
 
@@ -39,7 +39,7 @@ export async function sendEmail(email, url) {
 export async function sendtext(message, phone) {
   if (phone?.length > 0) {
     try {
-      let text = await client.messages.create({
+      const text = await client.messages.create({
         body: message,
         from: '+19842309387',
         to: phone

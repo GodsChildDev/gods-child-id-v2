@@ -2,7 +2,6 @@ import { Button } from '@/components/ui/button';
 import React, { useEffect, useState } from 'react';
 import { X } from "lucide-react";
 import './signup-code-popup.css';
-import { useRouter } from "next/navigation";
 import { Input } from '@/components/ui/input';
 import { isValidSignupCode } from '@/data/getSignupCodes';
 
@@ -10,8 +9,6 @@ export default function SignupCodePopup ({ show, complete, handleClose }) {
         const showHideClassName = show ? 'modal display-block' : 'modal display-none';
         const [hasError, setHasError] = useState(false);
         const [code, setCode] = useState('');
-
-        const router = useRouter();
 
       useEffect(() => {}, [show]);
 
@@ -50,7 +47,7 @@ export default function SignupCodePopup ({ show, complete, handleClose }) {
                   {hasError && <span style={{color: 'red'}}>Code invalid</span>}
                   <Input className='w-100'  style={{color: 'black'}} type="text" value={code} onChange={(e) => setCode(e.target.value)} />
                   <br/>
-                  <h3 style={{color: 'black', fontWeight: 100, fontStyle: 'italic'}}>By submitting this form, you agree to receive one-time passcodes via SMS from God's Child Id for authentication purposes. Message and data rates may apply. Message frequency varies. Reply STOP to opt out. See our Terms of Service and Privacy Policy.</h3>
+                  <h3 style={{color: 'black', fontWeight: 100, fontStyle: 'italic'}}>By submitting this form, you agree to receive one-time passcodes via SMS from God&apos;s Child Id for authentication purposes. Message and data rates may apply. Message frequency varies. Reply STOP to opt out. See our Terms of Service and Privacy Policy.</h3>
                   <br/><br/>
                   <div style={{float: 'right', display: 'flex', gap: '5px'}}>
                   <Button variant="outline" onClick={yes} style={{ width: '100px', background: 'midnightblue', color: 'lightgoldenrodyellow' }}>

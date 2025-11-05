@@ -2,7 +2,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import EditChildForm from "./edit-child-form";
 import { getChild } from "@/data/getChild";
 import { notFound } from "next/navigation";
-import DeleteChildDialog from "./delete-child-dialog";
 import Image from "next/image";
 import tree from "@/public/tree-drawing.png";
 import './child-edit.css';
