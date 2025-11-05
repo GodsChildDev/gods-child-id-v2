@@ -42,7 +42,7 @@ type Props = {
 }
 
 function generateRandomAlphanumeric() {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+=?<>,:;{}[]|~';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     const minLength = 4;
     const maxLength = 6;
     const length = Math.floor(Math.random() * (maxLength - minLength + 1)) + minLength;

@@ -15,7 +15,6 @@ import { calculate_age, capitalize, format_height } from '@/lib/utils';
 export default function ChildBox({ child, i }) {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [items, setItems] = useState([]);
 
     const handleOpen = () => setIsModalOpen(true);
     const handleClose = () => setIsModalOpen(false);
@@ -53,8 +52,7 @@ export default function ChildBox({ child, i }) {
             <p style={{display: 'inline-flex'}}><p style={{minWidth: '240px'}}>IDENTIFYING CHARACTERISTICS:</p> &nbsp;&nbsp;<p style={{fontWeight: 100}}>{capitalize(child.identifiers)}</p></p>
         </CardContent>
         <CardFooter className="items-center justify-center gap-2.5">
-            <Button variant="outline" size="icon" aria-label="Edit Child" 
-            style={{ width: '100px', background: 'midnightblue', color: 'lightgoldenrodyellow' }} asChild>
+            <Button variant="outline" size="icon" aria-label="Edit Child" style={{ width: '100px', background: 'midnightblue', color: 'lightgoldenrodyellow' }} asChild>
                 <Link href={`/dashboard/children/${child.id}`}>
                     Edit
                 </Link>

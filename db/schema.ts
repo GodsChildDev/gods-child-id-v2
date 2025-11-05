@@ -36,7 +36,14 @@ export const signupDetails = pgTable("signup_details", {
     user: text("user").notNull(),
     signupCode: text("signup_code"),
     createdTimestamp: text("created_timestamp")
-})
+});
+
+export const emailLogs = pgTable("email_log", {
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    emailDate: text("email_date"),
+    isComplete: text("is_complete"),
+    emailType: text("email_type")
+});
 
 // child_id
 // law_enforcement_id

@@ -13,7 +13,7 @@
 .actionBtn {
     flex: 1;
     margin: 7;
-    cursor: 'pointer'; 
-    background: 'midnightblue'; 
-    color: 'lightgoldenrodyellow';
+    cursor: pointer; 
+    background: midnightblue; 
+    color: lightgoldenrodyellow;
 }

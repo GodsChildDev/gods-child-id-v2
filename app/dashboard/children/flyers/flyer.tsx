@@ -16,33 +16,60 @@ import { calculate_age, capitalize, format_height } from "@/lib/utils";
 import { sendEmail, sendtext } from "@/lib/notifications";
 import { useUser } from '@clerk/nextjs';
 import { toast } from "sonner";
+import ContactPopup from "./contact-popup";
 
 export default function Flyer({ child, flyer }) {
 
     const { isLoaded, isSignedIn, user } = useUser();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [contactType, setContactType] = useState("email");
+    const [contactValue, setContactValue] = useState("");
 
     const flyerRef = useRef<HTMLDivElement>(null),
         flyerDocName = 'Nate Missing Flyer',
         reactToPrintFn = useReactToPrint({ contentRef: flyerRef, documentTitle: flyerDocName });
 
-    const sendFlyerText = async () => {
-        const phone = user.primaryPhoneNumber.phoneNumber;
-        const message = 'http://localhost:3000/law-enforcement';
+
+    const handleContactPopupClose = (type, value) => {
+        setIsModalOpen(false);
+        if (type === 'email') {
+            sendFlyerEmail(value);
+        } else if (type === 'text') {
+            sendFlyerText(value);
+        } 
+    }
+
+    const startFlyerText = async () => {
+        const phone = user ? user.primaryPhoneNumber.phoneNumber : '';
+        setContactType('text');
+        setContactValue(phone);
+        setIsModalOpen(true);
+    }
+
+    const sendFlyerText = async (phone) => {
+        const message = `http://localhost:3000/law-enforcement/${flyer.lawEnforcementId}`;
         console.log('JDH phone: ' + phone);
         const result = await sendtext(message, phone);
         console.log('JDH text result: ' + result);
         toast.success('Text sent to ' + phone, {
-            style: {backgroundColor: "green", color: "white"}
+            style: {backgroundColor: "green", color: "greenyellow"}
         });
     }
 
-    const sendFlyerEmail = async () => {
-        const email = user.primaryEmailAddress.emailAddress;
-        const url = 'http://localhost:3000/law-enforcement';
+    const startFlyerEmail = async () => {
+        const email = user ? user.primaryEmailAddress.emailAddress : '';
+        setContactType('email');
+        setContactValue(email);
+        setIsModalOpen(true);
+
+    }
+
+    const sendFlyerEmail = async (email) => {
+        const url = `http://localhost:3000/law-enforcement/${flyer.lawEnforcementId}`;
         const result = await sendEmail(email, url);
         console.log('JDH email result: ' + result);
         toast.success('Email sent ', {
-            style: {backgroundColor: "green", color: "white"}
+            style: {backgroundColor: "green", color: "greenyellow"}
         });
     }
 
@@ -105,11 +132,12 @@ export default function Flyer({ child, flyer }) {
             </div>
             </div>
             <CardFooter className="flex items-center justify center text-3xl">
-                <Button className="actionBtn" onClick={sendFlyerText}><Twitch /> Text 911</Button>
-                <Button className="actionBtn" onClick={sendFlyerEmail}><Mail /> Email 911</Button>
+                <Button className="actionBtn" onClick={startFlyerText}><Twitch /> Text </Button>
+                <Button className="actionBtn" onClick={startFlyerEmail}><Mail /> Email </Button>
                 <Button className="actionBtn"onClick={reactToPrintFn}><Printer />Print</Button>
             </CardFooter>
         </Card>
+        <ContactPopup show={isModalOpen} handleClose={handleContactPopupClose} type={contactType} value={contactValue}/>
         </>
     );
 }

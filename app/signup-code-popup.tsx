@@ -45,10 +45,12 @@ export default function SignupCodePopup ({ show, complete, handleClose }) {
                 onClick={toClose}><X /></Button>
               </div>
               <br/><br/>
-                  <h2  style={{color: 'black'}}>Please enter your signup code. Once verified, you may continue signing up</h2>
+                  <h2 style={{color: 'black'}}>Please enter your signup code. Once verified, you may continue signing up</h2>
                   <br/>
                   {hasError && <span style={{color: 'red'}}>Code invalid</span>}
                   <Input className='w-100'  style={{color: 'black'}} type="text" value={code} onChange={(e) => setCode(e.target.value)} />
+                  <br/>
+                  <h3 style={{color: 'black', fontWeight: 100, fontStyle: 'italic'}}>By submitting this form, you agree to receive one-time passcodes via SMS from God's Child Id for authentication purposes. Message and data rates may apply. Message frequency varies. Reply STOP to opt out. See our Terms of Service and Privacy Policy.</h3>
                   <br/><br/>
                   <div style={{float: 'right', display: 'flex', gap: '5px'}}>
                   <Button variant="outline" onClick={yes} style={{ width: '100px', background: 'midnightblue', color: 'lightgoldenrodyellow' }}>

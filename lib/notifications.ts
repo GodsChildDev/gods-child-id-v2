@@ -51,3 +51,12 @@ export async function sendtext(message, phone) {
     }
   }
 }
+
+export async function checkReminderEmails() {
+  // check date
+  // if within 2 weeks update campaign schedule
+  // and add table entry
+  // if date missed, send email campaign
+}
+
+//https://github.com/mailtrap/mailtrap-nodejs/blob/HEAD/examples/sending/template.ts

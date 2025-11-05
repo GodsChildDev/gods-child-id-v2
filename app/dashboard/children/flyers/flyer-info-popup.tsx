@@ -53,12 +53,10 @@ export default function FlyerInfoPopup ({ show, handleClose, childId }) {
                 <h1 style={{padding: '10px 1px', flex: 1, color: 'midnightblue', fontWeight: 700}}>
                   {isNew ? "MISSING CHILD INFO" : "FLYER EXISTS"}
                 </h1>
-                {/* <button type="button" className="close-btn" onClick={handleClose}>x</button>  */}
                 <Button size="icon" style={{background: 'transparent', color: 'black'}}
                 onClick={toClose}><X /></Button>
               </div>
               <br/><br/>
-              {/* {children} */}
               {isNew ? <EditFlyerForm flyer={flyer} isNew={isNew} childId={childId}/> :
                 <>
                   <div>A flyer already exists for this child. Do you wish to edit this information?</div>
@@ -77,5 +75,3 @@ export default function FlyerInfoPopup ({ show, handleClose, childId }) {
           </div>
         );
       }
-
-// export default FlyerInfoPopup;
