@@ -12,7 +12,10 @@ import DeleteChildDialog from './[childId]/delete-child-dialog';
 import { calculate_age, capitalize, format_height } from '@/lib/utils';
 
 
-export default function ChildBox({ child, i }) {
+export default function ChildBox({ child, i } : {
+    child: any, // eslint-disable-line @typescript-eslint/no-explicit-any
+    i: number
+}) { 
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 

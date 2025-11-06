@@ -11,7 +11,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Button } from "./ui/button";
 import { ChevronDownIcon } from "lucide-react";
 import { Calendar } from "./ui/calendar";
-import { CldImage, CldUploadButton } from 'next-cloudinary';
+import { CldImage } from 'next-cloudinary';
 import "./child-form.css";
 // import { format } from "date-fns";
 // import { cn } from "@/lib/utils";
@@ -19,7 +19,7 @@ import * as React from "react";
 import DeleteChildDialog from "@/app/dashboard/children/[childId]/delete-child-dialog";
 import Image from "next/image";
 import placeholder from "@/public/placeholder-image.jpg";
-const cloudPresetName = process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME;
+// const cloudPresetName = process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME;
 
 export const childFormSchema = z.object({
     childGender: z.enum(["male", "female"]),
@@ -72,19 +72,20 @@ export default function ChildForm({
     });
 
     const handleSubmit = async (data: z.infer<typeof childFormSchema>) => {
-        onSubmit(data.getValues());
+        // onSubmit(data.getValues()); JDH revisit
+        onSubmit(data);
     };
 
-   function	onclick() {
-        debugger;
-   }
+//    function	onclick() {
+//         debugger;
+//    }
 
     const [open, setOpen] = React.useState(false)
     const [img] = React.useState(null);
 
     return (
         <Form {...form}>
-            <form onSubmit={() => handleSubmit(form)} style={{ display: 'inline-flex' }}>
+            <form onSubmit={() => handleSubmit(form.getValues())} style={{ display: 'inline-flex' }}>
                 <fieldset disabled={form.formState.isSubmitting} className="mt-5 mb-5 flex flex-col gap-5">
                     <FormField control={form.control} name="imageUrl" render={() => {
                         return (
@@ -94,18 +95,21 @@ export default function ChildForm({
                                 <CldImage
                                     src="https://res.cloudinary.com/dgxm6nzpd/image/upload/v1755136373/Nate_in_hoodie2_apmpjy.jpg"
                                     width="320" height="500" alt="Nate" />}
-                                <CldUploadButton onUpload={onclick} uploadPreset={cloudPresetName} className={'uploadImgBtn'}>
-                                    {({ open }) => {
+                                {/* <CldUploadButton onUpload={onclick} uploadPreset={cloudPresetName} className={'uploadImgBtn'}>
+                                    {({ open } : {open: any // eslint-disable-line @typescript-eslint/no-explicit-any
+                                    }) => {
                                         return <button onClick={open}>Upload Image</button>;
                                     }}
-                                </CldUploadButton>
+                                </CldUploadButton> */}
                             </div>
                         )
                     }} />
                 </fieldset>
                 <div style={{ paddingLeft: '20px' }}>
                     <fieldset disabled={form.formState.isSubmitting} className="grid grid-cols-2 gap-y-5 gap-x-2">
-                        <FormField control={form.control} name="race" render={({ field }) => {
+                        <FormField control={form.control} name="race" render={({ field } : {
+                            field: any // eslint-disable-line @typescript-eslint/no-explicit-any
+                        }) => {
                             return (
                                 <FormItem>
                                     <FormLabel>Race</FormLabel>
@@ -129,7 +133,9 @@ export default function ChildForm({
                                 </FormItem>
                             )
                         }} />
-                        <FormField control={form.control} name="dateOfBirth" render={({ field }) => {
+                        <FormField control={form.control} name="dateOfBirth" render={({ field } : {
+                            field: any // eslint-disable-line @typescript-eslint/no-explicit-any
+                        }) => {
                             return (
                                 <FormItem>
                                     <FormLabel>Date Of Birth</FormLabel>
@@ -159,12 +165,14 @@ export default function ChildForm({
                                 </FormItem>
                             )
                         }} />
-                        <FormField control={form.control} name="height" render={({ field }) => {
+                        <FormField control={form.control} name="height" render={({ field } : {
+                            field: any // eslint-disable-line @typescript-eslint/no-explicit-any
+                        }) => {
                             return (
                                 <FormItem>
                                     <FormLabel>Height</FormLabel>
                                     <FormControl>
-                                        <Select onValueChange={field.onChange} value={field.value} emptyText={"select one"}>
+                                        <Select onValueChange={field.onChange} value={field.value}>
                                             <SelectTrigger className="w-full">
                                                 <SelectValue />
                                             </SelectTrigger>
@@ -296,7 +304,9 @@ export default function ChildForm({
                                 </FormItem>
                             )
                         }} />
-                        <FormField control={form.control} name="weight" render={({ field }) => {
+                        <FormField control={form.control} name="weight" render={({ field } : {
+                            field: any // eslint-disable-line @typescript-eslint/no-explicit-any
+                        }) => {
                             return (
                                 <FormItem>
                                     <FormLabel>Weight (lb)</FormLabel>
@@ -307,7 +317,9 @@ export default function ChildForm({
                                 </FormItem>
                             )
                         }} />
-                        <FormField control={form.control} name="eyeColor" render={({ field }) => {
+                        <FormField control={form.control} name="eyeColor" render={({ field } : {
+                            field: any // eslint-disable-line @typescript-eslint/no-explicit-any
+                        }) => {
                             return (
                                 <FormItem>
                                     <FormLabel>Eye Color</FormLabel>
@@ -318,7 +330,9 @@ export default function ChildForm({
                                 </FormItem>
                             )
                         }} />
-                        <FormField control={form.control} name="hairColor" render={({ field }) => {
+                        <FormField control={form.control} name="hairColor" render={({ field } : {
+                            field: any // eslint-disable-line @typescript-eslint/no-explicit-any
+                        }) => {
                             return (
                                 <FormItem>
                                     <FormLabel>Hair Color</FormLabel>
@@ -329,7 +343,9 @@ export default function ChildForm({
                                 </FormItem>
                             )
                         }} />
-                        <FormField control={form.control} name="identifiers" render={({ field }) => {
+                        <FormField control={form.control} name="identifiers" render={({ field } : {
+                            field: any // eslint-disable-line @typescript-eslint/no-explicit-any
+                        }) => {
                             return (
                                 <FormItem>
                                     <FormLabel>Identifying Characteristics</FormLabel>
@@ -340,7 +356,9 @@ export default function ChildForm({
                                 </FormItem>
                             )
                         }} />
-                        <FormField control={form.control} name="medicalConditions" render={({ field }) => {
+                        <FormField control={form.control} name="medicalConditions" render={({ field } : {
+                            field: any // eslint-disable-line @typescript-eslint/no-explicit-any
+                        }) => {
                             return (
                                 <FormItem>
                                     <FormLabel>Medical Conditions</FormLabel>
@@ -353,7 +371,9 @@ export default function ChildForm({
                         }} />
                     </fieldset>
                     <fieldset disabled={form.formState.isSubmitting} className="mt-5 mb-5 flex flex-col gap-5">
-                        <FormField control={form.control} name="childGender" render={({ field }) => {
+                        <FormField control={form.control} name="childGender" render={({ field } : {
+                            field: any // eslint-disable-line @typescript-eslint/no-explicit-any
+                        }) => {
                             return (
                                 <FormItem>
                                     <FormLabel>Gender</FormLabel>

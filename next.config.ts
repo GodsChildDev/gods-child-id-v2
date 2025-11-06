@@ -2,7 +2,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  webpack: (config, { isServer }) => {
+  webpack: (config: any,  // eslint-disable-line @typescript-eslint/no-explicit-any
+    { isServer } : {
+      isServer: any // eslint-disable-line @typescript-eslint/no-explicit-any
+    }) => {
     if (!isServer) {
       config.resolve.fallback = {
         fs: false,

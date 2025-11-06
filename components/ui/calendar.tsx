@@ -36,7 +36,8 @@ function Calendar({
       )}
       captionLayout={captionLayout}
       formatters={{
-        formatMonthDropdown: (date) =>
+        formatMonthDropdown: (date: any // eslint-disable-line @typescript-eslint/no-explicit-any
+          ) =>
           date.toLocaleString("default", { month: "short" }),
         ...formatters,
       }}
@@ -122,7 +123,10 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        Root: ({ className, rootRef, ...props }) => {
+        Root: ({ className, rootRef, ...props }  : {
+          className?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+          rootRef?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+      }) => {
           return (
             <div
               data-slot="calendar"
@@ -132,7 +136,10 @@ function Calendar({
             />
           )
         },
-        Chevron: ({ className, orientation, ...props }) => {
+        Chevron: ({ className, orientation, ...props } : {
+          className?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+          orientation?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+      }) => {
           if (orientation === "left") {
             return (
               <ChevronLeftIcon className={cn("size-4", className)} {...props} />
@@ -153,7 +160,9 @@ function Calendar({
           )
         },
         DayButton: CalendarDayButton,
-        WeekNumber: ({ children, ...props }) => {
+        WeekNumber: ({ children, ...props } : {
+          children?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+      }) => {
           return (
             <td {...props}>
               <div className="flex size-(--cell-size) items-center justify-center text-center">

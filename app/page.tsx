@@ -56,7 +56,7 @@ export default async function Home() {
                                 HOW IT WORKS
                             </CardTitle>
                         </CardHeader>
-                        <div style={{ display: 'inline-flex' }}>
+                        <div style={{ display: 'inline-flex', background: '#44572a52' }}>
                             <Image src={dadPic} alt="call" width={2500} height={5} quality={100} className={'protectImg'}/>
                             <CardContent className="textBox text-left">
                                 <p>At God’s Child ID we have strived to make everything simple and easy. This includes signing up to become a member, adding information about your children and being able to quickly share that information to Law Enforcement etc. Below are the steps you will need to take to get started.</p>
@@ -76,7 +76,7 @@ export default async function Home() {
                                 WHAT TO DO IF YOUR CHILD IS LOST OR ABDUCTED
                             </CardTitle>
                         </CardHeader>
-                        <div style={{ display: 'inline-flex' }}>
+                        <div style={{ display: 'inline-flex', background: 'gray' }}>
                             <Image src={callPic} alt="call" width={250} height={15} quality={100} className={'actionImg'}/>
                             <CardContent className="textBox text-left">
                                 <ol>

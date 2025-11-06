@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import Link from 'next/link'; 
 import React from 'react';
 
-export default function FlyerSearchBox({ codeX }) {
+export default function FlyerSearchBox({ codeX } : { codeX : string }) {
     const [code, setCode] = useState(codeX || '');
     const disabled = !code;
 

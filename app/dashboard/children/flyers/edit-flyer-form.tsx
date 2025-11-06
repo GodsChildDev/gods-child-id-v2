@@ -18,7 +18,7 @@ export default function EditFlyerForm({flyer, childId}: {
 }){
     const router = useRouter();
 
-    const handleSubmit = async (data: z.infer<typeof flyerFormSchema>, childId) => {
+    const handleSubmit = async (data: z.infer<typeof flyerFormSchema>, childId: string) => {
         debugger;
         const isNew = true,
             actionPresent = isNew ? 'Creating' : 'Editing',

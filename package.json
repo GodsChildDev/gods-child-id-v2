@@ -44,6 +44,7 @@
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/nodemailer": "^7.0.3",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "drizzle-kit": "^0.31.2",

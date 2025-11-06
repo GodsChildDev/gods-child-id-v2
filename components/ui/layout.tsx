@@ -1,6 +1,7 @@
 // import Head from 'next/head'
 
-const Layout = (props) => (
+const Layout = (props: any // eslint-disable-line @typescript-eslint/no-explicit-any
+) => (
   <>
     <div>
       <title>{props.title}</title>

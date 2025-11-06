@@ -8,14 +8,25 @@ import MainNavBar from "../../main-navbar";
 import FlyerSearchBox from "../flyer-search-box";
 import "../law-enforcement.css";
 
+interface FlyerResultWithError {
+    id?: number;
+    childId?: number;
+    lawEnforcementId?: string;
+    childName?: string;
+    lastSeenAt?: string;
+    lastSeenWearing?: string;
+    createdTimestamp?: string | null;
+    error?: string; // <-- Add the optional error property
+}
+
 export default async function LawEnforcementSpecificPage({ params }: {
     params: Promise<{ id: string }>
 }) {
 
     const paramsValues = await params;
     const id = paramsValues.id;
-    const flyer = await getFlyerByCode(id);
-    const child = !flyer ? null : await getPureChild(Number.parseInt(flyer.childId));
+    const flyer = await getFlyerByCode(id) as FlyerResultWithError | null;;
+    const child = !flyer?.childId ? null : await getPureChild(flyer.childId);
     const error = flyer ? (flyer?.error ? flyer.error : '') : '-> Incorrect unique identifier <- ';
 
     return(

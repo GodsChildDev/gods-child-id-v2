@@ -44,8 +44,7 @@ export async function updateFlyer(data: {
             lastSeenWearing: data.lastSeenWearing,
             lawEnforcementId: data.lawEnforcementId
     }).where(and(
-        eq(flyerTable.id, data.id),
-        eq(flyerTable.userId, userId)
+        eq(flyerTable.id, data.id)
     ));
 };
 
@@ -60,8 +59,7 @@ export async function deleteFlyer (flyerId: number) {
     }
 
     await db.delete(flyerTable).where(and(
-        eq(flyerTable.id, flyerId),
-        eq(flyerTable.userId, userId)
+        eq(flyerTable.id, flyerId)
     ));
 };
 

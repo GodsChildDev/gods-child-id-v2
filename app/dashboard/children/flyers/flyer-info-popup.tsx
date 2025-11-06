@@ -6,11 +6,33 @@ import { X } from "lucide-react";
 import './flyer-info-popup.css';
 import { useRouter } from "next/navigation";
 
-export default function FlyerInfoPopup ({ show, handleClose, childId }) {
+interface FlyerData {
+  childName: string;
+  id: number;
+  childId: number;
+  lastSeenAt: string;
+  lastSeenWearing: string;
+  lawEnforcementId: string;
+  createdTimestamp: string | null; // <-- Explicitly allow string OR null
+}
+
+export default function FlyerInfoPopup ({ show, handleClose, childId } : {
+  show: boolean;
+  handleClose: () => void;
+  childId: number;
+}) {
         const showHideClassName = show ? 'modal display-block' : 'modal display-none';
         const [isFirst, setIsFirst] = useState(true);
         const [isNew, setIsNew] = useState(false);
-        const [flyer, setFlyer] = useState({});
+        const [flyer, setFlyer] = useState<FlyerData>({
+          childName: '',
+          id: 0,
+          childId: 0,
+          lastSeenAt: '',
+          lastSeenWearing: '',
+          lawEnforcementId: '',
+          createdTimestamp: null
+      });
 
         const router = useRouter();
 
@@ -21,7 +43,15 @@ export default function FlyerInfoPopup ({ show, handleClose, childId }) {
             let flyer2 = await getFlyerByChild(childId);
             if (!flyer2) {
                 setIsNew(true);
-                flyer2 = {}; 
+                flyer2 = {
+                  childName: '',
+                  id: 0,
+                  childId: 0,
+                  lastSeenAt: '',
+                  lastSeenWearing: '',
+                  lawEnforcementId: '',
+                  createdTimestamp: null
+              }; 
             } else {
              setIsNew(false); 
             }

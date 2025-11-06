@@ -39,7 +39,8 @@ export default async function ChildDashboard(){
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
-                                {children.map((child) => (
+                                {children.map((child: any // eslint-disable-line @typescript-eslint/no-explicit-any
+                                ) => (
                                     <TableRow key={child.id}>
                                         <TableCell>{child.gender}</TableCell>
                                         <TableCell>{child.height}</TableCell>

@@ -1,11 +1,37 @@
-'use server';
+ 'use server';
 
 import { db } from "@/db";
 import { childrenTable } from "@/db/schema";
 import { auth } from "@clerk/nextjs/server";
 import { and, eq } from "drizzle-orm";
 import "server-only";
-import { clerkClient } from '@clerk/nextjs/server';
+
+type RaceType = 
+  | "American Indian or Alaska Native"
+  | "Asian"
+  | "Black or African American"
+  | "Hispanic or Latino"
+  | "Middle Eastern or North African"
+  | "Native Hawaiian or Pacific Islander"
+  | "White";
+
+  const translateRace = (raceString: string | null): RaceType => {
+    const validRaces: RaceType[] = [
+      "American Indian or Alaska Native",
+      "Asian",
+      "Black or African American",
+      "Hispanic or Latino",
+      "Middle Eastern or North African",
+      "Native Hawaiian or Pacific Islander",
+      "White",
+    ];
+  
+    if (raceString && validRaces.includes(raceString as RaceType)) {
+      return raceString as RaceType;
+    }
+    
+    return "White"; 
+  };
 
 export async function getChild(childId: number){
     const { userId } = await auth();
@@ -19,7 +45,12 @@ export async function getChild(childId: number){
         eq(childrenTable.id, childId),
         eq(childrenTable.userId, userId)
     ));
-    return child;
+    return  {
+      ...child,
+      weight: parseFloat(child.weight),
+      imageUrl: child.imageUrl || '', 
+      race: translateRace(child.race)
+    };
 }
 
 export async function getPureChild(childId: number){
@@ -27,20 +58,20 @@ export async function getPureChild(childId: number){
   return child;
 }
 
-export async function enforce2FAForAllUsers() {
-    console.log(`FIND User List`);
-    const cl = await clerkClient();
-    // console.log('cl:' + JSON.stringify(cl));
-    const usersResponse = cl.users;
-    // console.log('usersResponse: ' + JSON.stringify(usersResponse));
-    const users = usersResponse.data;
-    // console.log('users: ' + JSON.stringify(users));
-  console.log(`User List ACQUIRED`);
-    for (const user of users) {
-        console.log(`ATTEMPTING 2FA enforced for user: ${user.id}`); 
-      await clerkClient.users.updateUser(user.id, {
-        requireSecondFactor: true,
-      });
-      console.log(`2FA enforced for user: ${user.id}`);
-    }
-  }
+// export async function enforce2FAForAllUsers() {
+//     console.log(`FIND User List`);
+//     const cl = await clerkClient();
+//     // console.log('cl:' + JSON.stringify(cl));
+//     const usersResponse = cl.users;
+//     // console.log('usersResponse: ' + JSON.stringify(usersResponse));
+//     const users = usersResponse.data;
+//     // console.log('users: ' + JSON.stringify(users));
+//   console.log(`User List ACQUIRED`);
+//     for (const user of users) {
+//         console.log(`ATTEMPTING 2FA enforced for user: ${user.id}`); 
+//       await clerkClient.users.updateUser(user.id, {
+//         requireSecondFactor: true,
+//       });
+//       console.log(`2FA enforced for user: ${user.id}`);
+//     }
+//   }

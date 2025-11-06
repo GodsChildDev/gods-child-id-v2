@@ -47,7 +47,8 @@ export const createChild = async (data: {
         gender: data.gender,
         imageUrl: data.imageUrl,
         race: data.race
-    }).returning();
+    } as any // eslint-disable-line @typescript-eslint/no-explicit-any
+    ).returning();
 
     return {
         id: child.id

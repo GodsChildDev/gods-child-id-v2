@@ -6,7 +6,7 @@ export default function BottomBanner(){
     return(
         <>
         <div style={{
-                position: 'absolute', color: 'white', fontSize: 'x-large', left: '34%',
+                position: 'absolute', color: 'white', fontSize: 'x-large', left: '30%',
                 marginTop: '12px', fontWeight: 500
             }}>
                 VITAL INFORMATION ABOUT YOUR CHILDREN <br /> FOR YOU AND LAW ENFORCEMENT AGENCIES</div>

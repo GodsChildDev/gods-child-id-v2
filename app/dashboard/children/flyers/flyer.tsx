@@ -17,11 +17,14 @@ import { useUser } from '@clerk/nextjs';
 import { toast } from "sonner";
 import ContactPopup from "./contact-popup";
 
-export default function Flyer({ child, flyer }) {
+export default function Flyer({ child, flyer } : {
+    child: any, // eslint-disable-line @typescript-eslint/no-explicit-any
+    flyer: any // eslint-disable-line @typescript-eslint/no-explicit-any
+}) {
 
     const { user } = useUser();
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [contactType, setContactType] = useState("email");
+    const [contactType, setContactType] = useState<"email" | "text">("email");
     const [contactValue, setContactValue] = useState("");
 
     const flyerRef = useRef<HTMLDivElement>(null),
@@ -29,7 +32,7 @@ export default function Flyer({ child, flyer }) {
         reactToPrintFn = useReactToPrint({ contentRef: flyerRef, documentTitle: flyerDocName });
 
 
-    const handleContactPopupClose = (type, value) => {
+    const handleContactPopupClose = (type : "email" | "text" | undefined, value : string | undefined) => {
         setIsModalOpen(false);
         if (type === 'email') {
             sendFlyerEmail(value);
@@ -39,13 +42,14 @@ export default function Flyer({ child, flyer }) {
     }
 
     const startFlyerText = async () => {
-        const phone = user ? user.primaryPhoneNumber.phoneNumber : '';
+        const phone = user?.primaryPhoneNumber?.phoneNumber || '';
         setContactType('text');
         setContactValue(phone);
         setIsModalOpen(true);
     }
 
-    const sendFlyerText = async (phone) => {
+    const sendFlyerText = async (phone : string | undefined) => {
+        if (phone?.length) {
         const message = `http://localhost:3000/law-enforcement/${flyer.lawEnforcementId}`;
         console.log('JDH phone: ' + phone);
         const result = await sendtext(message, phone);
@@ -53,23 +57,26 @@ export default function Flyer({ child, flyer }) {
         toast.success('Text sent to ' + phone, {
             style: {backgroundColor: "green", color: "greenyellow"}
         });
+        }
     }
 
     const startFlyerEmail = async () => {
-        const email = user ? user.primaryEmailAddress.emailAddress : '';
+        const email = user?.primaryEmailAddress?.emailAddress || '';
         setContactType('email');
         setContactValue(email);
         setIsModalOpen(true);
 
     }
 
-    const sendFlyerEmail = async (email) => {
-        const url = `http://localhost:3000/law-enforcement/${flyer.lawEnforcementId}`;
-        const result = await sendEmail(email, url);
-        console.log('JDH email result: ' + result);
-        toast.success('Email sent ', {
-            style: {backgroundColor: "green", color: "greenyellow"}
-        });
+    const sendFlyerEmail = async (email : string | undefined) => {
+        if (email?.length) {
+            const url = `http://localhost:3000/law-enforcement/${flyer.lawEnforcementId}`;
+            const result = await sendEmail(email, url);
+            console.log('JDH email result: ' + result);
+            toast.success('Email sent ', {
+                style: {backgroundColor: "green", color: "greenyellow"}
+            });
+        }
     }
 
     return (

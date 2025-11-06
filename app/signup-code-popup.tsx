@@ -5,7 +5,11 @@ import './signup-code-popup.css';
 import { Input } from '@/components/ui/input';
 import { isValidSignupCode } from '@/data/getSignupCodes';
 
-export default function SignupCodePopup ({ show, complete, handleClose }) {
+export default function SignupCodePopup ({ show, complete, handleClose } : {
+  show: boolean;
+  complete: () => void;
+  handleClose: () => void;
+}) {
         const showHideClassName = show ? 'modal display-block' : 'modal display-none';
         const [hasError, setHasError] = useState(false);
         const [code, setCode] = useState('');

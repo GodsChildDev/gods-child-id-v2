@@ -6,6 +6,7 @@ import { SignedIn, SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
 import { useEffect, useRef, useState } from "react";
 import SignupCodePopup from "./signup-code-popup";
 import UserDropdown from "./user-dropdown";
+import './user-links.css';
 
 export default function UserLinks() {
 
@@ -29,7 +30,8 @@ export default function UserLinks() {
                 setIsVerified(true);
             }
             if (isVerified && signUpBtn.current && !userId && signupCode) {
-                signUpBtn.current.click();
+                // @ts-expect-error: We know 'current' might be null, but we're bypassing for now.
+                signUpBtn.current?.click();
             } else if (isVerified && userId && signupCode) {
                 await saveUserSignupCode(userId, signupCode);
                 sessionStorage.setItem('signupCode', '');   
@@ -50,9 +52,14 @@ export default function UserLinks() {
                 <div className="block">
                     {/* <Link href="/law-enforcement" className="text-black font-semibold text-lg">Law Enforcement</Link> */}
                     <div className="flex block">
-                        <SignInButton style={{ color: 'black', cursor: 'pointer' }} />
+                    <SignInButton mode="modal">
+                        <button className="clickBtn">Sign In</button>
+                    </SignInButton>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        {isVerified ? <SignUpButton style={{ color: 'black', cursor: 'pointer' }} ref={signUpBtn} /> :
+                        {isVerified ? 
+                        <SignUpButton mode="modal">
+                            <button className="clickBtn" ref={signUpBtn}>Sign Up</button>
+                        </SignUpButton> :
                             <Button variant="outline" onClick={handleOpen} style={{ width: '100px', background: 'invisible', color: 'blue', cursor: 'pointer' }}>
                                 Sign Up
                             </Button>

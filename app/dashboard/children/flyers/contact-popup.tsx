@@ -4,7 +4,12 @@ import { X } from "lucide-react";
 import './contact-popup.css';
 import { Input } from '@/components/ui/input';
 
-export default function ContactPopup({ show, handleClose, type, value }) {
+export default function ContactPopup({ show, handleClose, type, value } : {
+  show: boolean;
+  handleClose: (type: 'email' | 'text' | undefined, value: string | undefined) => void;
+  type: 'email' | 'text'; 
+  value: string;
+}) {
   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
   const [sendValue, setSendValue] = useState(value);
 
@@ -22,11 +27,11 @@ export default function ContactPopup({ show, handleClose, type, value }) {
   }
 
   const no = () => {
-    handleClose();
+    handleClose(undefined, undefined);
   }
 
   const toClose = () => {
-    handleClose();
+    handleClose(undefined, undefined);
   }
 
   return (

@@ -68,7 +68,9 @@ export default function FlyerForm({
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
                 <fieldset disabled={form.formState.isSubmitting} className="grid grid-cols-2 gap-y-5 gap-x-2">
-                <FormField control={form.control} name="childName" render={({field}) => {
+                <FormField control={form.control} name="childName" render={({field} : {
+                    field: any // eslint-disable-line @typescript-eslint/no-explicit-any
+                }) => {
                     return (
                     <FormItem>
                         <FormLabel>Child Name</FormLabel>
@@ -79,7 +81,9 @@ export default function FlyerForm({
                     </FormItem>
                     )
                 }} />
-                <FormField control={form.control} name="lawEnforcementId" render={({field}) => {
+                <FormField control={form.control} name="lawEnforcementId" render={({field} : {
+                    field: any // eslint-disable-line @typescript-eslint/no-explicit-any
+                }) => {
                     return (
                     <FormItem>
                         <FormLabel>Law Enforcement Code</FormLabel>
@@ -91,7 +95,9 @@ export default function FlyerForm({
                     )
                 }} />
                 </fieldset><fieldset className="mt-5 flex flex-col gap-5">
-                <FormField control={form.control} name="lastSeenWearing" render={({field}) => {
+                <FormField control={form.control} name="lastSeenWearing" render={({field} : {
+                    field: any // eslint-disable-line @typescript-eslint/no-explicit-any
+                }) => {
                     return (
                     <FormItem>
                         <FormLabel>Last Seen Wearing</FormLabel>
@@ -103,7 +109,9 @@ export default function FlyerForm({
                     )
                 }} />
                 </fieldset><fieldset className="mt-5 mb-5 flex flex-col gap-5">
-                <FormField control={form.control} name="lastSeenAt" render={({field}) => {
+                <FormField control={form.control} name="lastSeenAt" render={({field} : {
+                    field: any // eslint-disable-line @typescript-eslint/no-explicit-any
+                }) => {
                     return (
                     <FormItem>
                         <FormLabel>Last Seen At</FormLabel>

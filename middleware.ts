@@ -2,6 +2,7 @@ import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
 const isProtectRoute = createRouteMatcher(["/dashboard(.*)"])
 
+// ts-expect-error: We know 'current' might be null, but we're bypassing for now.
 export default clerkMiddleware(async (auth, req) => {
     if(isProtectRoute(req)){
         await auth.protect();

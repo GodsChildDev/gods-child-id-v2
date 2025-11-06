@@ -6,7 +6,7 @@ import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { Shield } from 'lucide-react';
 
 
-export default function MainNavBar({ activeItem }) {
+export default function MainNavBar({ activeItem } : { activeItem: string}) {
     return (
         <nav className="mainNav">
             <ul>
