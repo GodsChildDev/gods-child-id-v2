@@ -3,15 +3,17 @@ import React, { useEffect, useState } from 'react';
 import { X } from "lucide-react";
 import './contact-popup.css';
 import { Input } from '@/components/ui/input';
+import Link from '@/node_modules/next/link';
 
-export default function ContactPopup({ show, handleClose, type, value } : {
+export default function ContactPopup({ show, handleClose, type, value }: {
   show: boolean;
   handleClose: (type: 'email' | 'text' | undefined, value: string | undefined) => void;
-  type: 'email' | 'text'; 
+  type: 'email' | 'text';
   value: string;
 }) {
   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
   const [sendValue, setSendValue] = useState(value);
+  const [hasChecked, setHasChecked] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -20,17 +22,20 @@ export default function ContactPopup({ show, handleClose, type, value } : {
       }
     }
     fetchData();
-  }, [show]);
+  }, [show, hasChecked]);
 
   const yes = () => {
+    setHasChecked(false);
     handleClose(type, sendValue);
   }
 
   const no = () => {
+    setHasChecked(false);
     handleClose(undefined, undefined);
   }
 
   const toClose = () => {
+    setHasChecked(false);
     handleClose(undefined, undefined);
   }
 
@@ -47,22 +52,28 @@ export default function ContactPopup({ show, handleClose, type, value } : {
         <br /><br />
         <Input className='w-100' type="text" value={sendValue} onChange={(e) => setSendValue(e.target.value)} />
         {type === 'text' &&
-        <div>
-          <br/>
-          <h3>Please read the following to your 911 representative:</h3>
-          <br/>
-          <h3 style={{fontStyle: 'italic', fontWeight: 100}}>
-            To receive information about my missing child or loved one, I can send you a link via SMS from God’s Child Id. Message and data rates may apply. This is a one time message. For more information, see our Terms of Service and Privacy Policy at https://godschildid.com/. Do you agree to receive this message?”
-           </h3>
-           <br/>
-           <h3> 
-            The 911 representative must verbally agree (“Yes”) before pressing send below.
-          </h3>
+          <div>
+            <h3 style={{ color: 'black', fontWeight: 100, fontStyle: 'italic' }}>You are requesting a link of the generated flyer of your child or loved one to be texted to the entered recipient above from God&apos;s Child Id. 
+              Message and data rates may apply. This is a one time message. Do you agree with these conditions? See our
+              &nbsp;<Link href="http://localhost:3000/terms" target="_blank" rel="noopener noreferrer" style={{ color: 'blue', textDecoration: 'underline' }}>
+                Terms of Service
+              </Link> &nbsp; and &nbsp;
+              <Link href="http://localhost:3000/privacy" target="_blank" rel="noopener noreferrer" style={{ color: 'blue', textDecoration: 'underline' }}>
+                Privacy Policy
+              </Link>
+              &nbsp;.</h3>
+            <br />
+            <div style={{ display: 'inline-flex', textAlign: 'left', width: '100%' }}>
+              <Input type={"checkbox"} style={{ marginTop: '-5px', transform: 'scale(0.65)', width: '30px', marginRight: '10px', cursor: 'pointer' }}
+                checked={hasChecked} onChange={e => setHasChecked(e.target.checked)} />
+              <label style={{ color: 'black', flex: 1 }}>I agree</label>
+            </div>
           </div>
-          }
+        }
         <br /><br />
         <div style={{ float: 'right', display: 'flex', gap: '5px' }}>
-          <Button variant="outline" onClick={yes} style={{ width: '100px', background: 'midnightblue', color: 'lightgoldenrodyellow' }}>
+          <Button variant="outline" onClick={yes} disabled={!hasChecked}
+          style={{ width: '100px', background: 'midnightblue', color: 'lightgoldenrodyellow' }}>
             Send
           </Button>
           <Button variant="outline" onClick={no} style={{ width: '100px', background: 'midnightblue', color: 'lightgoldenrodyellow' }}>
