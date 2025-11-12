@@ -1,7 +1,8 @@
 'use client';
 
 import { Button } from "@/components/ui/button";
-import { getUser, saveUserSignupCode } from "@/data/getSignupCodes";
+import { getUser, getUserEmail, saveUserSignupCode } from "@/data/getSignupCodes";
+import { checkReminderEmails, sendWelcomeEmail } from "@/lib/notifications";
 import { SignedIn, SignedOut, SignInButton, SignUpButton } from "@clerk/nextjs";
 import { useEffect, useRef, useState } from "react";
 import SignupCodePopup from "./signup-code-popup";
@@ -25,16 +26,20 @@ export default function UserLinks() {
         const handleSignUpInProgress = async () => {
             const signupCode = sessionStorage.getItem('signupCode');
             const userId = await getUser();
+            const email = await getUserEmail();
             console.log('JDH Signup Code: ' + signupCode);
             if (signupCode != null && !isVerified) {
                 setIsVerified(true);
             }
             if (isVerified && signUpBtn.current && !userId && signupCode) {
                 // @ts-expect-error: We know 'current' might be null, but we're bypassing for now.
-                signUpBtn.current?.click();
+                signUpBtn?.current?.click();
             } else if (isVerified && userId && signupCode) {
                 await saveUserSignupCode(userId, signupCode);
-                sessionStorage.setItem('signupCode', '');   
+                sessionStorage.setItem('signupCode', '');
+                if (email?.length) {  
+                    sendWelcomeEmail(email); 
+                }
             }
         };
 
@@ -43,6 +48,7 @@ export default function UserLinks() {
             setIsVerified(false);
         }
         handleSignUpInProgress();
+        checkReminderEmails();
 
     }, [isVerified]);
 
@@ -75,3 +81,4 @@ export default function UserLinks() {
         </div>
     );
 }
+

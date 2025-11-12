@@ -16,7 +16,7 @@ export default function MainNavBar({ activeItem } : { activeItem: string}) {
                     <Link className={activeItem === 'faqs' ? 'mainNavAPress' : 'mainNavA'} href="/faqs">FAQs</Link>
                     <Link className={activeItem === 'links' ? 'mainNavAPress' : 'mainNavA'} href="/links">Important Links</Link>
                     <Link className={activeItem === 'about' ? 'mainNavAPress' : 'mainNavA'} href="/about">About Us</Link>
-                    <a className={activeItem === 'contact' ? 'mainNavAPress' : 'mainNavA'}>Contact Us</a>
+                    <a className={activeItem === 'contact' ? 'mainNavAPress' : 'mainNavA'} href="/contact">Contact Us</a>
                     <SignedOut><Link className={activeItem === 'law' ? 'mainNavAPress lawEnforcementTab' : 'mainNavA lawEnforcementTab'} href="/law-enforcement"><Shield /> Law Enforcement</Link></SignedOut>
                 </li>
             </ul>

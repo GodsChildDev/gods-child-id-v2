@@ -12,7 +12,7 @@ import { useReactToPrint } from "react-to-print";
 import { Mail, Twitch, Printer } from "lucide-react";
 import './flyer.css';
 import { calculate_age, capitalize, format_height } from "@/lib/utils";
-import { sendEmail, sendtext } from "@/lib/notifications";
+import { sendFlyerEmail, sendtext } from "@/lib/notifications";
 import { useUser } from '@clerk/nextjs';
 import { toast } from "sonner";
 import ContactPopup from "./contact-popup";
@@ -35,7 +35,7 @@ export default function Flyer({ child, flyer } : {
     const handleContactPopupClose = (type : "email" | "text" | undefined, value : string | undefined) => {
         setIsModalOpen(false);
         if (type === 'email') {
-            sendFlyerEmail(value);
+            submitFlyerEmail(value);
         } else if (type === 'text') {
             sendFlyerText(value);
         } 
@@ -68,10 +68,11 @@ export default function Flyer({ child, flyer } : {
 
     }
 
-    const sendFlyerEmail = async (email : string | undefined) => {
+    const submitFlyerEmail = async (email : string | undefined) => {
         if (email?.length) {
-            const url = `http://localhost:3000/law-enforcement/${flyer.lawEnforcementId}`;
-            const result = await sendEmail(email, url);
+            // const url = `http://localhost:3000/law-enforcement/${flyer.lawEnforcementId}`;
+            const url = `https://gods-child-id-superjekka-superjekkas-projects.vercel.app/law-enforcement/${flyer.lawEnforcementId}`;
+            const result = await sendFlyerEmail(email, url);
             console.log('JDH email result: ' + result);
             toast.success('Email sent ', {
                 style: {backgroundColor: "green", color: "greenyellow"}

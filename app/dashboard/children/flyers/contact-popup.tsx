@@ -19,6 +19,9 @@ export default function ContactPopup({ show, handleClose, type, value }: {
     async function fetchData() {
       if (show) {
         setSendValue(value);
+        if (type === 'email') {
+          setHasChecked(true);
+        }
       }
     }
     fetchData();

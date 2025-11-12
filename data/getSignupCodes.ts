@@ -4,7 +4,7 @@ import { db } from "@/db";
 import { groupCode, signupDetails } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import "server-only";
-import { auth } from "@clerk/nextjs/server";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import { format } from "date-fns";
 
 
@@ -18,6 +18,11 @@ export async function isValidSignupCode(code: string) {
 export async function getUser() {
   const { userId } = await auth();
   return userId;
+}
+
+export async function getUserEmail() {
+  const user = await currentUser();
+  return user?.emailAddresses?.[0]?.emailAddress;
 }
 
 export const saveUserSignupCode = async (user: string, signupCode: string) => {
