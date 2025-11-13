@@ -58,10 +58,10 @@ export default function ContactPopup({ show, handleClose, type, value }: {
           <div>
             <h3 style={{ color: 'black', fontWeight: 100, fontStyle: 'italic' }}>You are requesting a link of the generated flyer of your child or loved one to be texted to the entered recipient above from God&apos;s Child Id. 
               Message and data rates may apply. This is a one time message. Do you agree with these conditions? See our
-              &nbsp;<Link href="http://localhost:3000/terms" target="_blank" rel="noopener noreferrer" style={{ color: 'blue', textDecoration: 'underline' }}>
+              &nbsp;<Link href="https://gods-child-id.vercel.app/terms" target="_blank" rel="noopener noreferrer" style={{ color: 'blue', textDecoration: 'underline' }}>
                 Terms of Service
               </Link> &nbsp; and &nbsp;
-              <Link href="http://localhost:3000/privacy" target="_blank" rel="noopener noreferrer" style={{ color: 'blue', textDecoration: 'underline' }}>
+              <Link href="https://gods-child-id.vercel.app/privacy" target="_blank" rel="noopener noreferrer" style={{ color: 'blue', textDecoration: 'underline' }}>
                 Privacy Policy
               </Link>
               &nbsp;.</h3>

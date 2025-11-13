@@ -37,18 +37,18 @@ const transporter = nodemailer.createTransport({
 
 export async function sendEmail(email: string, subject: string, message: string) {
   const sender = {
-    address: email,
+    address: "support@godschildid.com",
     name: "God's Child ID User",
   };
   const recipients = [
-    "support@godschildid.com"
+    "angelahestonmd@gmail.com"
   ];
 
   await transporter.sendMail({
     from: sender,
     to: recipients,
     subject: subject,
-    text: message
+    text: `From ${email}: ${message}`
   }).then(console.log, console.error);
 }
 
@@ -152,10 +152,9 @@ export async function sendtext(message: string, phone: string) {
 
 export async function checkReminderEmails() {
   const today = new Date();
-  let emailDate = new Date();
+  const emailDate = new Date();
   let emailMonth = 0;
   const month = today.getMonth();
-  const day = today.getDate(); 
 
   if (month >= 11) {
     emailMonth = 11;

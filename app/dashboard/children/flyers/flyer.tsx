@@ -50,7 +50,7 @@ export default function Flyer({ child, flyer } : {
 
     const sendFlyerText = async (phone : string | undefined) => {
         if (phone?.length) {
-        const message = `http://localhost:3000/law-enforcement/${flyer.lawEnforcementId}`;
+        const message = `https://gods-child-id.vercel.app/law-enforcement/${flyer.lawEnforcementId}`;
         console.log('JDH phone: ' + phone);
         const result = await sendtext(message, phone);
         console.log('JDH text result: ' + result);

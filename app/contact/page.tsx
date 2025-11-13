@@ -9,14 +9,19 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { TextArea } from "@/components/ui/textarea";
 import { sendEmail } from "@/lib/notifications";
+import { toast } from "sonner";
 
-export default async function Contact() {
+export default function Contact() {
 
     const [message, setmessage] = React.useState('');
     const [email, setemail] = React.useState('');
     const [subject, setsubject] = React.useState('');
     const handleSubmit = async () => {
         await sendEmail(email, subject, message);
+        toast.success("Email Sent", {style: {backgroundColor: "green", color: "greenyellow"}})
+        setemail('');
+        setmessage('');
+        setsubject('');
     }
 
     return (
