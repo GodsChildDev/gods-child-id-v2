@@ -98,3 +98,10 @@ i {
    padding: 0px;
    vertical-align: bottom;
 }
+
+
+@media (max-width: 768px) { /* Adjust breakpoint as needed */
+  .mainNavLi {
+    display: block;
+  }
+}

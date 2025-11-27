@@ -120,3 +120,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+@media (max-width: 768px) { /* Adjust breakpoint as needed */
+  #topNav {
+    flex-direction: column; /* Stack items vertically */
+    align-items: baseline; /* Center items horizontally */
+    background-color: #f0f0f0; /* Example mobile background */
+    padding: 20px;
+  }
+
+  #descriptTop {
+    display: none;
+  }
+}

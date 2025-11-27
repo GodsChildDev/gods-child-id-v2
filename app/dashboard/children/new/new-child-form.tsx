@@ -11,7 +11,7 @@ export default function NewChildForm(){
 
     const router = useRouter();
 
-    const handleSubmit = async (data: z.infer<typeof childFormSchema>) => {
+    const handleSubmit = async (data: z.infer<typeof childFormSchema>, imageUrl: string) => {
         const result = await createChild({
             dateOfBirth: format(data.dateOfBirth, "yyyy-MM-dd"),
             height: data.height,
@@ -21,7 +21,7 @@ export default function NewChildForm(){
             identifiers: data.identifiers,
             medicalConditions: data.medicalConditions,
             gender: data.childGender,
-            imageUrl: data.imageUrl,
+            imageUrl: imageUrl || data.imageUrl,
             race: data.race
         });
 

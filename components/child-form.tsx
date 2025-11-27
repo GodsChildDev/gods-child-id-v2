@@ -11,7 +11,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Button } from "./ui/button";
 import { ChevronDownIcon } from "lucide-react";
 import { Calendar } from "./ui/calendar";
-import { CldImage } from 'next-cloudinary';
+import { CldImage } from "next-cloudinary";
 import "./child-form.css";
 // import { format } from "date-fns";
 // import { cn } from "@/lib/utils";
@@ -19,7 +19,6 @@ import * as React from "react";
 import DeleteChildDialog from "@/app/dashboard/children/[childId]/delete-child-dialog";
 import Image from "next/image";
 import placeholder from "@/public/placeholder-image.jpg";
-// const cloudPresetName = process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME;
 
 export const childFormSchema = z.object({
     childGender: z.enum(["male", "female"]),
@@ -31,29 +30,24 @@ export const childFormSchema = z.object({
     identifiers: z.string(),
     medicalConditions: z.string(),
     imageUrl: z.string(),
-    race: z.enum(["American Indian or Alaska Native", "Asian", "Black or African American", "Hispanic or Latino", "Middle Eastern or North African", "Native Hawaiian or Pacific Islander", "White"])
+    race: z.enum([
+        "American Indian or Alaska Native",
+        "Asian",
+        "Black or African American",
+        "Hispanic or Latino",
+        "Middle Eastern or North African",
+        "Native Hawaiian or Pacific Islander",
+        "White",
+    ]),
 });
 
 type Props = {
-    onSubmit: (data: z.infer<typeof childFormSchema>) => Promise<void>;
+    onSubmit: (data: z.infer<typeof childFormSchema>, imageUrl: string) => Promise<void>;
     id?: any; // eslint-disable-line @typescript-eslint/no-explicit-any
-    defaultValues?: {
-        childGender: "male" | "female",
-        dateOfBirth: Date,
-        height: string,
-        weight: number,
-        eyeColor: string,
-        hairColor: string,
-        identifiers: string,
-        medicalConditions: string,
-        imageUrl: string,
-        race: "American Indian or Alaska Native" | "Asian" | "Black or African American" | "Hispanic or Latino" | "Middle Eastern or North African" | "Native Hawaiian or Pacific Islander" | "White"
-    }
-}
+    defaultValues?: z.infer<typeof childFormSchema>;
+};
 
-export default function ChildForm({
-    onSubmit, defaultValues, id
-}: Props) {
+export default function ChildForm({ onSubmit, defaultValues, id }: Props) {
     const form = useForm<z.infer<typeof childFormSchema>>({
         resolver: zodResolver(childFormSchema),
         defaultValues: {
@@ -72,42 +66,69 @@ export default function ChildForm({
     });
 
     const handleSubmit = async (data: z.infer<typeof childFormSchema>) => {
-        // onSubmit(data.getValues()); JDH revisit
-        onSubmit(data);
+        onSubmit(data, watchedImageUrl);
     };
 
-//    function	onclick() {
-//         debugger;
-//    }
+    const [open, setOpen] = React.useState(false);
 
-    const [open, setOpen] = React.useState(false)
-    const [img] = React.useState(null);
+    // Watch the imageUrl field to dynamically update the UI
+    const watchedImageUrl = form.watch("imageUrl");
+
+    // Log whenever imageUrl changes
+    React.useEffect(() => {
+        if (watchedImageUrl) {
+            console.log("Image URL updated via form:", watchedImageUrl);
+        }
+    }, [watchedImageUrl]);
+
+    // Direct Cloudinary widget trigger
+    const openWidget = () => {
+        if (!(window as any).cloudinary) { // eslint-disable-line @typescript-eslint/no-explicit-any
+            console.error("Cloudinary widget script not loaded yet");
+            return;
+        }
+
+        const widget = (window as any).cloudinary.createUploadWidget({ // eslint-disable-line @typescript-eslint/no-explicit-any
+                cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+                uploadPreset: process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME,
+            },
+            (error: any, result: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
+                if (!error && result && result.event === "success") {
+                    console.log("Upload success:", result.info.secure_url);
+                    form.setValue("imageUrl", result.info.secure_url, {
+                        shouldValidate: true,
+                        shouldDirty: true,
+                    });
+                }
+            }
+        );
+
+        widget.open();
+    };
+
+
 
     return (
         <Form {...form}>
-            <form onSubmit={() => handleSubmit(form.getValues())} style={{ display: 'inline-flex' }}>
+            <form onSubmit={() => handleSubmit(form.getValues())} style={{ display: "inline-flex" }}>
                 <fieldset disabled={form.formState.isSubmitting} className="mt-5 mb-5 flex flex-col gap-5">
-                    <FormField control={form.control} name="imageUrl" render={() => {
-                        return (
+                    <FormField control={form.control} name="imageUrl"
+                        render={() => { return (
                             <div>
-                                {!img ? 
-                                <Image src={placeholder} alt="placeholder" className="border border-solid border-black mb-5" /> :
-                                <CldImage
-                                    src="https://res.cloudinary.com/dgxm6nzpd/image/upload/v1755136373/Nate_in_hoodie2_apmpjy.jpg"
-                                    width="320" height="500" alt="Nate" />}
-                                {/* <CldUploadButton onUpload={onclick} uploadPreset={cloudPresetName} className={'uploadImgBtn'}>
-                                    {({ open } : {open: any // eslint-disable-line @typescript-eslint/no-explicit-any
-                                    }) => {
-                                        return <button onClick={open}>Upload Image</button>;
-                                    }}
-                                </CldUploadButton> */}
+                                { watchedImageUrl ? 
+                                    <CldImage src={watchedImageUrl} width="320" height="500" alt="Child" className="border border-solid border-black mb-5"/> : 
+                                    <Image src={placeholder} alt="placeholder" className="border border-solid border-black mb-5"/>
+                                }
+                                <button type="button" onClick={openWidget} className="uploadImgBtn">
+                                    Upload
+                                </button>
                             </div>
-                        )
-                    }} />
+                        );}}
+                    />
                 </fieldset>
                 <div style={{ paddingLeft: '20px' }}>
                     <fieldset disabled={form.formState.isSubmitting} className="grid grid-cols-2 gap-y-5 gap-x-2">
-                        <FormField control={form.control} name="race" render={({ field } : {
+                        <FormField control={form.control} name="race" render={({ field }: {
                             field: any // eslint-disable-line @typescript-eslint/no-explicit-any
                         }) => {
                             return (
@@ -133,7 +154,7 @@ export default function ChildForm({
                                 </FormItem>
                             )
                         }} />
-                        <FormField control={form.control} name="dateOfBirth" render={({ field } : {
+                        <FormField control={form.control} name="dateOfBirth" render={({ field }: {
                             field: any // eslint-disable-line @typescript-eslint/no-explicit-any
                         }) => {
                             return (
@@ -143,7 +164,7 @@ export default function ChildForm({
                                         <Popover open={open} onOpenChange={setOpen}>
                                             <PopoverTrigger asChild>
                                                 <Button variant="outline" id="date" className="w-full justify-between font-normal">
-                                                    {field.value ? field.value.toLocaleDateString() : "Select date"}
+                                                    {field.value ? addDays(field.value, 1).toLocaleDateString() : "Select date"}
                                                     <ChevronDownIcon />
                                                 </Button>
                                             </PopoverTrigger>
@@ -165,7 +186,7 @@ export default function ChildForm({
                                 </FormItem>
                             )
                         }} />
-                        <FormField control={form.control} name="height" render={({ field } : {
+                        <FormField control={form.control} name="height" render={({ field }: {
                             field: any // eslint-disable-line @typescript-eslint/no-explicit-any
                         }) => {
                             return (
@@ -304,7 +325,7 @@ export default function ChildForm({
                                 </FormItem>
                             )
                         }} />
-                        <FormField control={form.control} name="weight" render={({ field } : {
+                        <FormField control={form.control} name="weight" render={({ field }: {
                             field: any // eslint-disable-line @typescript-eslint/no-explicit-any
                         }) => {
                             return (
@@ -317,7 +338,7 @@ export default function ChildForm({
                                 </FormItem>
                             )
                         }} />
-                        <FormField control={form.control} name="eyeColor" render={({ field } : {
+                        <FormField control={form.control} name="eyeColor" render={({ field }: {
                             field: any // eslint-disable-line @typescript-eslint/no-explicit-any
                         }) => {
                             return (
@@ -330,7 +351,7 @@ export default function ChildForm({
                                 </FormItem>
                             )
                         }} />
-                        <FormField control={form.control} name="hairColor" render={({ field } : {
+                        <FormField control={form.control} name="hairColor" render={({ field }: {
                             field: any // eslint-disable-line @typescript-eslint/no-explicit-any
                         }) => {
                             return (
@@ -343,7 +364,7 @@ export default function ChildForm({
                                 </FormItem>
                             )
                         }} />
-                        <FormField control={form.control} name="identifiers" render={({ field } : {
+                        <FormField control={form.control} name="identifiers" render={({ field }: {
                             field: any // eslint-disable-line @typescript-eslint/no-explicit-any
                         }) => {
                             return (
@@ -356,7 +377,7 @@ export default function ChildForm({
                                 </FormItem>
                             )
                         }} />
-                        <FormField control={form.control} name="medicalConditions" render={({ field } : {
+                        <FormField control={form.control} name="medicalConditions" render={({ field }: {
                             field: any // eslint-disable-line @typescript-eslint/no-explicit-any
                         }) => {
                             return (
@@ -371,7 +392,7 @@ export default function ChildForm({
                         }} />
                     </fieldset>
                     <fieldset disabled={form.formState.isSubmitting} className="mt-5 mb-5 flex flex-col gap-5">
-                        <FormField control={form.control} name="childGender" render={({ field } : {
+                        <FormField control={form.control} name="childGender" render={({ field }: {
                             field: any // eslint-disable-line @typescript-eslint/no-explicit-any
                         }) => {
                             return (
@@ -392,16 +413,16 @@ export default function ChildForm({
                                 </FormItem>
                             )
                         }} />
-                        <div style={{display: 'inline-flex', gap: '7px'}}>
+                        <div style={{ display: 'inline-flex', gap: '7px' }}>
                             <Button variant="outline" size="icon" aria-label="Submit"
                                 style={{ width: '100px', background: 'midnightblue', color: 'ghostwhite', cursor: 'pointer', marginLeft: '280px' }}>
                                 Submit
                             </Button>
-                            {id ? <DeleteChildDialog childId={id} type={'button'}/> : null}
+                            {id ? <DeleteChildDialog childId={id} type={'button'} /> : null}
                         </div>
                     </fieldset>
                 </div>
             </form>
         </Form>
-    )
+    );
 }

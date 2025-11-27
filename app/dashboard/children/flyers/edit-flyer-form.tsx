@@ -19,7 +19,6 @@ export default function EditFlyerForm({flyer, childId}: {
     const router = useRouter();
 
     const handleSubmit = async (data: z.infer<typeof flyerFormSchema>, childId: string) => {
-        debugger;
         const isNew = true,
             actionPresent = isNew ? 'Creating' : 'Editing',
             actionPast = isNew ? 'Created' : 'Edited';
@@ -56,7 +55,6 @@ export default function EditFlyerForm({flyer, childId}: {
             lastSeenAt: flyer.lastSeenAt,
             lastSeenWearing: flyer.lastSeenWearing,
             lawEnforcementId: flyer.lawEnforcementId
-        // }} onSubmit={handleSubmit} />
         }} onSubmit={(data) => handleSubmit(data, childId)} />
     )
 }

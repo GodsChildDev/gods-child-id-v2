@@ -10,6 +10,7 @@ import { Button } from "./ui/button";
 // import { cn } from "@/lib/utils";
 import * as React from "react";
 import { TextArea } from "./ui/textarea";
+// import { getUsedCodes } from "@/data/getFlyer";
 
 export const flyerFormSchema = z.object({
     childId: z.number(),
@@ -37,6 +38,10 @@ type Props = {
 }
 
 function generateRandomAlphanumeric() {
+    // get use code list
+    // while not unique, do random
+    // const usedCodes = getUsedCodes();
+    // console.log(usedCodes);
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     const minLength = 4;
     const maxLength = 6;
@@ -58,7 +63,9 @@ export default function FlyerForm({
         }
     });
 
-    form.setValue('lawEnforcementId', generateRandomAlphanumeric());
+    if (!defaultValues?.lawEnforcementId?.length) {
+        form.setValue('lawEnforcementId', generateRandomAlphanumeric());
+    }
 
     // const handleSubmit = async (data: z.infer<typeof childFormSchema>) => {
     //     onSubmit(data);

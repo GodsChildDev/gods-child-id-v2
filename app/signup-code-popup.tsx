@@ -57,7 +57,7 @@ export default function SignupCodePopup({ show, complete, handleClose }: {
         {hasError && <span style={{ color: 'red' }}>Code invalid</span>}
         <Input className='w-100' style={{ color: 'black' }} type="text" value={code} onChange={(e) => setCode(e.target.value)} />
         <br />
-        <h3 style={{ color: 'black', fontWeight: 100, fontStyle: 'italic' }}>By submitting this form, you agree to receive one-time passcodes via SMS from God&apos;s Child Id for authentication purposes. Message and data rates may apply. Message frequency varies. Reply STOP to opt out. See our 
+        <h3 style={{ color: 'black', fontWeight: 100, fontStyle: 'italic' }}>By submitting this form, you agree to receive one-time passcodes via SMS from God&apos;s Child Id <b>(984) 230-9387</b> for authentication purposes. Message and data rates may apply. Message frequency varies. Reply STOP to opt out. See our 
         &nbsp;<Link href="https://gods-child-id.vercel.app/terms" target="_blank" rel="noopener noreferrer" style={{ color: 'blue', textDecoration: 'underline'}}>
           Terms of Service
         </Link> &nbsp; and &nbsp;

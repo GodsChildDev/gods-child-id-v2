@@ -56,7 +56,7 @@ export default function ContactPopup({ show, handleClose, type, value }: {
         <Input className='w-100' type="text" value={sendValue} onChange={(e) => setSendValue(e.target.value)} />
         {type === 'text' &&
           <div>
-            <h3 style={{ color: 'black', fontWeight: 100, fontStyle: 'italic' }}>You are requesting a link of the generated flyer of your child or loved one to be texted to the entered recipient above from God&apos;s Child Id. 
+            <h3 style={{ color: 'black', fontWeight: 100, fontStyle: 'italic' }}>You are requesting a link of the generated flyer of your child or loved one to be texted to the entered recipient above from God&apos;s Child Id <b>(984) 230-9387</b>. 
               Message and data rates may apply. This is a one time message. Do you agree with these conditions? See our
               &nbsp;<Link href="https://gods-child-id.vercel.app/terms" target="_blank" rel="noopener noreferrer" style={{ color: 'blue', textDecoration: 'underline' }}>
                 Terms of Service

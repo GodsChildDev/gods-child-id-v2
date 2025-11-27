@@ -25,7 +25,7 @@ export default function EditChildForm({
 }){
     const router = useRouter();
 
-    const handleSubmit = async (data: z.infer<typeof childFormSchema>) => {
+    const handleSubmit = async (data: z.infer<typeof childFormSchema>, imageUrl: string) => {
         const result = await updateChild({
             id: child.id,
             dateOfBirth: data.dateOfBirth.toISOString().substring(0,10),
@@ -36,7 +36,7 @@ export default function EditChildForm({
             identifiers: data.identifiers,
             medicalConditions: data.medicalConditions,
             gender: data.childGender,
-            imageUrl: data.imageUrl,
+            imageUrl: imageUrl || data.imageUrl,
             race: data.race
         })
 

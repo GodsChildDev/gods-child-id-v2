@@ -1,12 +1,15 @@
-import MainNavBar from "@/app/main-navbar";
-import BottomBanner from "../../bottom-banner";
+import Script from "next/script";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="max-w-screen-xl mx-auto py-10">
-      <MainNavBar activeItem={'children'} />
-      {children}
-      <BottomBanner />
-    </div>
+    <html lang="en">
+      <head>
+        <Script
+          src="https://widget.cloudinary.com/v2.0/global/all.js"
+          strategy="beforeInteractive"
+        />
+      </head>
+      <body>{children}</body>
+    </html>
   );
 }

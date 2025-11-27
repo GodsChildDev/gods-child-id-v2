@@ -30,7 +30,7 @@ export default async function LawEnforcementSpecificPage({ params }: {
     const error = flyer ? (flyer?.error ? flyer.error : '') : '-> Incorrect unique identifier <- ';
 
     return(
-        <div className="max-w-screen-lg mx-auto py-10 mt-10">
+        <div className="max-w-screen-lg mx-auto">
             <MainNavBar activeItem={'law'} />
             <FlyerSearchBox codeX={id} />
             <br/>

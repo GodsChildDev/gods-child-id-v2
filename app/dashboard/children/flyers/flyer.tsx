@@ -16,6 +16,7 @@ import { sendFlyerEmail, sendtext } from "@/lib/notifications";
 import { useUser } from '@clerk/nextjs';
 import { toast } from "sonner";
 import ContactPopup from "./contact-popup";
+import placeholder from "@/public/placeholder-image.jpg";
 
 export default function Flyer({ child, flyer } : {
     child: any, // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -89,9 +90,10 @@ export default function Flyer({ child, flyer } : {
             </CardHeader>
             <div style={{ display: 'inline-flex', padding:'7px', border: 'thin solid black'}}>
                 <div>
-                    <CldImage
-                        src="https://res.cloudinary.com/dgxm6nzpd/image/upload/v1755136373/Nate_in_hoodie2_apmpjy.jpg"
-                        width="400" height="300" alt="Nate" />
+                {child.imageUrl ?
+                    <CldImage src={child.imageUrl} width="400" height="300" alt="Child pic" /> :
+                    <Image src={placeholder} alt="placeholder" className="border border-solid border-black mb-5"/>
+                }
                 </div>
                 <div style={{ flex: 1 }}>
                     {/* <CardTitle className="text-center text-2xl">Age: {calculate_age(child.dateOfBirth)}</CardTitle> */}

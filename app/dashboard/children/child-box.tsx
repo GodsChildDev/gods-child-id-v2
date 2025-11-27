@@ -10,6 +10,7 @@ import FlyerInfoPopup from "./flyers/flyer-info-popup";
 import divider from "@/public/blue_divider.png";
 import DeleteChildDialog from './[childId]/delete-child-dialog';
 import { calculate_age, capitalize, format_height } from '@/lib/utils';
+import placeholder from "@/public/placeholder-image.jpg";
 
 
 export default function ChildBox({ child, i } : {
@@ -30,9 +31,9 @@ export default function ChildBox({ child, i } : {
                         position: 'absolute', paddingLeft: '60px', background: '#3f51b5b8',
                         width: '175px', color: 'white', fontWeight: 'bold'
                     }}>Child {i + 1}</div>
-                    <CldImage
-                        src="https://res.cloudinary.com/dgxm6nzpd/image/upload/v1755136373/Nate_in_hoodie2_apmpjy.jpg"
-                        width="175" height="100" alt="Nate" />
+                    { child.imageUrl ? <CldImage src={child.imageUrl} width="175" height="100" alt="Child pic" /> :
+                        <Image src={placeholder} alt="placeholder" width="175" height="100" className="border border-solid border-black mb-5"/>
+                    }
                 </div>
                 <div style={{ flex: 1 }}>
                     <CardDescription className="text-left text-lg text-black font-medium" style={{ paddingLeft: '20px' }}>

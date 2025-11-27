@@ -19,7 +19,7 @@ export default async function ChildFlyerPage({params}: {params: Promise<{childId
         notFound();
     }
     return(
-        <div className="max-w-screen-lg mx-auto py-10 mt-10">
+        <div className="max-w-screen-lg mx-auto">
             <MainNavBar activeItem={'children'} />
             <Flyer child={child} flyer={flyer}/>
             <BottomBanner />
