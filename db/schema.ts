@@ -35,7 +35,8 @@ export const signupDetails = pgTable("signup_details", {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
     user: text("user").notNull(),
     signupCode: text("signup_code"),
-    createdTimestamp: text("created_timestamp")
+    createdTimestamp: text("created_timestamp"),
+    blockedTimestamp: text("blocked_timestamp")
 });
 
 export const emailLogs = pgTable("email_log", {

@@ -45,6 +45,7 @@ li {
 .protectImg {
     border: thick solid #17591766;
     border-radius: 7px;
+    padding-left: 12px;
 }
 
 .actionHeader {
@@ -56,6 +57,7 @@ li {
 .actionImg {
     border: thick solid #000000a8;
     border-radius: 7px;
+    padding-left: 12px;
 }
 
 .firstViewHeader {

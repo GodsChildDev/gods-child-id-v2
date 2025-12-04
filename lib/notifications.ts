@@ -52,6 +52,23 @@ export async function sendEmail(email: string, subject: string, message: string)
   }).then(console.log, console.error);
 }
 
+export async function sendEmail2(email: string, subject: string, message: string) {
+  const sender = {
+    address: "support@godschildid.com",
+    name: "God's Child ID User",
+  };
+  const recipients = [
+    email
+  ];
+
+  await transporter.sendMail({
+    from: sender,
+    to: recipients,
+    subject: subject,
+    text: message
+  }).then(console.log, console.error);
+}
+
 export async function sendFlyerEmail(email: string, url: string) {
   const sender = {
     address: "support@godschildid.com",

@@ -23,3 +23,26 @@ export function capitalize(str : string | undefined) {
   }
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+export function hideContactInfo(type: string, value: string) {
+  if (value?.length) {
+    if (type === 'Text') {
+      return value.slice(0,2) + '-xxx-xxx-' + value.slice(value.length - 4)
+    } else {
+      return value.split('@')[0].slice(0,2) + '********' + value.split('@')[1];
+    }
+  }
+  return '';
+}
+
+export function generateSigninCode() {
+    const characters = '0123456789';
+    const minLength = 6;
+    const maxLength = 6;
+    const length = Math.floor(Math.random() * (maxLength - minLength + 1)) + minLength;
+    let result = '';
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return result;
+  };

@@ -17,6 +17,7 @@ import { useUser } from '@clerk/nextjs';
 import { toast } from "sonner";
 import ContactPopup from "./contact-popup";
 import placeholder from "@/public/placeholder-image.jpg";
+import { addDays } from "date-fns"
 
 export default function Flyer({ child, flyer } : {
     child: any, // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -101,7 +102,7 @@ export default function Flyer({ child, flyer } : {
                     <CardContent className="text-left text-lg text-black font-medium" style={{ paddingLeft: '20px' }}>
                         <p style={{display: 'inline-flex'}}>NAME: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{flyer.childName}</p></p>
                         <br/>
-                        <p style={{display: 'inline-flex'}}>DATE OF BIRTH: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{format(child.dateOfBirth, "MMM dd, yyyy")}</p></p>
+                        <p style={{display: 'inline-flex'}}>DATE OF BIRTH: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{format(addDays(child.dateOfBirth, 1), "MMM dd, yyyy")}</p></p>
                         <br/>
                         <p style={{display: 'inline-flex'}}>AGE: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{calculate_age(child.dateOfBirth)}</p></p>
                         <br/>
