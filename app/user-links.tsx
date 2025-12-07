@@ -59,6 +59,7 @@ export default function UserLinks() {
                 // @ts-expect-error: We know 'current' might be null, but we're bypassing for now.
                 signInBtn?.current?.click();
             } else if (signInSaved?.length && userId && isLoaded && isSignedIn) {
+            // } else if (userId && isLoaded && isSignedIn) {
                 if (await isBlockedUser()) {
                     toast.error('User not found or blocked for an hour', {style: {backgroundColor: "red"}});
                     sessionStorage.setItem('signIn', '');

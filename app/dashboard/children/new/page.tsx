@@ -11,7 +11,7 @@ import { X } from "lucide-react";
 
 export default function NewChildPage(){
     return(
-        <div className="max-w-screen-xl mx-auto py-10">
+        <div className="max-w-screen-xl mx-auto">
             <MainNavBar activeItem={'children'} />
             <div style={{display: 'inline-flex'}}>
             <Card className="mt-4 max-w-screen-md" style={{ background: 'lightyellow' }}>

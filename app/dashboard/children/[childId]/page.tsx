@@ -9,11 +9,12 @@ import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import Link from "@/node_modules/next/link";
 import { v2 as cloudinary } from 'cloudinary';
+import MainNavBar from "@/app/main-navbar";
 
 cloudinary.config({
-  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY,
-  api_secret: process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET,
+    cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY,
+    api_secret: process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET,
 });
 
 export default async function EditChildPage({ params }: {
@@ -32,32 +33,35 @@ export default async function EditChildPage({ params }: {
     }
 
     const images = await cloudinary.search
-    .expression('asset_folder:Gods_child')
-    .sort_by('created_at', 'desc')
-    .max_results(1)
-    .execute();
+        .expression('asset_folder:Gods_child')
+        .sort_by('created_at', 'desc')
+        .max_results(1)
+        .execute();
 
     console.log(images.resources);
 
     return (
-        <div style={{display: 'inline-flex'}}>
-            <Card className="mt-4 max-w-screen-md" style={{ background: 'lightyellow' }}>
-                <CardHeader>
-                    <CardTitle className="flex justify-between">
-                        <span>EDIT CHILD</span>
-                        <Button size="icon" style={{background: 'transparent', color: 'black', cursor: 'pointer'}} asChild aria-label="Close">
-                            <Link href="/dashboard/children">
-                                <X />
-                            </Link>
-                        </Button>
-                    </CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <EditChildForm child={child} />
-                </CardContent>
-            </Card>
-            <Image src={tree} alt="call" width={520} height={600} quality={100} 
-                className={'treeBox'} />
+        <div className="max-w-screen-xl mx-auto">
+            <MainNavBar activeItem={'children'} />
+            <div style={{ display: 'inline-flex' }}>
+                <Card className="mt-4 max-w-screen-md" style={{ background: 'lightyellow' }}>
+                    <CardHeader>
+                        <CardTitle className="flex justify-between">
+                            <span>EDIT CHILD</span>
+                            <Button size="icon" style={{ background: 'transparent', color: 'black', cursor: 'pointer' }} asChild aria-label="Close">
+                                <Link href="/dashboard/children">
+                                    <X />
+                                </Link>
+                            </Button>
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <EditChildForm child={child} />
+                    </CardContent>
+                </Card>
+                <Image src={tree} alt="call" width={520} height={600} quality={100}
+                    className={'treeBox'} />
+            </div>
         </div>
     )
 }

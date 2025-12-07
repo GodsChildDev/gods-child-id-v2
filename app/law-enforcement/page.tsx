@@ -11,7 +11,7 @@ export default function LawEnforcementPage() {
 
 
     return(
-        <div className="max-w-screen-lg mx-auto py-10 mt-10">
+        <div className="max-w-screen-xl mx-auto">
             <MainNavBar activeItem={'law'} />
             <FlyerSearchBox codeX={''} />
             <br/>

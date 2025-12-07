@@ -10,7 +10,7 @@ import divider from "@/public/blue_divider.png";
 export default async function About() {
 
     return (
-        <div className="max-w-screen-xl mx-auto py-10">
+        <div className="max-w-screen-xl mx-auto">
             <MainNavBar activeItem={'about'} />
             <Card className="mt-4" style={{ background: 'gainsboro', padding: '15px' }}>
             <CardTitle className="mainTitle">

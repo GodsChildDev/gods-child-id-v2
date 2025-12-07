@@ -13,12 +13,12 @@ import { ChevronDownIcon } from "lucide-react";
 import { Calendar } from "./ui/calendar";
 import { CldImage } from "next-cloudinary";
 import "./child-form.css";
-// import { format } from "date-fns";
-// import { cn } from "@/lib/utils";
 import * as React from "react";
 import DeleteChildDialog from "@/app/dashboard/children/[childId]/delete-child-dialog";
 import Image from "next/image";
+import { CldUploadButton } from "next-cloudinary";
 import placeholder from "@/public/placeholder-image.jpg";
+import { useRouter } from "next/navigation";
 
 export const childFormSchema = z.object({
     childGender: z.enum(["male", "female"]),
@@ -48,6 +48,7 @@ type Props = {
 };
 
 export default function ChildForm({ onSubmit, defaultValues, id }: Props) {
+    const router = useRouter(); 
     const form = useForm<z.infer<typeof childFormSchema>>({
         resolver: zodResolver(childFormSchema),
         defaultValues: {
@@ -67,50 +68,42 @@ export default function ChildForm({ onSubmit, defaultValues, id }: Props) {
 
     const handleSubmit = async (data: z.infer<typeof childFormSchema>) => {
         onSubmit(data, watchedImageUrl);
+        router.push('/dashboard/children');
     };
 
     const [open, setOpen] = React.useState(false);
 
-    // Watch the imageUrl field to dynamically update the UI
     const watchedImageUrl = form.watch("imageUrl");
 
-    // Log whenever imageUrl changes
+     const handleUploadSuccess = (result: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
+        if (result.event === "success") {
+            const secureUrl = result.info.secure_url;
+            console.log("Upload success via CldUploadButton:", secureUrl);
+            
+            form.setValue("imageUrl", secureUrl, {
+                shouldValidate: true,
+                shouldDirty: true,
+            });
+        }
+    };
+
+    const [isMounted, setIsMounted] = React.useState(false);
+
+    React.useEffect(() => {
+        setIsMounted(true);
+        console.log("Cloud Name check:", process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME);
+        console.log("Preset check:", process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME); // Note: Should probably be UPLOAD_PRESET
+    }, []);
+
     React.useEffect(() => {
         if (watchedImageUrl) {
             console.log("Image URL updated via form:", watchedImageUrl);
         }
     }, [watchedImageUrl]);
 
-    // Direct Cloudinary widget trigger
-    const openWidget = () => {
-        if (!(window as any).cloudinary) { // eslint-disable-line @typescript-eslint/no-explicit-any
-            console.error("Cloudinary widget script not loaded yet");
-            return;
-        }
-
-        const widget = (window as any).cloudinary.createUploadWidget({ // eslint-disable-line @typescript-eslint/no-explicit-any
-                cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
-                uploadPreset: process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME,
-            },
-            (error: any, result: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
-                if (!error && result && result.event === "success") {
-                    console.log("Upload success:", result.info.secure_url);
-                    form.setValue("imageUrl", result.info.secure_url, {
-                        shouldValidate: true,
-                        shouldDirty: true,
-                    });
-                }
-            }
-        );
-
-        widget.open();
-    };
-
-
-
     return (
         <Form {...form}>
-            <form onSubmit={() => handleSubmit(form.getValues())} style={{ display: "inline-flex" }}>
+            <form onSubmit={form.handleSubmit(handleSubmit)} style={{ display: "inline-flex" }}>
                 <fieldset disabled={form.formState.isSubmitting} className="mt-5 mb-5 flex flex-col gap-5">
                     <FormField control={form.control} name="imageUrl"
                         render={() => { return (
@@ -119,9 +112,11 @@ export default function ChildForm({ onSubmit, defaultValues, id }: Props) {
                                     <CldImage src={watchedImageUrl} width="320" height="500" alt="Child" className="border border-solid border-black mb-5"/> : 
                                     <Image src={placeholder} alt="placeholder" className="border border-solid border-black mb-5"/>
                                 }
-                                <button type="button" onClick={openWidget} className="uploadImgBtn">
-                                    Upload
-                                </button>
+                                {isMounted && (<CldUploadButton
+                                    onSuccess={handleUploadSuccess}
+                                    uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_PRESET_NAME}
+                                    className="uploadImgBtn" >Upload
+                                </CldUploadButton>)}
                             </div>
                         );}}
                     />

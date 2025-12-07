@@ -7,6 +7,7 @@ import logo from "../public/Logo-no tag.png";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/sonner";
 import UserLinks from "./user-links";
+// import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,6 +43,11 @@ export default function RootLayout({
           <UserLinks />
         </nav>
         {children}
+        {/* <Script
+          src="upload-widget.cloudinary.com"
+          type="text/javascript"
+          strategy="beforeInteractive" // Load before page hydration
+        /> */}
         <Toaster />
       </body>
     </html>

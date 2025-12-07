@@ -25,7 +25,7 @@ export default function Contact() {
     }
 
     return (
-        <div className="max-w-screen-xl mx-auto py-10">
+        <div className="max-w-screen-xl mx-auto">
             <MainNavBar activeItem={'contact'} />
             <Card className="mt-4" style={{ background: 'gainsboro', padding: '15px' }}>
                 <CardTitle style={{ color: 'black' }}>CONTACT US</CardTitle>

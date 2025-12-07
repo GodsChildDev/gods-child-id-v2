@@ -11,7 +11,7 @@ export default async function ChildrenPage() {
     const children = await getChildrenData()
 
     return (
-        <div className="max-w-screen-xl mx-auto py-10">
+        <div className="max-w-screen-xl mx-auto">
             <MainNavBar activeItem={'children'} />
             <Card className="mt-4" style={{ background: 'lightyellow' }}>
                 <CardHeader>

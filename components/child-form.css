@@ -10,4 +10,7 @@
     border: thin dashed cadetblue;
     padding: 4px;
     float: right;
+    /* display: block; 
+    margin-left: auto; /* Centers the block if you want */
+    /* margin-right: auto; */ 
 }
