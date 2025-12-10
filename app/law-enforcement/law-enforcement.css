@@ -11,3 +11,12 @@
     text-shadow: 1px 1px 1px red;
     padding: 5px;
 }
+
+@media (max-width: 768px) {
+    .searchBox {
+        gap: 10px;
+        width: 100vw;
+        padding: 15px;
+        display: grid;
+    }
+}

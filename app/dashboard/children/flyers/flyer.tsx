@@ -89,7 +89,7 @@ export default function Flyer({ child, flyer } : {
             <CardHeader style={{background: '#486377', padding: '20px'}}>
                 <CardTitle className="text-6xl text-white text-center">HAVE YOU SEEN ME?</CardTitle>
             </CardHeader>
-            <div style={{ display: 'inline-flex', padding:'7px', border: 'thin solid black'}}>
+            <div className="flyerBox">
                 <div>
                 {child.imageUrl ?
                     <CldImage src={child.imageUrl} width="400" height="300" alt="Child pic" /> :
@@ -128,8 +128,7 @@ export default function Flyer({ child, flyer } : {
             </div>
             <br/><br/>
             <div style={{ display: 'inline-flex'}}>
-                <div style={{flex: 3, background: 'yellow', padding: '20px', display: 'inline-flex'}} 
-                    className="text-left text-lg text-black font-medium">IF YOU HAVE ANY INFORMATION, PLEASE CONTACT YOUR LOCAL LAW ENFORCEMENT WITH THIS CODE:
+                <div className="text-left text-lg text-black font-medium flyerCodeBox">IF YOU HAVE ANY INFORMATION, PLEASE CONTACT YOUR LOCAL LAW ENFORCEMENT WITH THIS CODE:
                     <p className="lawCode">{flyer.lawEnforcementId}</p>
                 </div>
                 <div style={{flex: 1, background: '#486377', color: 'white', padding: '20px'}} 
@@ -137,7 +136,7 @@ export default function Flyer({ child, flyer } : {
             </div>
             <br/><br/>
             <div style={{textAlign: 'center'}}>
-                <Image src={logo} alt="site logo" width={250} style={{marginLeft: '35%'}} /> 
+                <Image src={logo} alt="site logo" width={250} className="bottomLogo" /> 
                 <div style={{color: 'lightgray', fontFamily: 'cursive', fontStyle: 'italic', textShadow: '1px 1px dodgerblue, -1px 0px lightyellow', fontSize: 'x-large'}}>&quot;Protecting Life&apos;s Most Precious Assets... Our Children&quot;</div>
             </div>
             </div>

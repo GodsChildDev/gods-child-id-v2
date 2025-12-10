@@ -19,3 +19,19 @@
     display: inline-flex;
     font-size: xx-large;
 }
+
+.sessionText {
+    position: absolute;
+    display: inline-flex;
+    width: 72vw;
+    font-weight: 400;
+}
+
+@media (max-width: 768px) { 
+    .sessionText {
+        position: relative;
+        display: inline-flex;
+        font-weight: 400;
+        margin-bottom: -140px;
+    }
+}

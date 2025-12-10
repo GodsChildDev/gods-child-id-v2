@@ -53,7 +53,7 @@ export default function ContactPopup({ show, handleClose, type, value }: {
             onClick={toClose}><X /></Button>
         </div>
         <br /><br />
-        <Input className='w-100' type="text" value={sendValue} onChange={(e) => setSendValue(e.target.value)} />
+        <Input className='w-100' type="text" value={sendValue} onChange={(e) => setSendValue(e.target.value)} style={{width: '-webkit-fill-available'}} placeholder='Enter recipient here'/>
         {type === 'text' &&
           <div>
             <h3 style={{ color: 'black', fontWeight: 100, fontStyle: 'italic' }}>You are requesting a link of the generated flyer of your child or loved one to be texted to the entered recipient above from God&apos;s Child Id <b>(984) 230-9387</b>. 

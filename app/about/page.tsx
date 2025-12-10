@@ -23,7 +23,7 @@ export default async function About() {
             <Card className="mt-1" style={{ background: 'lightyellow' }}>
                 <CardHeader>
                     <CardTitle style={{ color: 'darkgoldenrod' }}>
-                        <span style={{position: 'absolute', display: 'inline-flex', width: '72vw', fontWeight: 400}}>
+                        <span className="sessionText">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gods Child ID is a faith-based company created by a parent just like you. The need for an online ID Kit which can be updated as your children grow is really a must especially in the times, we now live in. Add to this the speed in which a child’s information can be texted or emailed to law enforcement and shared with others via social media is a huge advantage compared to the ID Kits that have been given to parents in the past. It saves precious time and takes the guess work out of remembering important aspects about your child during a stressful situation. 
                         </span>
                     </CardTitle>

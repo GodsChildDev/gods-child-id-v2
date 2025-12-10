@@ -17,3 +17,39 @@
     background: midnightblue; 
     color: lightgoldenrodyellow;
 }
+
+.flyerBox {
+    display: inline-flex;
+    padding: 7px;
+    border: thin solid black;
+}
+
+.flyerCodeBox {
+    flex: 3;
+    background: yellow; 
+    padding: 20px; 
+    display: inline-flex;
+}
+
+.bottomLogo {
+    color: transparent;
+    margin-left: 35%;
+}
+
+@media (max-width: 768px) {
+    .flyerBox {
+        display: block;
+        padding: 7px;
+        border: thin solid black;
+    }
+    .flyerCodeBox  {
+        flex: 3 1 0%;
+        background: yellow;
+        padding: 20px;
+        display: ruby;
+    }
+    .bottomLogo {
+        color: transparent;
+        margin-left: 17%;
+    }
+}

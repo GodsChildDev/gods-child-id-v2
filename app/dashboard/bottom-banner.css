@@ -1,0 +1,23 @@
+.bannerText {
+    position: absolute;
+    color: white;
+    font-size: x-large;
+    left: 30%;
+    margin-top: 12px; 
+    font-weight: 500;
+}
+
+@media (max-width: 768px) { 
+    .bannerText {
+        color: white;
+        font-size: large;
+        left: 5%;
+        margin-top: 12px;
+        font-weight: 500;
+    }
+
+    .bannerPlace {
+        bottom: 0; 
+        position: sticky;
+    }
+}

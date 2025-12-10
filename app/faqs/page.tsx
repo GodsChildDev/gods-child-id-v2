@@ -15,7 +15,7 @@ export default async function FAQs() {
             <Card className="mt-4" style={{ background: 'lightyellow' }}>
                 <CardHeader>
                     <CardTitle style={{ color: 'darkgoldenrod' }}>
-                        <span style={{position: 'absolute', display: 'inline-flex'}}><CircleQuestionMark className="questionBubble" />
+                        <span className="sessionText"><CircleQuestionMark className="questionBubble" />
                         &nbsp;&nbsp;Does God’s Child ID determine if an Amber Alert should be issued for an abducted child?
                         </span>
                     </CardTitle>
@@ -29,7 +29,7 @@ export default async function FAQs() {
             <Card className="mt-4" style={{ background: 'lightyellow' }}>
                 <CardHeader>
                     <CardTitle style={{ color: 'darkgoldenrod' }}>
-                    <span style={{position: 'absolute', display: 'inline-flex'}}><CircleQuestionMark className="questionBubble" />
+                    <span className="sessionText"><CircleQuestionMark className="questionBubble" />
                     &nbsp;&nbsp;What advantages does God’s Child ID offer to a parent if their child becomes lost or abducted?
                     </span></CardTitle>
                 </CardHeader>
@@ -42,7 +42,7 @@ export default async function FAQs() {
             <Card className="mt-4" style={{ background: 'lightyellow' }}>
                 <CardHeader>
                     <CardTitle style={{ color: 'darkgoldenrod' }}>
-                    <span style={{position: 'absolute', display: 'inline-flex'}}><CircleQuestionMark className="questionBubble" />
+                    <span className="sessionText"><CircleQuestionMark className="questionBubble" />
                     &nbsp;&nbsp;At what age do you recommend I start adding my children’s information to the Profile Page?                    
                     </span></CardTitle>
                 </CardHeader>
@@ -55,7 +55,7 @@ export default async function FAQs() {
             <Card className="mt-4" style={{ background: 'lightyellow' }}>
                 <CardHeader>
                     <CardTitle style={{ color: 'darkgoldenrod' }}>
-                    <span style={{position: 'absolute', display: 'inline-flex'}}><CircleQuestionMark className="questionBubble" />
+                    <span className="sessionText"><CircleQuestionMark className="questionBubble" />
                     &nbsp;&nbsp;How can I cancel my subscription to God’s Child ID?                    
                     </span></CardTitle>
                 </CardHeader>

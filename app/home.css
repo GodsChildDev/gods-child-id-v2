@@ -20,6 +20,12 @@ li {
     margin-bottom: -15px;
 } 
 
+.watchVideoText {
+    color: darkgoldenrod;
+    display: inline-flex;
+    font-weight: 700;
+}
+
 .main-scroller {
     background: oldlace;
     border-top: ridge thick rosybrown;
@@ -48,6 +54,11 @@ li {
     padding-left: 12px;
 }
 
+.protectBox {
+    display: inline-flex;
+    background: #44572a52;
+}
+
 .actionHeader {
     background: #ff00001c;
     border-radius: 7px;
@@ -60,8 +71,35 @@ li {
     padding-left: 12px;
 }
 
+.actionBox {
+    display: inline-flex;
+    background: gray;
+}
+
 .firstViewHeader {
     background: #80808033;
     border-radius: 7px;
     padding: 5px;
+}
+
+@media (max-width: 768px) { 
+    .protectBox {
+        display: inline-block;
+        background: #44572a52;
+    }
+
+    .actionBox {
+        display: inline-block;
+        background: gray;
+    }
+
+    .watchVideoText {
+        color: darkgoldenrod;
+        display: block;
+        font-weight: 700;
+    }
+
+    .glasses {
+        display: inline;
+    }
 }

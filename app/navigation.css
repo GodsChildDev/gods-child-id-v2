@@ -103,5 +103,25 @@ i {
 @media (max-width: 768px) { /* Adjust breakpoint as needed */
   .mainNavLi {
     display: block;
+    word-break: break-all;
+    justify-content: space-around; /*maybe*/
   }
+  .mainNavA {
+    margin-bottom: 20px;
+  }
+  .mainNavAPress {
+    margin-bottom: 20px;
+  }
+  /* Specific fix for the law enforcement tab in mobile view */
+  .lawEnforcementTab {
+    margin-bottom: 20px; /* Adds necessary vertical spacing */
+    display: ruby; /* Ensures text and icon stay inline */
+    /* vertical-align: middle; Centers icon and text vertically */
+    width: fit-content; /* Prevents stretching to full width, which can cause layout issues with inline-flex */
+  }
+  .mainNavA, .mainNavAPress {
+    /* margin-bottom: 10px; Adds vertical spacing in mobile view */
+    /* display: block is no longer needed */
+  }
+
 }

@@ -25,7 +25,7 @@ export default async function Links() {
             <Card className="mt-4" style={{ background: 'lightyellow' }}>
                 <CardHeader>
                     <CardTitle style={{ color: 'darkgoldenrod' }}>
-                    <span style={{position: 'absolute', display: 'inline-flex', width: '75vw'}}><Link style={{color: 'brown'}} />
+                    <span className="sessionText"><Link style={{color: 'brown'}} />
                     &nbsp;&nbsp;Starting a Neighborhood Watch Group is a great idea and can help protect not only your property but the lives of your children. Below is a link that will show you how to get started.
                     </span></CardTitle>
                 </CardHeader>
@@ -39,7 +39,7 @@ export default async function Links() {
             <Card className="mt-4" style={{ background: 'lightyellow' }}>
                 <CardHeader>
                     <CardTitle style={{ color: 'darkgoldenrod' }}>
-                    <span style={{position: 'absolute', display: 'inline-flex'}}><Link style={{color: 'brown'}} />
+                    <span className="sessionText"><Link style={{color: 'brown'}} />
                     &nbsp;&nbsp;Teaching younger children about Stranger Danger is a must here’s one website that lays it out for you.                    
                     </span></CardTitle>
                 </CardHeader>
@@ -48,14 +48,14 @@ export default async function Links() {
                         <br/>
                     <a href="https://schoolbeat.cymru/en/parents/know-what-could-affect-your-child/personal-safety/what-you-need-to-know/stranger-danger/">
                         What is Stranger Danger?</a><br/><br/>
-                        <iframe width="75%" height="300" src="https://www.youtube.com/embed/SY7RhBszp0k" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" allowFullScreen></iframe>
+                        <iframe width="100%" height="300" src="https://www.youtube.com/embed/SY7RhBszp0k" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" allowFullScreen></iframe>
                     </div>
                 </CardContent>
             </Card>
             <Card className="mt-4" style={{ background: 'lightyellow' }}>
                 <CardHeader>
                     <CardTitle style={{ color: 'darkgoldenrod' }}>
-                    <span style={{position: 'absolute', display: 'inline-flex'}}><Link style={{color: 'brown'}} />
+                    <span className="sessionText"><Link style={{color: 'brown'}} />
                     &nbsp;&nbsp;Helping a teenager to be aware of their surroundings and how to be safe                    
                     </span></CardTitle>
                 </CardHeader>

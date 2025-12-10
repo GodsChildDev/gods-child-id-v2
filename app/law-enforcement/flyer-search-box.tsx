@@ -15,7 +15,7 @@ export default function FlyerSearchBox({ codeX } : { codeX : string }) {
     return (
         <div className='searchBox'>
             <label className='my-2' style={{fontWeight: 500, color: 'midnightblue'}}>Enter the unique child identifier:</label>
-            <Input className='w-100' type="text" value={code} onChange={(e) => setCode(e.target.value)} style={{background: '#e6e6f1'}}/>
+            <Input className='w-100' type="text" value={code} onChange={(e) => setCode(e.target.value)} style={{background: '#e6e6f1', width: 'auto'}}/>
             <Button variant="outline" disabled={disabled} style={{ width: '100px', background: 'midnightblue', color: 'lightgoldenrodyellow' }} asChild>
                 <Link href={`/law-enforcement/${code}`}>
                     Submit

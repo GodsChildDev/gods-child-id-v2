@@ -11,3 +11,15 @@
     background: white;
     border-radius: 15px;
 }
+
+.sessionText {
+    position: absolute;
+    display: inline-flex;
+}
+
+@media (max-width: 768px) { 
+    .sessionText {
+        position: relative;
+        display: inline-flex;
+    }
+}
