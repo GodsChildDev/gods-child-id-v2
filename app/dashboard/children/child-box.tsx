@@ -11,6 +11,7 @@ import divider from "@/public/blue_divider.png";
 import DeleteChildDialog from './[childId]/delete-child-dialog';
 import { calculate_age, capitalize, format_height } from '@/lib/utils';
 import placeholder from "@/public/placeholder-image.jpg";
+import "./childrenPage.css";
 
 
 export default function ChildBox({ child, i } : {
@@ -25,7 +26,7 @@ export default function ChildBox({ child, i } : {
 
     return (<Card>
         <CardHeader>
-            <div style={{ display: 'inline-flex' }}>
+            <div className='childBox'>
                 <div>
                     <div style={{
                         position: 'absolute', paddingLeft: '60px', background: '#3f51b5b8',
@@ -37,8 +38,8 @@ export default function ChildBox({ child, i } : {
                 </div>
                 <div style={{ flex: 1 }}>
                     <CardDescription className="text-left text-lg text-black font-medium" style={{ paddingLeft: '20px' }}>
-                        <p style={{display: 'inline-flex', width: '100%'}}>AGE: &nbsp;&nbsp;<p style={{fontWeight: 100, flex: 1}}>{calculate_age(child.dateOfBirth)}</p>
-                            <DeleteChildDialog childId={child.id} type={'x'}/>
+                        <p className='ageRow'>AGE: &nbsp;&nbsp;<p style={{fontWeight: 100, flex: 1}}>{calculate_age(child.dateOfBirth)}</p>
+                            <p><DeleteChildDialog childId={child.id} type={'x'} /></p>
                         </p>
                         <p style={{display: 'inline-flex'}}>GENDER: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{capitalize(child.gender)}</p></p>
                         <p style={{display: 'inline-flex'}}>HEIGHT: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{format_height(child.height)}</p></p>

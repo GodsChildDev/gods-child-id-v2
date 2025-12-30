@@ -6,6 +6,7 @@ import { Trash2Icon, X } from "lucide-react";
 import { deleteChild } from "./actions";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import "./delete-child.css";
 
 export default function DeleteChildDialog({
     childId, type
@@ -37,7 +38,7 @@ export default function DeleteChildDialog({
                         Delete
                     </Button> :
                     type === 'x' ?
-                    <Button variant="outline" size="icon" aria-label="Delete" style={{cursor: 'pointer'}}>
+                    <Button variant="outline" size="icon" aria-label="Delete" className="xBox">
                         <X />
                     </Button> :
                     <Button variant="destructive" size="icon">

@@ -55,7 +55,7 @@ export default function Home() {
                 <CardHeader><CardTitle className="slogan">Protect your Children and if the Unthinkable Happens...
                     Facilitate your Child&apos;s Rescue</CardTitle></CardHeader>
 
-                <Carousel showArrows={true} onChange={onChange} onClickItem={onClickItem}
+                <Carousel showArrows={true} onChange={onChange} onClickItem={onClickItem} showStatus={false}
                     onClickThumb={onClickThumb} className="main-scroller" showThumbs={false}
                     autoPlay infiniteLoop interval={9000} 
                     ref={carouselRef}>

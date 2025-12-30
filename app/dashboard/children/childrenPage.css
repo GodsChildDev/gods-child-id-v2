@@ -1,0 +1,37 @@
+.childColumns {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ageRow {
+    display: inline-flex;
+    width: 100%;
+}
+
+.xBox {
+    cursor: pointer;
+}
+
+.childBox {
+    display: inline-flex;
+}
+
+@media (max-width: 768px) {
+    .childColumns {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+
+    .ageRow {
+        display: inline-flex;
+        width: 100%;
+        margin-bottom: -8px;
+    }
+
+    .xBox {
+        cursor: pointer;
+        /* top: -143px; */
+        position: sticky;
+    }
+    .childBox {
+        display: ruby;
+    }
+}

@@ -11,7 +11,9 @@ import UserDropdown from "./user-dropdown";
 import './user-links.css';
 import { toast } from "sonner";
 
-export default function UserLinks() {
+export default function UserLinks({loadSpinner}: {
+  loadSpinner: () => void;
+}) {
 
     const signUpBtn = useRef(null);
     const signInBtn = useRef(null);
@@ -64,12 +66,14 @@ export default function UserLinks() {
                     toast.error('User not found or blocked for an hour', {style: {backgroundColor: "red"}});
                     sessionStorage.setItem('signIn', '');
                     signOut({ redirectUrl: '/' });
+                    loadSpinner();
                 } else {
                     setIsModal2Open(true);
                 }
             }
 
             if (!isSignedIn && signInSaved?.length) {
+                loadSpinner();
                 setIsSignIn(false);
             }
         };
@@ -86,6 +90,7 @@ export default function UserLinks() {
 
     const signIn = () => {
         sessionStorage.setItem('signIn', 'inprogress');
+        loadSpinner();
         setIsSignIn(true);
     }
 

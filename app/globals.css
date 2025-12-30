@@ -121,12 +121,36 @@
   }
 }
 
+.full-screen-overlay {
+  /* Position the overlay fixed to the viewport */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  
+  /* Cover the entire screen */
+  width: 100%;
+  height: 100%;
+
+  /* Add the semi-transparent gray shade */
+  background-color: #80808036; /* Gray with 70% opacity */
+
+  /* Center the spinner using Flexbox */
+  display: flex;
+  justify-content: center; /* Horizontal centering */
+  align-items: center;     /* Vertical centering */
+
+  /* Ensure it is above all other content on the page */
+  z-index: 1000; 
+}
+
 @media (max-width: 768px) { /* Adjust breakpoint as needed */
   #topNav {
     flex-direction: column; /* Stack items vertically */
-    align-items: baseline; /* Center items horizontally */
+    /* align-items: baseline; Center items horizontally */
     background-color: #f0f0f0; /* Example mobile background */
-    padding: 20px;
+    padding: 5px;
   }
 
   #descriptTop {

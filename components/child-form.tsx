@@ -193,29 +193,18 @@ export default function ChildForm({ onSubmit, defaultValues, id }: Props) {
                                                 <SelectValue />
                                             </SelectTrigger>
                                             <SelectContent>
-                                                <SelectItem value="0-1">0 feet 1 inch</SelectItem>
-                                                <SelectItem value="0-2">0 feet 2 inches</SelectItem>
-                                                <SelectItem value="0-3">0 feet 3 inches</SelectItem>
-                                                <SelectItem value="0-4">0 feet 4 inches</SelectItem>
-                                                <SelectItem value="0-5">0 feet 5 inches</SelectItem>
-                                                <SelectItem value="0-6">0 feet 6 inches</SelectItem>
-                                                <SelectItem value="0-7">0 feet 7 inches</SelectItem>
-                                                <SelectItem value="0-8">0 feet 8 inches</SelectItem>
-                                                <SelectItem value="0-9">0 feet 9 inches</SelectItem>
-                                                <SelectItem value="0-10">0 feet 10 inches</SelectItem>
-                                                <SelectItem value="0-11">0 feet 11 inches</SelectItem>
-                                                <SelectItem value="1-0">1 feet 0 inches</SelectItem>
-                                                <SelectItem value="1-1">1 feet 1 inches</SelectItem>
-                                                <SelectItem value="1-2">1 feet 2 inches</SelectItem>
-                                                <SelectItem value="1-3">1 feet 3 inches</SelectItem>
-                                                <SelectItem value="1-4">1 feet 4 inches</SelectItem>
-                                                <SelectItem value="1-5">1 feet 5 inches</SelectItem>
-                                                <SelectItem value="1-6">1 feet 6 inches</SelectItem>
-                                                <SelectItem value="1-7">1 feet 7 inches</SelectItem>
-                                                <SelectItem value="1-8">1 feet 8 inches</SelectItem>
-                                                <SelectItem value="1-9">1 feet 9 inches</SelectItem>
-                                                <SelectItem value="1-10">1 feet 10 inches</SelectItem>
-                                                <SelectItem value="1-11">1 feet 11 inches</SelectItem>
+                                                <SelectItem value="1-0">1 foot 0 inches</SelectItem>
+                                                <SelectItem value="1-1">1 foot 1 inches</SelectItem>
+                                                <SelectItem value="1-2">1 foot 2 inches</SelectItem>
+                                                <SelectItem value="1-3">1 foot 3 inches</SelectItem>
+                                                <SelectItem value="1-4">1 foot 4 inches</SelectItem>
+                                                <SelectItem value="1-5">1 foot 5 inches</SelectItem>
+                                                <SelectItem value="1-6">1 foot 6 inches</SelectItem>
+                                                <SelectItem value="1-7">1 foot 7 inches</SelectItem>
+                                                <SelectItem value="1-8">1 foot 8 inches</SelectItem>
+                                                <SelectItem value="1-9">1 foot 9 inches</SelectItem>
+                                                <SelectItem value="1-10">1 foot 10 inches</SelectItem>
+                                                <SelectItem value="1-11">1 foot 11 inches</SelectItem>
                                                 <SelectItem value="2-0">2 feet 0 inches</SelectItem>
                                                 <SelectItem value="2-1">2 feet 1 inches</SelectItem>
                                                 <SelectItem value="2-2">2 feet 2 inches</SelectItem>

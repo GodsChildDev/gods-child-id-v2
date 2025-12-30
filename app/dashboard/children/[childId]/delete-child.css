@@ -1,0 +1,12 @@
+
+.xBox {
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .xBox {
+    cursor: pointer;
+    /* top: -143px; */
+    position: sticky;
+}
+}
