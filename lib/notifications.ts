@@ -41,7 +41,7 @@ export async function sendEmail(email: string, subject: string, message: string)
     name: "God's Child ID User",
   };
   const recipients = [
-    "angelahestonmd@gmail.com"
+    "support@godschildid.com"
   ];
 
   await transporter.sendMail({

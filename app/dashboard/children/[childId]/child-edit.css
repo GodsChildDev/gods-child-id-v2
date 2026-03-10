@@ -16,3 +16,9 @@
     border: 2px dotted #b26127;
     border-radius: 7px;
 } */
+
+@media (max-width: 768px) {
+    .treeBox {
+        display: none;
+    }
+}

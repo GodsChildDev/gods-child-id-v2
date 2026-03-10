@@ -103,7 +103,7 @@ export default function ChildForm({ onSubmit, defaultValues, id }: Props) {
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleSubmit)} style={{ display: "inline-flex" }}>
+            <form onSubmit={form.handleSubmit(handleSubmit)} className="editBox">
                 <fieldset disabled={form.formState.isSubmitting} className="mt-5 mb-5 flex flex-col gap-5">
                     <FormField control={form.control} name="imageUrl"
                         render={() => { return (

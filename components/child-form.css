@@ -14,3 +14,13 @@
     margin-left: auto; /* Centers the block if you want */
     /* margin-right: auto; */ 
 }
+
+.editBox {
+    display: inline-flex;
+}
+
+@media (max-width: 768px) {
+    .editBox {
+        display: block;
+    }
+}

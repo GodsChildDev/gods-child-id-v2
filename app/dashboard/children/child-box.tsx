@@ -36,16 +36,16 @@ export default function ChildBox({ child, i } : {
                         <Image src={placeholder} alt="placeholder" width="175" height="100" className="border border-solid border-black mb-5"/>
                     }
                 </div>
-                <div style={{ flex: 1 }}>
-                    <CardDescription className="text-left text-lg text-black font-medium" style={{ paddingLeft: '20px' }}>
+                <div style={{ flex: 1, width: '100%' }}>
+                    <CardDescription className="text-left text-lg text-black font-medium" style={{ paddingLeft: '20px', display: 'grid' }}>
                         <p className='ageRow'>AGE: &nbsp;&nbsp;<p style={{fontWeight: 100, flex: 1}}>{calculate_age(child.dateOfBirth)}</p>
                             <p><DeleteChildDialog childId={child.id} type={'x'} /></p>
                         </p>
-                        <p style={{display: 'inline-flex'}}>GENDER: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{capitalize(child.gender)}</p></p>
-                        <p style={{display: 'inline-flex'}}>HEIGHT: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{format_height(child.height)}</p></p>
-                        <p style={{display: 'inline-flex'}}>WEIGHT: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{child.weight} lbs</p></p>
-                        <p style={{display: 'inline-flex'}}>HAIR: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{capitalize(child.hairColor)}</p></p>
-                        <p style={{display: 'inline-flex'}}>EYES: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{capitalize(child.eyeColor)}</p></p>
+                        <p style={{display: 'flex'}}>GENDER: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{capitalize(child.gender)}</p></p>
+                        <p style={{display: 'flex'}}>HEIGHT: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{format_height(child.height)}</p></p>
+                        <p style={{display: 'flex'}}>WEIGHT: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{child.weight} lbs</p></p>
+                        <p style={{display: 'flex'}}>HAIR: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{capitalize(child.hairColor)}</p></p>
+                        <p style={{display: 'flex'}}>EYES: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{capitalize(child.eyeColor)}</p></p>
                         <Image src={divider} alt="divider" width={100} height={20} 
                             style={{transform: 'rotateX(180deg)', marginTop: '15px'}}/>
                     </CardDescription>
@@ -53,8 +53,8 @@ export default function ChildBox({ child, i } : {
             </div>
         </CardHeader>
         <CardContent className="text-left text-md text-black font-medium">
-            <p style={{display: 'inline-flex'}}>MEDICAL CONDITIONS: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{capitalize(child.medicalConditions)}</p></p>
-            <p style={{display: 'inline-flex'}}><p style={{minWidth: '240px'}}>IDENTIFYING CHARACTERISTICS:</p> &nbsp;&nbsp;<p style={{fontWeight: 100}}>{capitalize(child.identifiers)}</p></p>
+            <p className='childBox'>MEDICAL CONDITIONS: &nbsp;&nbsp;<p style={{fontWeight: 100}}>{capitalize(child.medicalConditions)}</p></p>
+            <p className='childBox'><p style={{minWidth: '240px'}}>IDENTIFYING CHARACTERISTICS:</p> &nbsp;&nbsp;<p style={{fontWeight: 100}}>{capitalize(child.identifiers)}</p></p>
         </CardContent>
         <CardFooter className="items-center justify-center gap-2.5">
             <Button variant="outline" size="icon" aria-label="Edit Child" style={{ width: '100px', background: 'midnightblue', color: 'lightgoldenrodyellow' }} asChild>
