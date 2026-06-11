@@ -28,9 +28,10 @@ export async function getFlyerByCode(code : string) {
   return flyer;
 }
 
-// export async function getUsedCodes() {
-//   const [flyer] = await db
-//   .select(flyerTable.lawEnforcementId)
-//   .from(flyerTable);
-//   return flyer;
-// }
+export async function getUsedCodes() {
+  const result = await db
+    .select({ id: flyerTable.lawEnforcementId }) 
+    .from(flyerTable);
+    
+  return result.map(row => row.id); 
+}

@@ -18,6 +18,8 @@ export default async function About() {
                 <div style={{flex: 1, paddingLeft: '15px'}}>ABOUT US
                 <br/>
                 <Image src={divider} alt="divider" width={140} height={20}/>
+                <br/>
+                <div className="verseText">"..children are an heritage of the LORD..." - Psalms 127:3</div>
                 </div>
             </CardTitle>
             <Card className="mt-1" style={{ background: 'lightyellow' }}>

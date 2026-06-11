@@ -18,7 +18,7 @@ export default async function Terms() {
                             <br /><br />
                             2. You can cancel the SMS service at any time. Just text &quot;STOP&quot; to the short code. After you send the SMS message &quot;STOP&quot; to us, we will send you an SMS message to confirm that you have been unsubscribed. After this, you will no longer receive SMS messages from us. If you want to join again, just sign up as you did the first time and we will start sending SMS messages to you again.
                             <br /><br />
-                            3. If you are experiencing issues with the messaging program you can reply with the keyword HELP for more assistance, or you can get help directly at support@godschildid.com.
+                            3. If you are experiencing issues with the messaging program you can reply with the keyword HELP for more assistance, or you can get help directly at rhett.barbaree@yahoo.com.
                             <br /><br />
                             4. Carriers are not liable for delayed or undelivered messages
                             <br /><br />

@@ -20,6 +20,15 @@
     font-size: xx-large;
 }
 
+.verseText {
+    color: lightblue;
+    display: block;
+    margin-top: -46px;
+    font-size: small;
+    font-style: italic;
+    font-weight: 100;
+}
+
 .sessionText {
     position: absolute;
     display: inline-flex;

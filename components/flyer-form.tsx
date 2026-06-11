@@ -10,7 +10,7 @@ import { Button } from "./ui/button";
 // import { cn } from "@/lib/utils";
 import * as React from "react";
 import { TextArea } from "./ui/textarea";
-// import { getUsedCodes } from "@/data/getFlyer";
+import { getUsedCodes } from "@/data/getFlyer";
 
 export const flyerFormSchema = z.object({
     childId: z.number(),
@@ -19,6 +19,8 @@ export const flyerFormSchema = z.object({
     lastSeenWearing: z.string(),
     lawEnforcementId: z.string()
 })
+
+let usedCodes: Iterable<unknown> | null | undefined;
 
 // child_id
 // law_enforcement_id
@@ -37,7 +39,7 @@ type Props = {
     }
 }
 
-function generateRandomAlphanumeric() {
+function generateRandomAlphanumeric2() {
     // get use code list
     // while not unique, do random
     // const usedCodes = getUsedCodes();
@@ -52,6 +54,40 @@ function generateRandomAlphanumeric() {
     }
     return result;
   };
+
+  const yes = async () => {
+      usedCodes = await getUsedCodes();
+  }
+
+  function generateRandomAlphanumeric() {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const minLength = 4;
+  const maxLength = 6;
+  
+  let isUnique = false;
+  let result = '';
+
+  // 1. Fetch the list of already used codes from your database API
+  // Wrap this in try/catch in production to handle network errors safely
+  yes();
+  const usedCodesSet = new Set(usedCodes); // Using a Set optimizes lookup speed
+
+  // 2. Loop until a generated code is not found in the database list
+  while (!isUnique) {
+    const length = Math.floor(Math.random() * (maxLength - minLength + 1)) + minLength;
+    result = '';
+    
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+
+    if (!usedCodesSet.has(result)) {
+      isUnique = true;
+    }
+  }
+
+  return result;
+}
 
 export default function FlyerForm({
     onSubmit, defaultValues
