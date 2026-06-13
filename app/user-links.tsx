@@ -104,7 +104,7 @@ export default function UserLinks({loadSpinner}: {
                             <SignInButton mode="modal">
                                 <button className="clickBtn" ref={signInBtn}>Sign In</button>
                             </SignInButton> :
-                            <Button variant="outline" onClick={signIn} style={{ width: '100px', background: 'invisible', color: 'blue', cursor: 'pointer' }}>
+                            <Button variant="outline" onClick={signIn} style={{ width: '100px', background: 'cornflowerblue', color: 'ghostwhite', border: 'thin solid darkslateblue', cursor: 'pointer' }}>
                                 Sign In
                             </Button>
                         }
@@ -113,7 +113,7 @@ export default function UserLinks({loadSpinner}: {
                             <SignUpButton mode="modal">
                                 <button className="clickBtn" ref={signUpBtn}>Sign Up</button>
                             </SignUpButton> :
-                            <Button variant="outline" onClick={handleOpen} style={{ width: '100px', background: 'invisible', color: 'blue', cursor: 'pointer' }}>
+                            <Button variant="outline" onClick={handleOpen} style={{ width: '100px', background: 'cornflowerblue', color: 'ghostwhite', border: 'thin solid darkslateblue', cursor: 'pointer' }}>
                                 Sign Up
                             </Button>
                         }

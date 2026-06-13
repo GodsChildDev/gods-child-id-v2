@@ -31,7 +31,8 @@ export default function Flyer({ child, flyer } : {
 
     const flyerRef = useRef<HTMLDivElement>(null),
         flyerDocName = 'Nate Missing Flyer',
-        reactToPrintFn = useReactToPrint({ contentRef: flyerRef, documentTitle: flyerDocName });
+        reactToPrintFn = useReactToPrint({ contentRef: flyerRef, documentTitle: flyerDocName, 
+            print: async () => {window.print();} });
 
 
     const handleContactPopupClose = (type : "email" | "text" | undefined, value : string | undefined) => {
@@ -85,7 +86,7 @@ export default function Flyer({ child, flyer } : {
     return (
         <>
         <Card className="mt-4">
-            <div ref={flyerRef} style={{margin: '20px'}}>
+            <div ref={flyerRef} className="mobile-print-target" style={{margin: '20px'}}>
             <CardHeader style={{background: '#486377', padding: '20px'}}>
                 <CardTitle className="text-6xl text-white text-center">HAVE YOU SEEN ME?</CardTitle>
             </CardHeader>
@@ -128,7 +129,7 @@ export default function Flyer({ child, flyer } : {
             </div>
             <br/><br/>
             <div style={{ display: 'inline-flex'}}>
-                <div className="text-left text-lg text-black font-medium flyerCodeBox">IF YOU HAVE ANY INFORMATION, PLEASE CONTACT YOUR LOCAL LAW ENFORCEMENT WITH THIS CODE:
+                <div className="text-left text-lg text-black font-medium flyerCodeBox law-enforcement-code-box">IF YOU HAVE ANY INFORMATION, PLEASE CONTACT YOUR LOCAL LAW ENFORCEMENT WITH THIS CODE:
                     <p className="lawCode">{flyer.lawEnforcementId}</p>
                 </div>
                 <div style={{flex: 1, background: '#486377', color: 'white', padding: '20px'}} 
