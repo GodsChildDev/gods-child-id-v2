@@ -77,7 +77,7 @@ export async function isBlockedUser() {
   const [signin_details] = await db.select().from(signupDetails)
     .where(eq(signupDetails.user, userId.userId!))
     .limit(1);
-    console.log('JDH blocked with stamp: ' + signin_details.blockedTimestamp);
+    console.log('JDH blocked with stamp: ' + signin_details?.blockedTimestamp);
    if (signin_details != null) {
       const isAfterBlock = !signin_details.blockedTimestamp || (new Date() > new Date(signin_details.blockedTimestamp!));
       return !isAfterBlock;

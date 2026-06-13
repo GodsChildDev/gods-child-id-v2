@@ -127,9 +127,9 @@ export default function ContactPopup({ show, handleClose, type, value }: {
             <h3 style={{ color: 'black', fontWeight: 100, fontStyle: 'italic', fontSize: '0.85rem', lineHeight: '1.4' }}>
               You are requesting a link to the flyer to be texted from <b>(984) 230-9387</b>. 
               Msg/data rates apply. See our 
-              &nbsp;<Link href="https://gods-child-id.vercel.app" target="_blank" style={{ color: 'blue', textDecoration: 'underline' }}>Terms</Link> 
+              &nbsp;<Link href="https://www.godschildid.com" target="_blank" style={{ color: 'blue', textDecoration: 'underline' }}>Terms</Link> 
               &nbsp;&&nbsp;
-              <Link href="https://gods-child-id.vercel.app" target="_blank" style={{ color: 'blue', textDecoration: 'underline' }}>Privacy</Link>.
+              <Link href="https://www.godschildid.com" target="_blank" style={{ color: 'blue', textDecoration: 'underline' }}>Privacy</Link>.
             </h3>
             <br />
             <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>

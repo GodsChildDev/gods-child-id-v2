@@ -52,7 +52,7 @@ export default function Flyer({ child, flyer } : {
 
     const sendFlyerText = async (phone : string | undefined) => {
         if (phone?.length) {
-        const message = `https://gods-child-id.vercel.app/law-enforcement/${flyer.lawEnforcementId}`;
+        const message = `https://www.godschildid.com/law-enforcement/${flyer.lawEnforcementId}`;
         console.log('JDH phone: ' + phone);
         const result = await sendtext(message, phone);
         console.log('JDH text result: ' + result);
@@ -73,7 +73,7 @@ export default function Flyer({ child, flyer } : {
     const submitFlyerEmail = async (email : string | undefined) => {
         if (email?.length) {
             // const url = `http://localhost:3000/law-enforcement/${flyer.lawEnforcementId}`;
-            const url = `https://gods-child-id-superjekka-superjekkas-projects.vercel.app/law-enforcement/${flyer.lawEnforcementId}`;
+            const url = `https://www.godschildid.com/law-enforcement/${flyer.lawEnforcementId}`;
             const result = await sendFlyerEmail(email, url);
             console.log('JDH email result: ' + result);
             toast.success('Email sent ', {

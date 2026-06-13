@@ -39,22 +39,6 @@ type Props = {
     }
 }
 
-function generateRandomAlphanumeric2() {
-    // get use code list
-    // while not unique, do random
-    // const usedCodes = getUsedCodes();
-    // console.log(usedCodes);
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const minLength = 4;
-    const maxLength = 6;
-    const length = Math.floor(Math.random() * (maxLength - minLength + 1)) + minLength;
-    let result = '';
-    for (let i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
-    return result;
-  };
-
   const yes = async () => {
       usedCodes = await getUsedCodes();
   }

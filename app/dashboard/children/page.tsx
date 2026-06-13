@@ -1,14 +1,12 @@
 // "use client"
 
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getChildrenData } from "@/data/getChildrenData";
-import Image from "next/image";
-import Link from "next/link";
-import plusImage from "@/public/plus-icon.jpg";
 import ChildBox from "./child-box";
 import BottomBanner from "../bottom-banner";
 import MainNavBar from "@/app/main-navbar";
 import './childrenPage.css';
+import AddChildCard from "./add-child-card";
 // import { useUser } from "@clerk/nextjs";
 // import { useEffect, useRef } from "react";
 
@@ -45,7 +43,7 @@ export default async function ChildrenPage() {
     //     }
 
     // }, [isLoaded, isSignedIn]);
-
+    
     return (
         <div className="max-w-screen-xl mx-auto">
             <MainNavBar activeItem={'children'} />
@@ -58,23 +56,16 @@ export default async function ChildrenPage() {
                 </CardHeader>
                 <CardContent>
                     {!children?.length && (<p className="text-center py-10 text-lg text-muted-foreground">You don`t have any children added. Use the button above to add a child to your profile</p>)}
-                    {!!children?.length && (
+                    {!!children?.length ? (
                         <div className="grid childColumns gap-5 max-w-full">
                             {children?.map((child, i) => (
                                 <ChildBox child={child} key={child.id} i={i} />
                             ))}
-                            <Card>
-                                <CardHeader className="text-center mt-5">
-                                    <CardTitle className="text-3xl">Add Child</CardTitle>
-                                </CardHeader>
-                                <CardFooter className="mt-25 flex items-center justify-center">
-                                    <Link href="/dashboard/children/new">
-                                        <Image height={150} width={150} src={plusImage} alt="add child button" />
-                                    </Link>
-                                </CardFooter>
-                            </Card>
+                        <AddChildCard/>
                         </div>
-                    )}
+                    )
+                    : <AddChildCard/>
+                }
                 </CardContent>
             </Card>
             <BottomBanner />

@@ -34,7 +34,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} style={{ background: '#155e9496' }}>
-          <nav id="topNav" className="bg-zinc-300 text-white p-4 h-30 flex items-center justify-between"
+          <nav id="topNav" className="w-full bg-zinc-300 text-white p-4 h-30 flex items-center justify-between"
             style={{ background: 'white', border: 'thick dashed ghostwhite', borderRadius: '7px' }}>
             <Link href="/">
               <Image src={logo} alt="site logo" width={250} />

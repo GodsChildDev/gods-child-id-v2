@@ -25,7 +25,7 @@ export default async function Terms() {
                             5. As always, message and data rates may apply for any messages sent to you from us and to us from you. You will receive messages as you interact with God&apos;s Child Id site, specifically when you login and request flyer texts. If you have any questions about your text plan or data plan, it is best to contact your wireless provider.
                             <br /><br />
                             6. If you have any questions regarding privacy, please read our &nbsp;
-                            <Link href="https://gods-child-id.vercel.app/privacy" target="_blank" rel="noopener noreferrer" style={{ color: 'blue', textDecoration: 'underline' }}>
+                            <Link href="https://www.godschildid.com/privacy" target="_blank" rel="noopener noreferrer" style={{ color: 'blue', textDecoration: 'underline' }}>
                                 privacy policy
                             </Link>.
                         </div>
