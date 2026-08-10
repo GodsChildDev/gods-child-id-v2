@@ -23,3 +23,15 @@
         display: inline-flex;
     }
 }
+
+.faq-page-wrapper .sessionText {
+  display: flex !important;
+  align-items: flex-start !important;
+  line-height: 1.4 !important;
+  white-space: normal !important;
+}
+
+.faq-page-wrapper .questionBubble {
+  flex-shrink: 0 !important;
+  margin-top: 3px !important;
+}

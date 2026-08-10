@@ -57,7 +57,6 @@ export default function Home() {
 
                 <Carousel showArrows={true} onChange={onChange} onClickItem={onClickItem} showStatus={false}
                     onClickThumb={onClickThumb} className="main-scroller" showThumbs={false}
-                    autoPlay infiniteLoop interval={9000} 
                     ref={carouselRef}>
                     <div>
                         <CardHeader className="firstViewHeader">
